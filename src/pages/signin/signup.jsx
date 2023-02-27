@@ -1,0 +1,202 @@
+import React, { useState } from "react";
+import styles from "../../styles/signin/signup.module.css";
+// import { useAuthContext } from "../api/auth/AuthContext";
+import { useRouter } from "next/router";
+
+function SignUp() {
+  const router = useRouter();
+
+  const [companyName, setCompanyName] = useState("");
+  const [companyPhoneNum, setCompanyPhoneNum] = useState("");
+  const [email, setEmail] = useState("");
+  const [companyEmail, setCompanyEmail] = useState("");
+  const [phoneNum, setPhoneNum] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [companyLogo, setCompanyLogo] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setconfirmPassword] = useState("");
+  
+  // const {errorMsg, seterrorMsg} = useAuthContext();
+  // const { handleRegister } = useAuthContext();
+
+  // const handleStateChange = (e) => {
+  //   setStates(e.target.value);
+  // };
+
+  // const handleLGAChange = (e) => {
+  //   setLocalGovement(e.target.value);
+  // };
+
+  // const getAllLGA = (selectedstate) => {
+  //   if (selectedstate === "") {
+  //     return { lgas: [] };
+  //   } else {
+  //     return NaijaStates.lgas(selectedstate);
+  //   }
+  // };
+
+  // const allStates = NaijaStates.states();
+
+  // const registerAccount = (e) => {
+  //   e.preventDefault();
+  //   if (firstName === "") {
+  //     seterrorMsg("your email field cannot be empty");
+  //   } else if (email === "") {
+  //     seterrorMsg("your email field cannot be empty");
+  //   } else if (phoneNum === "") {
+  //     seterrorMsg("your phone number field cannot be empty");
+  //   } else if (password.length <= 7) {
+  //     seterrorMsg("your password is too short");
+  //   } else if (confirmPassword !== password) {
+  //     seterrorMsg("your password doesn't match");
+  //   } else {
+  //     handleRegister({
+  //       firstName,
+  //       email,
+  //       phoneNum,
+  //       // address,
+  //       localGovement,
+  //       states,
+  //       password,
+  //     });
+  //   }
+  // };
+
+  return (
+    <div className={styles.signup}>
+      <div className={styles.container}>
+        <div className={styles.row}>
+          
+          <div style={{paddingTop: 50, paddingBottom: 50}}  className={styles.colTwo}>
+            <div className={styles.content}>
+              <form 
+              // onSubmit={registerAccount}
+              >
+                <h2>Sign Up</h2>
+                <h6>Welcome to spikk delivery</h6>
+                {/* {errorMsg === "" ? (<div> </div>): (<p className={styles.error}>{errorMsg}</p>) } */}
+                <label>First Name</label>
+                <br />
+                <input
+                  autoComplete="on"
+                  onChange={(e) => setFirstName(e.target.value)}
+                  value={firstName}
+                  required
+                  aria-describedby="uiddnote"
+                  type="text"
+                  placeholder="Enter your first name"
+                />
+                <label>Last Name</label>
+                <br />
+                <input
+                  autoComplete="on"
+                  onChange={(e) => setLastName(e.target.value)}
+                  value={lastName}
+                  required
+                  aria-describedby="uiddnote"
+                  type="text"
+                  placeholder="Enter your last name"
+                />
+                <label>Email</label>
+                <br />
+                <input
+                  autoComplete="on"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
+                  required
+                  aria-describedby="uiddnote"
+                  type="email"
+                  placeholder="Enter your email address"
+                />
+                <label>Phone Number</label>
+                <br />
+                <input
+                  autoComplete="on"
+                  onChange={(e) => setPhoneNum(e.target.value)}
+                  value={phoneNum}
+                  required
+                  // aria-describedby="uiddnote"
+                  type="number"
+                  placeholder="Enter your phone number"
+                />
+                <label>Company’s name (optional)</label>
+                <br />
+                <input
+                  autoComplete="on"
+                  onChange={(e) => setCompanyName(e.target.value)}
+                  value={companyName}
+                  required={false}
+                  aria-describedby="uiddnote"
+                  type="text"
+                  placeholder="Enter your company's name"
+                />
+                <label>Company’s logo/image (optional)</label>
+                <br />
+                <input
+                  // autoComplete="on"
+                  onChange={(e) => setCompanyLogo(e.target.value)}
+                  value={companyLogo}
+                  required={false}
+                  // aria-describedby="uiddnote"
+                  type="file"
+                  // placeholder="Enter your company's name"
+                />
+                <label>Company’s Email Address (optional)</label>
+                <br />
+                <input
+                  autoComplete="on"
+                  onChange={(e) => setCompanyEmail(e.target.value)}
+                  value={companyEmail}
+                  required={false}
+                  aria-describedby="uiddnote"
+                  type="text"
+                  placeholder="Enter your company's email address"
+                />
+                <label>Company’s Email Address (optional)</label>
+                <br />
+                <input
+                  // autoComplete="on"
+                  onChange={(e) => setCompanyPhoneNum(e.target.value)}
+                  value={companyPhoneNum}
+                  required={false}
+                  // aria-describedby="uiddnote"
+                  type="number"
+                  placeholder="Enter your company's phoneNumber"
+                />
+                <label>Password</label>
+                <br />
+                <input
+                  autoComplete="on"
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
+                  required
+                  aria-describedby="uiddnote"
+                  type="password"
+                  placeholder="Enter your password"
+                />
+                <label>Confirm Password</label>
+                <br />
+                <input
+                  autoComplete="on"
+                  onChange={(e) => setconfirmPassword(e.target.value)}
+                  value={confirmPassword}
+                  required
+                  aria-describedby="uiddnote"
+                  type="password"
+                  placeholder="Re-Enter your password"
+                />
+                <button type="submit">Create Account</button>
+              </form>
+              <br />
+              <p>Have an account? <span onClick={() => router.push("/login")}>Log In</span></p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default SignUp;

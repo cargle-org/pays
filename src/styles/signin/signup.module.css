@@ -1,0 +1,73 @@
+.signup {
+  height: 100vh;
+  margin: 0%;
+  padding: 0;
+  width: 100%;
+}
+.signup .container {
+  display: flex;
+  margin: 0%;
+  padding: 0;
+  width: 100%;
+}
+.signup .row {
+  display: flex;
+  padding: 0%;
+  align-items: center;
+  margin: 0%;
+  width: 100%;
+}
+.select {
+  /* width: 48%; */
+}
+
+.signup .row .colTwo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: var(--background-two);
+  height: 100vh;
+  align-items: center;
+  overflow-y: scroll;
+}
+.signup .row .colTwo .content {
+  margin: 20px;
+  width: 100%;
+  max-width: 450px;
+  margin: auto;
+}
+.signup .row .colTwo h6 {
+  margin-bottom: 32px;
+}
+.signup .row label {
+  margin-top: 20px;
+}
+.signup .row input {
+  margin-bottom: 12px;
+  width: 100%;
+}
+.signup .row .content .location {
+  display: flex;
+}
+.signup .row .content button {
+  width: 100%;
+  margin-top: 16px;
+}
+.error {
+  width: 100%;
+  color: #ff0000;
+  text-align: center;
+  padding: 10px;
+  background-color: #ff000020;
+}
+@media only screen and (max-width: 768px) {
+    .signup .row .colOne {
+        display: none;
+    }
+    .signup .row .colTwo {
+        width: 100%;
+    }
+    .signup .row .colTwo .content{
+        max-width: 88%;
+    }
+}
