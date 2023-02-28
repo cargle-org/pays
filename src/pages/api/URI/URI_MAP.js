@@ -4,7 +4,7 @@ const BASE_URL = "https://cmg-api.onrender.com/api/";
 const URI_MAP = {
   cmg: {
     register: `${BASE_URL}auth/register`,
-    // login: `${BASE_URL}auth/login/`,
+    login: `${BASE_URL}auth/login/`,
     // rider_deliveries: `${BASE_URL}deliveries/rider/not-picked`,
     // rider_my_delivery: `${BASE_URL}deliveries/rider`,
     // rider_delivery_history: `${BASE_URL}deliveries/rider`,

@@ -6,7 +6,7 @@ import URI_MAP from "../URI/URI_MAP";
 export const AuthContext = createContext({});
 
 const AuthProvider = (props) => {
-  // const router = useRouter();
+  const router = useRouter();
   // const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
@@ -18,13 +18,13 @@ const AuthProvider = (props) => {
     try {
       const response = await axios.post(URI_MAP.cmg.register, formData, {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data"
         },
       });
 
-      console.log('response', response)
+      // console.log('response', response)
       setIsLoading(false);
-      // router.push("/verifyemail");
+      router.push("/accountcreated");
       setSuccess(true);
     } catch (error) {
       console.log("error", error);
@@ -39,9 +39,9 @@ const AuthProvider = (props) => {
     setIsLoading(true);
     try {
       const response = await axios.post(
-        URI_MAP.spikk_deliveries.login,
+        URI_MAP.cmg.login,
         {
-          email_address: email,
+          email: email,
           password: password,
         },
         {
@@ -51,18 +51,14 @@ const AuthProvider = (props) => {
         }
       );
       console.log("response", response);
-      const accessToken = response.data.token;
-      const user_id = response.data.user._id
+      const accessToken = response.data.data.token;
+      // const user_id = response.data.user._id
       userauthstorage({ email, accessToken });
 
-      // const token = getToken();
       setIsLoading(false);
-      // console.log('response', response.data.indicator)
-      // if (response.data.indicator === "admin"){
-      //   router.push("/admin/dashboard");
-      // }   else {
-      //   router.push("/dashboard");
-      // }
+
+          router.push("/dashboard");
+        setErrorMsg("");
     } catch (error) {
       console.log("error", error);
       if (!error?.response) {

@@ -12,7 +12,7 @@
   --text-inactive: #8585AC;
   /* --input-background-two: #252525; */
   --font-family: "Poppins", sans-serif;
-  --shadow: #c1c1c125;
+  --shadow: #cccccc80;
   --border-one: #77777750;
   --placeholder: #999;
   --stroke: #E5E5EF;
@@ -28,6 +28,7 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  background-color: #f7f7f7;
 }
 
 h1 {

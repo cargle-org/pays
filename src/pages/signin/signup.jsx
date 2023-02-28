@@ -17,13 +17,16 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
 
-  const { errorMsg, seterrorMsg } = useAuthContext();
+  const { errorMsg, setErrorMsg } = useAuthContext();
   const { handleRegister } = useAuthContext();
 
-  
-  const registerAccount = async (e) =>  {
+  const handleFileInputChange = (event) => {
+    setCompanyLogo(event.target.files[0]);
+  };
+
+  const registerAccount =  (e) =>  {
     e.preventDefault();
-    const formData = await new FormData();
+    const formData =  new FormData();
     formData.append("companyLogo", companyLogo);
     formData.append("firstName", firstName);
     formData.append("lastName", lastName);
@@ -34,9 +37,9 @@ function SignUp() {
     formData.append("companyPhone", companyPhoneNum);
     formData.append("password", password);
     if (password.length <= 7) {
-      seterrorMsg("your password is too short");
+      setErrorMsg("your password is too short");
     } else if (confirmPassword !== password) {
-      seterrorMsg("your password doesn't match");
+      setErrorMsg("your password doesn't match");
     } else {
       handleRegister({
         formData
@@ -117,12 +120,7 @@ function SignUp() {
                 />
                 <label>Company’s logo/image (optional)</label>
                 <br />
-                <input
-                  onChange={(e) => setCompanyLogo(e.target.value)}
-                  value={companyLogo}
-                  required={false}
-                  type="file"
-                />
+                <input type="file" onChange={handleFileInputChange} />
                 <label>Company’s Email Address (optional)</label>
                 <br />
                 <input

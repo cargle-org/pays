@@ -9,13 +9,13 @@ function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const {errorMsg, seterrorMsg} = useAuthContext();
+  const {errorMsg, setErrorMsg} = useAuthContext();
   const { handleLogIn } = useAuthContext();
 
   const loginAccount = (e) => {
     e.preventDefault();
     if (email === "") {
-      seterrorMsg("your email field cannot be empty");
+      setErrorMsg("your email field cannot be empty");
     }  else {
       handleLogIn({
         email,

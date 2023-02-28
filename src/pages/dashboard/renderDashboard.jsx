@@ -1,9 +1,14 @@
 import React from 'react'
+import Sidebar from '../components/sidebar/sidebar'
 
-function renderDashboard() {
+function RenderDashboard() {
   return (
-    <div>renderDashboard</div>
+    <div>
+        <div className="sidebar">
+            <Sidebar />
+        </div>
+    </div>
   )
 }
 
-export default renderDashboard
+export default RenderDashboard
