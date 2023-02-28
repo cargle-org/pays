@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "../../styles/signin/signup.module.css";
-// import { useAuthContext } from "../api/auth/AuthContext";
 import { useRouter } from "next/router";
+import { useAuthContext } from "../api/auth/AuthContext";
 
 function SignUp() {
   const router = useRouter();
@@ -16,66 +16,51 @@ function SignUp() {
   const [companyLogo, setCompanyLogo] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
+
+  const { errorMsg, seterrorMsg } = useAuthContext();
+  const { handleRegister } = useAuthContext();
+
   
-  // const {errorMsg, seterrorMsg} = useAuthContext();
-  // const { handleRegister } = useAuthContext();
-
-  // const handleStateChange = (e) => {
-  //   setStates(e.target.value);
-  // };
-
-  // const handleLGAChange = (e) => {
-  //   setLocalGovement(e.target.value);
-  // };
-
-  // const getAllLGA = (selectedstate) => {
-  //   if (selectedstate === "") {
-  //     return { lgas: [] };
-  //   } else {
-  //     return NaijaStates.lgas(selectedstate);
-  //   }
-  // };
-
-  // const allStates = NaijaStates.states();
-
-  // const registerAccount = (e) => {
-  //   e.preventDefault();
-  //   if (firstName === "") {
-  //     seterrorMsg("your email field cannot be empty");
-  //   } else if (email === "") {
-  //     seterrorMsg("your email field cannot be empty");
-  //   } else if (phoneNum === "") {
-  //     seterrorMsg("your phone number field cannot be empty");
-  //   } else if (password.length <= 7) {
-  //     seterrorMsg("your password is too short");
-  //   } else if (confirmPassword !== password) {
-  //     seterrorMsg("your password doesn't match");
-  //   } else {
-  //     handleRegister({
-  //       firstName,
-  //       email,
-  //       phoneNum,
-  //       // address,
-  //       localGovement,
-  //       states,
-  //       password,
-  //     });
-  //   }
-  // };
+  const registerAccount = async (e) =>  {
+    e.preventDefault();
+    const formData = await new FormData();
+    formData.append("companyLogo", companyLogo);
+    formData.append("firstName", firstName);
+    formData.append("lastName", lastName);
+    formData.append("email", email);
+    formData.append("phone", phoneNum);
+    formData.append("companyName", companyName);
+    formData.append("companyEmail", companyEmail);
+    formData.append("companyPhone", companyPhoneNum);
+    formData.append("password", password);
+    if (password.length <= 7) {
+      seterrorMsg("your password is too short");
+    } else if (confirmPassword !== password) {
+      seterrorMsg("your password doesn't match");
+    } else {
+      handleRegister({
+        formData
+      });
+    }
+  };
 
   return (
     <div className={styles.signup}>
       <div className={styles.container}>
         <div className={styles.row}>
-          
-          <div style={{paddingTop: 50, paddingBottom: 50}}  className={styles.colTwo}>
+          <div
+            style={{ paddingTop: 50, paddingBottom: 50 }}
+            className={styles.colTwo}
+          >
             <div className={styles.content}>
-              <form 
-              // onSubmit={registerAccount}
-              >
+              <form onSubmit={registerAccount}>
                 <h2>Sign Up</h2>
                 <h6>Welcome to spikk delivery</h6>
-                {/* {errorMsg === "" ? (<div> </div>): (<p className={styles.error}>{errorMsg}</p>) } */}
+                {!errorMsg ? (
+                  <div> </div>
+                ) : (
+                  <p className={styles.error}>{errorMsg}</p>
+                )}
                 <label>First Name</label>
                 <br />
                 <input
@@ -116,7 +101,6 @@ function SignUp() {
                   onChange={(e) => setPhoneNum(e.target.value)}
                   value={phoneNum}
                   required
-                  // aria-describedby="uiddnote"
                   type="number"
                   placeholder="Enter your phone number"
                 />
@@ -134,13 +118,10 @@ function SignUp() {
                 <label>Company’s logo/image (optional)</label>
                 <br />
                 <input
-                  // autoComplete="on"
                   onChange={(e) => setCompanyLogo(e.target.value)}
                   value={companyLogo}
                   required={false}
-                  // aria-describedby="uiddnote"
                   type="file"
-                  // placeholder="Enter your company's name"
                 />
                 <label>Company’s Email Address (optional)</label>
                 <br />
@@ -153,7 +134,7 @@ function SignUp() {
                   type="text"
                   placeholder="Enter your company's email address"
                 />
-                <label>Company’s Email Address (optional)</label>
+                <label>Company’s Phone Number (optional)</label>
                 <br />
                 <input
                   // autoComplete="on"
@@ -189,8 +170,10 @@ function SignUp() {
                 <button type="submit">Create Account</button>
               </form>
               <br />
-              <p>Have an account? <span onClick={() => router.push("/login")}>Log In</span></p>
-
+              <p>
+                Have an account?{" "}
+                <span onClick={() => router.push("/login")}>Log In</span>
+              </p>
             </div>
           </div>
         </div>

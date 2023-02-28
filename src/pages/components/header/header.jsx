@@ -1,7 +1,10 @@
 import React from "react";
 import styles from "../../../styles/header.module.css";
+import { useRouter } from "next/router";
 
 function Header() {
+  const router = useRouter();
+
   return (
     <div className={styles.header}>
       <div className={styles.container}>
@@ -18,8 +21,8 @@ function Header() {
           <li className={styles.link}>Contact</li>
         </div>
         <div className={styles.buttons}>
-          <button className={styles.btn}>Login</button>
-          <button>Sign Up</button>
+          <button className={styles.btn}onClick={() => router.push("/login")}>Login</button>
+          <button onClick={() => router.push("/register")}>Sign Up</button>
         </div>
       </div>
     </div>
