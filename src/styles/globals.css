@@ -103,36 +103,39 @@ label{
 }
 
 button{
-  height: 40px;
+  height: 50px;
   color: #fff;
   background-color: var(--primary-color);
-  padding: 0 24px;
+  padding: 0 30px;
+  min-width: 150px;
   font-family: var(--font-family);
-  border-radius: 8px;
+  border-radius: 50px;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   border: 0;
 }
 .btnTwo{
-  height: 40px;
+  height: 50px;
   color: #fff;
   background-color: #999;
-  padding: 0 24px;
+  padding: 0 30px;
+  min-width: 150px;
   font-family: var(--font-family);
   border-radius: 8px;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   border: 0;
 }
 .btn{
-  height: 40px;
+  height: 50px;
   color: var(--primary-color);
   background-color: var(--background);
-  padding: 0 24px;
+  padding: 0 30px;
+  min-width: 150px;
   font-family: var(--font-family);
   border-radius: 8px;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   border: 0;
 }
 

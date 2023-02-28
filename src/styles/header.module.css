@@ -1,0 +1,32 @@
+.header{
+    width: 100%;
+    height: 80px;
+    padding: 12px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+.header .container{
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+}
+.header .container .navLinks{
+    display: flex;
+}
+.header .container .navLinks li{
+    list-style: none;
+    margin: 0px 15px;
+}
+.header .container .buttons button{
+    width: 120px !important;
+}
+.header .container .buttons .btn{
+    margin-right: 16px;
+    color: var(--primary-color) !important;
+    background-color: #fff !important;
+    border: 1px solid #7B88AB99;
+}
