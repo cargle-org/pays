@@ -1,0 +1,63 @@
+.voucher{
+  font-family: var(--font-family);
+  background: var(--background);
+  padding: 20px;
+}
+.voucher .title{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.voucher .tabs{
+    display: flex;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #93959D60;
+}
+.voucher .tabs .tab{
+    padding: 6px 20px;
+    border-bottom: 3px solid #fff;
+    color: #93959D;
+    font-weight: 500;
+}
+.voucher .tabs .activeTab{
+    padding: 6px 20px;
+    border-bottom: 3px solid var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.voucher .search {
+    display: flex;
+    flex-wrap: wrap;
+}
+.voucher .search .input{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 550px;
+    height: 40px;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  border: 1px solid var(--stroke);
+  font-family: var(--font-family);
+  margin-right: 16px;
+}
+.voucher .search .input input{
+    border: #ffffff00;
+    height: 38px;
+    outline: none;
+}
+.voucher .filter{
+    margin-right: 16px;
+    padding: 0px 20px;
+    color: var(--primary-color) !important;
+    background-color: #fff !important;
+    border: 1px solid #7B88AB99;
+    align-items: center;
+    display: flex;
+    border-radius: 8px;
+
+}

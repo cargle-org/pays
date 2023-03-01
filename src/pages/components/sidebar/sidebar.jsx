@@ -27,10 +27,10 @@ function Sidebar() {
             <Dashboardicon className={styles.icon} />
             <span>Dashboard</span>
           </li>
-          <li onClick={() => {setActiveTab(2); router.push("/dashboard")}} className={activeTab === 2 ? styles.activeLink :styles.link}>
+          <li onClick={() => {setActiveTab(2); router.push("/vouchers")}} className={activeTab === 2 ? styles.activeLink :styles.link}>
             <Voucher className={styles.icon} /> <span>Vouchers</span>
           </li>
-          <li onClick={() => {setActiveTab(3); router.push("/dashboard")}} className={activeTab === 3? styles.activeLink :styles.link}>
+          <li onClick={() => {setActiveTab(3); router.push("/profile")}} className={activeTab === 3? styles.activeLink :styles.link}>
             <Profile className={styles.icon} />
             <span>Profile</span>
           </li>

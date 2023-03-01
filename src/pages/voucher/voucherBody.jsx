@@ -5,7 +5,7 @@ import FilterIcon from "../../assets/filter.svg";
 import EditIcon from "../../assets/edit.svg";
 import styles from "../../styles/components/voucherpage.module.css"
 
-function DashboardBody() {
+function VoucherBody() {
 
   const [tab, setTab] = useState(1)
   return (
@@ -78,6 +78,70 @@ function DashboardBody() {
                   <EditIcon />
                 </td>
               </tr>
+              <tr>
+                <td>
+                  <img src="" alt="" />
+                </td>
+                <td>You can use grid layouts</td>
+                <td>using regular grid components inside the modal content.</td>
+                <td>N24,000.00</td>
+                <td>320</td>
+                <td>117</td>
+                <td>
+                <progress id="file" value="32" max="100"> 32% </progress>
+                </td>
+                <td>
+                  <EditIcon />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img src="" alt="" />
+                </td>
+                <td>You can use grid layouts</td>
+                <td>using regular grid components inside the modal content.</td>
+                <td>N24,000.00</td>
+                <td>320</td>
+                <td>117</td>
+                <td>
+                <progress id="file" value="32" max="100"> 32% </progress>
+                </td>
+                <td>
+                  <EditIcon />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img src="" alt="" />
+                </td>
+                <td>You can use grid layouts</td>
+                <td>using regular grid components inside the modal content.</td>
+                <td>N24,000.00</td>
+                <td>320</td>
+                <td>117</td>
+                <td>
+                <progress id="file" value="32" max="100"> 32% </progress>
+                </td>
+                <td>
+                  <EditIcon />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <img src="" alt="" />
+                </td>
+                <td>You can use grid layouts</td>
+                <td>using regular grid components inside the modal content.</td>
+                <td>N24,000.00</td>
+                <td>320</td>
+                <td>117</td>
+                <td>
+                <progress id="file" value="32" max="100"> 32% </progress>
+                </td>
+                <td>
+                  <EditIcon />
+                </td>
+              </tr>
           </tbody>
         </table>
       </div>
@@ -85,4 +149,4 @@ function DashboardBody() {
   );
 }
 
-export default DashboardBody;
+export default VoucherBody;

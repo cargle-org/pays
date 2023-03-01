@@ -1,0 +1,25 @@
+.profilePage{
+    padding: 20px;
+    background: var(--background);
+    min-height: 75vh;
+}
+.profilePage .container .details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.profilePage .details .input{
+    width: 50%;
+    max-width: 480px;
+    margin: 16px 12px ;
+}
+.profilePage .details .input input{
+    margin-top: 8px;
+}
+.profilePage .button{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 40px;
+}
