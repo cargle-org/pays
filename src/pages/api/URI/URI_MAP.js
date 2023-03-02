@@ -5,7 +5,7 @@ const URI_MAP = {
   cmg: {
     register: `${BASE_URL}auth/register`,
     login: `${BASE_URL}auth/login/`,
-    // rider_deliveries: `${BASE_URL}deliveries/rider/not-picked`,
+    create_voucher: `${BASE_URL}utils/voucher/create`,
     // rider_my_delivery: `${BASE_URL}deliveries/rider`,
     // rider_delivery_history: `${BASE_URL}deliveries/rider`,
     // update_delivery_status: `${BASE_URL}deliveries/update`,

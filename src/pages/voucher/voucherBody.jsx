@@ -4,8 +4,10 @@ import SearchIcon from "../../assets/search.svg";
 import FilterIcon from "../../assets/filter.svg";
 import EditIcon from "../../assets/edit.svg";
 import styles from "../../styles/components/voucherpage.module.css"
+import { useRouter } from "next/router";
 
 function VoucherBody() {
+  const router = useRouter();
 
   const [tab, setTab] = useState(1)
   return (
@@ -13,7 +15,7 @@ function VoucherBody() {
       <div className={styles.title}>
         <h3>Vouchers</h3>
         <div className={styles.action}>
-          <button>
+          <button onClick={() => router.push("/createvouchers")}>
             <CreateIcon /> Create Voucher
           </button>
         </div>

@@ -83,6 +83,16 @@ input{
   width: calc(100% - 20px);
   /* outline: none; */
 }
+textarea{
+  height: 120px;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  border: 1px solid var(--stroke);
+  font-family: var(--font-family);
+  width: calc(100% - 20px);
+  /* outline: none; */
+}
 input::placeholder {
   color: #bfbfbf;
 }

@@ -22,7 +22,7 @@ const AuthProvider = (props) => {
         },
       });
 
-      // console.log('response', response)
+      console.log('response', response)
       setIsLoading(false);
       router.push("/accountcreated");
       setSuccess(true);
@@ -67,11 +67,13 @@ const AuthProvider = (props) => {
         setErrorMsg("User Already Exist");
       } else if (error.response?.status === 401) {
         setErrorMsg("invalid email or password");
-      } else if (error.response?.status === 400) {
-        setErrorMsg("Pending Account. Please Verify Your Email!");
-      } else {
-        setErrorMsg("Registration Failed");
-      }
+      } 
+      // else if (error.response?.status === 400) {
+      //   setErrorMsg("Pending Account. Please Verify Your Email!");
+      // } 
+      // else {
+      //   setErrorMsg("Registration Failed");
+      // }
       setIsLoading(false);
     }
   };

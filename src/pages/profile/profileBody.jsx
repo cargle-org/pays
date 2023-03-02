@@ -1,7 +1,9 @@
 import React from "react";
+import { useState } from "react";
 import styles from "../../styles/components/profilepage.module.css";
 
 function ProfileBody() {
+    const [firstName, setFirstName] = useState("dayo")
   return (
     <div className={styles.profilePage}>
       <div className={styles.container}>
@@ -14,7 +16,7 @@ function ProfileBody() {
         <div className={styles.details}>
           <div className={styles.input}>
             <label>First Name</label>
-            <input type="text" value={"hello"} />
+            <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
           </div>
           <div className={styles.input}>
             <label>Last Name</label>

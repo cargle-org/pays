@@ -34,7 +34,7 @@ function Sidebar() {
             <Profile className={styles.icon} />
             <span>Profile</span>
           </li>
-          <li onClick={() => {setActiveTab(4); router.push("/dashboard")}} className={activeTab === 4? styles.activeLink :styles.link}>
+          <li onClick={() => {setActiveTab(4); router.push("/payment")}} className={activeTab === 4? styles.activeLink :styles.link}>
             <Payment className={styles.icon} /> <span>Payment & withdrawal</span>
           </li>
         </div>
