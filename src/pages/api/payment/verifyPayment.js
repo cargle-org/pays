@@ -12,7 +12,7 @@ export const verifyPayment = async (props) => {
   try {
     const response = await axios.get(
       `${URI_MAP.cmg.verify_payment}?${new URLSearchParams(params).toString()}`,
-      null,
+      // null,
       {
         headers: {
           "x-access-token": `${token}`,
