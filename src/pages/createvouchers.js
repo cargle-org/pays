@@ -1,5 +1,6 @@
 import React from 'react'
-import RenderCreateVoucher from './components/createVoucher/RenderCreateVoucher'
+import RenderCreateVoucher from './components/createVoucher/renderCreateVoucher'
+// import RenderCreateVoucher from './components/createVoucher/RenderCreateVoucher'
 
 function Createvouchers() {
   return (
