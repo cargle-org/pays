@@ -19,11 +19,11 @@ const AuthProvider = (props) => {
     try {
       const response = await axios.post(URI_MAP.cmg.register, formData, {
         headers: {
-          "Content-Type": "multipart/form-data"
+          "Content-Type": "multipart/form-data",
         },
       });
 
-      console.log('response', response)
+      console.log("response", response);
       setIsLoading(false);
       router.push("/accountcreated");
       setSuccess(true);
@@ -52,26 +52,25 @@ const AuthProvider = (props) => {
         }
       );
       // console.log("response", response);
+      router.push("/dashboard");
       const accessToken = response.data.data.token;
       // const user_id = response.data.user._id
       userauthstorage({ email, accessToken });
 
       setIsLoading(false);
 
-          router.push("/dashboard");
-        setErrorMsg("");
     } catch (error) {
       console.log("error", error);
-      if (!error?.response) {
-        setErrorMsg("No Server Response");
-      } else if (error.response?.status === 409) {
-        setErrorMsg("User Already Exist");
-      } else if (error.response?.status === 401) {
-        setErrorMsg("invalid email or password");
-      } 
+      // if (!error?.response) {
+      //   setErrorMsg("No Server Response");
+      // } else if (error.response?.status === 409) {
+      //   setErrorMsg("User Already Exist");
+      // } else if (error.response?.status === 401) {
+      //   setErrorMsg("invalid email or password");
+      // }
       // else if (error.response?.status === 400) {
       //   setErrorMsg("Pending Account. Please Verify Your Email!");
-      // } 
+      // }
       // else {
       //   setErrorMsg("Registration Failed");
       // }
