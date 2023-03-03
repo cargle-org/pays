@@ -9,6 +9,7 @@ const URI_MAP = {
     fund_wallet: `${BASE_URL}utils/wallet/fund`,
     verify_payment: `${BASE_URL}utils/wallet/verifyTrx`,
     verify_account: `${BASE_URL}auth/verify`,
+    get_profile: `${BASE_URL}user/one`,
     // update_delivery_status: `${BASE_URL}deliveries/update`,
     // pickup_delivery: `${BASE_URL}deliveries/select`,
     // get_all_deliveries: `${BASE_URL}deliveries`,

@@ -31,6 +31,7 @@ function PaymentAndWithdrawalBody() {
               type="radio"
               value="deposit"
               name="operation"
+              defaultChecked
               onChange={handleOperation}
             />
             <MoneyIcon />

@@ -23,3 +23,15 @@
     margin: auto;
     margin-top: 40px;
 }
+.profilePage .container .avatar{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+.profilePage .container .avatar img{
+    width: 120px;
+    border-radius: 50%;
+    height: 120px;
+    object-fit: cover;
+    border: 3px solid #99999999;
+}

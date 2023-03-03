@@ -22,8 +22,9 @@ function CreateVoucherBody() {
     setcmgThumbnail(URL.createObjectURL(event.target.files[0]));
   };
 
+  const cmgFee = noOfVouchers * 10
   const subTotalAmount = noOfVouchers * amountPerVoucher;
-  const totalAmount = subTotalAmount + 53.85;
+  const totalAmount = subTotalAmount + cmgFee;
 
   const handleCreateVoucher = async (e) => {
     e.preventDefault();
@@ -109,10 +110,10 @@ function CreateVoucherBody() {
                 <h6>Sub total</h6> <h5>₦{subTotalAmount}</h5>
               </div>
               <div className={styles.one}>
-                <h6>CMG Fee</h6> <h5>₦53.85</h5>
+                <h6>CMG Fee</h6> <h5>₦{cmgFee}</h5>
               </div>
               <div className={styles.two}>
-                <h6>CMG Fee</h6> <h4>₦{totalAmount}</h4>
+                <h6>Total Amount</h6> <h4>₦{totalAmount}</h4>
               </div>
             </div>
             <button onClick={handleCreateVoucher}>Create Vouchers of (₦{totalAmount})</button>

@@ -54,8 +54,8 @@ const AuthProvider = (props) => {
       // console.log("response", response);
       router.push("/dashboard");
       const accessToken = response.data.data.token;
-      // const user_id = response.data.user._id
-      userauthstorage({ email, accessToken });
+      const user_id = response.data.data.user._id
+      userauthstorage({ email, accessToken, user_id });
 
       setIsLoading(false);
 
@@ -72,9 +72,9 @@ const AuthProvider = (props) => {
       //   setErrorMsg("Pending Account. Please Verify Your Email!");
       // }
       // else {
-      //   setErrorMsg("Registration Failed");
-      // }
-      setIsLoading(false);
+        // }
+        setIsLoading(false);
+          setErrorMsg(error);
     }
   };
 

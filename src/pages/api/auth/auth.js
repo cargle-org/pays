@@ -7,11 +7,11 @@ export const checkDomWindow = () => {
 export function userauthstorage({
   email,
   accessToken,
-  // user_id
+  user_id
 }) {
   localStorage.setItem("email", email);
   localStorage.setItem("token", accessToken);
-  // localStorage.setItem('id', user_id);
+  localStorage.setItem('id', user_id);
 }
 
 export const getEmail = () => {
@@ -27,11 +27,11 @@ export const getToken = () => {
   }
   return null;
 };
-// export const getUserId =() => {
-//     if (checkDomWindow())
-//     {return localStorage.getItem('id')}
-//     return null
-// }
+export const getUserId =() => {
+    if (checkDomWindow())
+    {return localStorage.getItem('id')}
+    return null
+}
 
 export const removeToken = () => {
   if (checkDomWindow()) localStorage.removeItem("token");

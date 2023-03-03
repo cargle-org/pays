@@ -1,9 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import styles from "../../styles/components/profilepage.module.css";
+import { getProfile } from "../api/profile/getProfile";
 
 function ProfileBody() {
-    const [firstName, setFirstName] = useState("dayo")
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNum, setPhoneNum] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [companyImage, setCompanyImage] = useState("");
+  const [companyEmail, setCompanyEmail] = useState("");
+  const [companyPhoneNum, setCompanyPhoneNum] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      const res = await getProfile();
+      console.log("res", res);
+      setFirstName(res.firstName);
+      setLastName(res.lastName);
+      setEmail(res.email);
+      setPhoneNum(res.phone);
+      setCompanyName(res.companyName);
+      setCompanyImage(res.companyLogo);
+      setCompanyEmail(res.companyEmail);
+      setCompanyPhoneNum(res.companyPhone);
+    })();
+  }, []);
+
   return (
     <div className={styles.profilePage}>
       <div className={styles.container}>
@@ -11,28 +35,48 @@ function ProfileBody() {
           <h3>Profile</h3>
         </div>
         <div className={styles.avatar}>
-          <img src="" alt="" />
+          <img src={companyImage} alt="" />
         </div>
         <div className={styles.details}>
           <div className={styles.input}>
             <label>First Name</label>
-            <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+            <input
+              onChange={(e) => setFirstName(e.target.value)}
+              type="text"
+              value={firstName}
+            />
           </div>
           <div className={styles.input}>
             <label>Last Name</label>
-            <input type="text" value={"hello"} />
+            <input
+              onChange={(e) => setLastName(e.target.value)}
+              type="text"
+              value={lastName}
+            />
           </div>
           <div className={styles.input}>
             <label>Email Address</label>
-            <input type="text" value={"hello"} />
+            <input
+              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              value={email}
+            />
           </div>
           <div className={styles.input}>
             <label>Phone Number</label>
-            <input type="number" value={"09066821545"} />
+            <input
+              onChange={(e) => setPhoneNum(e.target.value)}
+              type="number"
+              value={phoneNum}
+            />
           </div>
           <div className={styles.input}>
             <label>Company’s name</label>
-            <input type="text" value={"hello"} />
+            <input
+              onChange={(e) => setCompanyName(e.target.value)}
+              type="text"
+              value={companyName}
+            />
           </div>
           <div className={styles.input}>
             <label>Company’s logo/image</label>
@@ -40,15 +84,22 @@ function ProfileBody() {
           </div>
           <div className={styles.input}>
             <label>Company’s Email Address</label>
-            <input type="text" value={"hello"} />
+            <input
+              onChange={(e) => setFirstName(e.target.value)}
+              type="text"
+              value={companyEmail}
+            />
           </div>
           <div className={styles.input}>
             <label>Company’s Phone Number</label>
-            <input type="number" value={"09066821545"} />
+            <input
+              type="number"
+              onChange={(e) => setCompanyPhoneNum(e.target.value)}
+              value={companyPhoneNum}
+            />
           </div>
           <div className={styles.button}>
-
-        <button>Save</button>
+            <button>Save</button>
           </div>
         </div>
       </div>
