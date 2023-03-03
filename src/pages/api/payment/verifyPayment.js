@@ -10,7 +10,7 @@ export const verifyPayment = async (props) => {
     transaction_id: props.transaction_id,
   };
   try {
-    const response = await axios.post(
+    const response = await axios.get(
       `${URI_MAP.cmg.verify_payment}?${new URLSearchParams(params).toString()}`,
       null,
       {
