@@ -1,8 +1,19 @@
 import React from 'react'
 import { useRouter } from "next/router";
+import { verifyAccount } from './api/payment/verifyAccount';
 
 function AccountCreated() {
   const router = useRouter();
+  const { id, emailToken } = router.query;
+  // const { transaction_id } = router.query;
+
+  useEffect(() => {
+    (async () => {
+      const res = await verifyAccount({ id, emailToken });
+    })();
+  }, [id, emailToken]);
+
+
   return (
     <div 
     style={{
@@ -26,7 +37,7 @@ function AccountCreated() {
         }}
       >
         <h6 style={{ margin: 20 }}>
-          Your account have been created successfully, please check your email to get started.
+          Your account have been verified successfully, please login to get started.
         </h6>
 
         <div style={{ width: "100%", margin: 20 }}>

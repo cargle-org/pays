@@ -23,7 +23,7 @@ const AuthProvider = (props) => {
         },
       });
 
-      console.log("response", response);
+      // console.log("response", response);
       setIsLoading(false);
       router.push("/accountcreated");
       setSuccess(true);

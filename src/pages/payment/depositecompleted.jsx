@@ -11,7 +11,7 @@ function DepositCompleted() {
   const { status } = router.query;
   const { tx_ref } = router.query;
   const { transaction_id } = router.query;
-  console.log('status', status, transaction_id, tx_ref)
+//   console.log('status', status, transaction_id, tx_ref)
 
 
   useEffect(() => {
