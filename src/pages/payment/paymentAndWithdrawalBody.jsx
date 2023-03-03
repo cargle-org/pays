@@ -13,9 +13,6 @@ function PaymentAndWithdrawalBody() {
     setOperation(e.target.value);
   };
 
-  const url = window.location.href
-
-  console.log('url', url)
 
   const handleDeposit = async () => {
     const res = await fundWallet({depositAmount})
