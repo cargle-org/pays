@@ -1,0 +1,41 @@
+.payment {
+  padding: 20px;
+  background-color: var(--background);
+  min-height: 75vh;
+}
+.payment input {
+  width: 100%;
+}
+.payment .container {
+  max-width: 800px;
+  margin: auto;
+}
+.payment .type {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.payment .type .one {
+  width: 48%;
+  display: flex;
+  height: 70px;
+  border-radius: 12px;
+  border: 1px solid #7b88ab50;
+  align-items: center;
+  font-family: var(--font-family);
+  padding: 0 16px;
+  /* cursor: pointer; */
+}
+.payment .type .one input {
+  width: 24px;
+  margin-right: 16px;
+}
+.payment .container .deposit input,
+.payment .container .withdraw input {
+  margin-top: 12px;
+}
+.payment .container .deposit button,
+.payment .container .withdraw button {
+  width: 100%;
+  margin-top: 24px;
+}

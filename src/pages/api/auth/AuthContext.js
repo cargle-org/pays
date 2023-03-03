@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { createContext, useContext, useState } from "react";
 import { useRouter } from "next/router";
 import URI_MAP from "../URI/URI_MAP";
+import { userauthstorage } from "./auth";
 
 export const AuthContext = createContext({});
 
@@ -50,7 +51,7 @@ const AuthProvider = (props) => {
           },
         }
       );
-      console.log("response", response);
+      // console.log("response", response);
       const accessToken = response.data.data.token;
       // const user_id = response.data.user._id
       userauthstorage({ email, accessToken });
