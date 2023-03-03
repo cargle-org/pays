@@ -1,6 +1,6 @@
 import React from "react";
 
-const checkDomWindow = () => {
+export const checkDomWindow = () => {
   return typeof window !== "undefined";
 };
 

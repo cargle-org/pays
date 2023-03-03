@@ -1,0 +1,32 @@
+.successMessage{
+    padding: 20px;
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background);
+}
+.successMessage .message{
+    padding: 20px;
+    /* background-color: #f7f7f7; */
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 500px;
+    justify-content: center;
+}
+.successMessage .message img{
+    justify-content: center;
+    width: 150px;
+}
+.successMessage .message h6{
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+}
+/* .successMessage .message .buttons{
+    width: 100%;
+    justify-content: space-between;
+} */
+.successMessage .message .buttons button{
+    margin: 10px;
+}
