@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { verifyPayment } from "../api/payment/verifyPayment";
+import TopBar from "../components/header/topBar";
+import Sidebar from "../components/sidebar/sidebar";
 
-function DepositeCompleted() {
+function DepositCompleted() {
   const url = window.location.href;
 
   const searchParams = new URLSearchParams(new URL(url).search);
@@ -14,8 +16,7 @@ function DepositeCompleted() {
     (async () => {
       const res = await verifyPayment({ status, tx_ref, transaction_id });
     })();
-    setActiveTab(3);
-  }, [id]);
+  }, [status, tx_ref, transaction_id]);
 
   return (
     <div className={styles.mainDashboardPage}>
@@ -40,4 +41,4 @@ function DepositeCompleted() {
   );
 }
 
-export default DepositeCompleted;
+export default DepositCompleted;
