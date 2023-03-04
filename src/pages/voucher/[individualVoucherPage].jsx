@@ -1,40 +1,48 @@
-import React, { useEffect, useState } from 'react'
-import TopBar from '../components/header/topBar'
-import Sidebar from '../components/sidebar/sidebar'
-import styles from "../../styles/components/maindashboardpage.module.css"
-import VoucherDetailsCard from './VoucherDetailsCard';
+import React, { useEffect, useState } from "react";
+import TopBar from "../components/header/topBar";
+import Sidebar from "../components/sidebar/sidebar";
+import styles from "../../styles/components/maindashboardpage.module.css";
+import VoucherDetailsCard from "./VoucherDetailsCard";
 import { useRouter } from "next/router";
-import { getOneVoucher } from '../api/vouchers/getOneVoucher';
+import { getOneVoucher } from "../api/vouchers/getOneVoucher";
+import VouchersLists from "./vouchersLists";
 
 function IndividualVoucherPage() {
   const router = useRouter();
 
   const id = router.query.individualVoucherPage;
 
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-
     (async () => {
-      const res = await getOneVoucher({id});
-      setData(res)
+      const res = await getOneVoucher({ id });
+      setData(res);
     })();
     // setActiveTab(3);
   }, [id]);
 
   return (
     <div className={styles.mainDashboardPage}>
-        <div className={styles.sidebar}>
-            <Sidebar />
+      <div className={styles.sidebar}>
+        <Sidebar />
+      </div>
+      <div className={styles.mainSection}>
+        <TopBar />
+        <div
+          className={styles.body}
+          style={{ padding: 20, background: "#fff" }}
+        >
+          <div className={styles.back}>Back</div>
+          <h3 style={{margin: "20px 0"}}>Voucher #{data._id}</h3>
+          <div style={{ display: "flex", flexWrap: "wrap", width: "100%" }}>
+            <VoucherDetailsCard data={data} />
+            <VouchersLists data={data} />
+          </div>
         </div>
-        <div className={styles.mainSection}>
-            <TopBar />
-            <div className={styles.body}>
-              <VoucherDetailsCard data={data}/>
-            </div>
-        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default IndividualVoucherPage
+export default IndividualVoucherPage;
