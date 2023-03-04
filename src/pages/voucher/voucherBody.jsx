@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CreateIcon from "../../assets/create.svg";
 import SearchIcon from "../../assets/search.svg";
 import FilterIcon from "../../assets/filter.svg";
 import EditIcon from "../../assets/edit.svg";
 import styles from "../../styles/components/voucherpage.module.css"
 import { useRouter } from "next/router";
+import { getAllVouchers } from "../api/vouchers/getAllVouchers";
 
 function VoucherBody() {
   const router = useRouter();
 
-  const [tab, setTab] = useState(1)
+  const [tab, setTab] = useState(1);
+  const [vouchers, setVouchers] = useState([])
+
+  useEffect(() => {
+    (async () => {
+      const res = await getAllVouchers();
+      setVouchers(res)
+    })();
+  }, []);
+
   return (
     <div className={styles.voucher}>
       <div className={styles.title}>
@@ -48,102 +58,32 @@ function VoucherBody() {
             </tr>
           </thead>
           <tbody>
-              <tr>
+            {vouchers.map((voucher) => (
+
+              <tr key={voucher._id}
+              onClick={() =>
+                router.push({
+                  pathname: "/voucher/[individualVoucherPage]",
+                  query: { individualVoucherPage: voucher._id },
+                })
+              }
+              >
                 <td>
-                  <img src="" alt="" />
+                  <img src={voucher.thumbnail} alt="" />
                 </td>
-                <td>You can use grid layouts</td>
-                <td>using regular grid components inside the modal content.</td>
-                <td>N24,000.00</td>
-                <td>320</td>
-                <td>117</td>
+                <td>{voucher.title}</td>
+                <td>{voucher.description}</td>
+                <td>N{voucher.totalAmount}</td>
+                <td>{voucher.totalNumberOfVouchers}</td>
+                <td>N{voucher.totalCashedAmount}</td>
                 <td>
-                <progress id="file" value="32" max="100"> 32% </progress>
-                </td>
-                <td>
-                  <EditIcon />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="" alt="" />
-                </td>
-                <td>You can use grid layouts</td>
-                <td>using regular grid components inside the modal content.</td>
-                <td>N24,000.00</td>
-                <td>320</td>
-                <td>117</td>
-                <td>
-                <progress id="file" value="32" max="100"> 32% </progress>
+                <progress id="file" value={voucher.totalCashedAmount} max={voucher.totalAmount}> {voucher.totalCashedAmount}</progress>
                 </td>
                 <td>
                   <EditIcon />
                 </td>
               </tr>
-              <tr>
-                <td>
-                  <img src="" alt="" />
-                </td>
-                <td>You can use grid layouts</td>
-                <td>using regular grid components inside the modal content.</td>
-                <td>N24,000.00</td>
-                <td>320</td>
-                <td>117</td>
-                <td>
-                <progress id="file" value="32" max="100"> 32% </progress>
-                </td>
-                <td>
-                  <EditIcon />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="" alt="" />
-                </td>
-                <td>You can use grid layouts</td>
-                <td>using regular grid components inside the modal content.</td>
-                <td>N24,000.00</td>
-                <td>320</td>
-                <td>117</td>
-                <td>
-                <progress id="file" value="32" max="100"> 32% </progress>
-                </td>
-                <td>
-                  <EditIcon />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="" alt="" />
-                </td>
-                <td>You can use grid layouts</td>
-                <td>using regular grid components inside the modal content.</td>
-                <td>N24,000.00</td>
-                <td>320</td>
-                <td>117</td>
-                <td>
-                <progress id="file" value="32" max="100"> 32% </progress>
-                </td>
-                <td>
-                  <EditIcon />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <img src="" alt="" />
-                </td>
-                <td>You can use grid layouts</td>
-                <td>using regular grid components inside the modal content.</td>
-                <td>N24,000.00</td>
-                <td>320</td>
-                <td>117</td>
-                <td>
-                <progress id="file" value="32" max="100"> 32% </progress>
-                </td>
-                <td>
-                  <EditIcon />
-                </td>
-              </tr>
+            ))}
           </tbody>
         </table>
       </div>

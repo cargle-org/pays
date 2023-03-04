@@ -10,6 +10,8 @@ const URI_MAP = {
     verify_payment: `${BASE_URL}utils/wallet/verifyTrx`,
     verify_account: `${BASE_URL}auth/verify`,
     get_profile: `${BASE_URL}user/one`,
+    get_all_vouchers: `${BASE_URL}user/vouchers/all`,
+    get_one_voucher: `${BASE_URL}user/vouchers/one`,
     // update_delivery_status: `${BASE_URL}deliveries/update`,
     // pickup_delivery: `${BASE_URL}deliveries/select`,
     // get_all_deliveries: `${BASE_URL}deliveries`,

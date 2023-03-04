@@ -61,3 +61,9 @@
     border-radius: 8px;
 
 }
+.voucher table img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border-radius: 3px solid #55555599;
+}

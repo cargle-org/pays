@@ -16,7 +16,6 @@ function ProfileBody() {
   useEffect(() => {
     (async () => {
       const res = await getProfile();
-      console.log("res", res);
       setFirstName(res.firstName);
       setLastName(res.lastName);
       setEmail(res.email);
