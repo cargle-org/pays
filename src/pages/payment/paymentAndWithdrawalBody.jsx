@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import MoneyIcon from "../../assets/naira.svg";
 import styles from "../../styles/components/paymentpage.module.css"
 import { fundWallet } from "../api/payment/fundWallet";
+import { getProfile } from "../api/profile/getProfile";
 
 function PaymentAndWithdrawalBody() {
   const [operation, setOperation] = useState("deposit");
@@ -13,6 +14,14 @@ function PaymentAndWithdrawalBody() {
     setOperation(e.target.value);
   };
 
+  const [balance, setBalance] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      const res = await getProfile();
+      setBalance(res.walletBalance);
+    })();
+  }, []);
 
   const handleDeposit = async () => {
     const res = await fundWallet({depositAmount})
@@ -23,7 +32,7 @@ function PaymentAndWithdrawalBody() {
   return (
     <div className={styles.payment}>
       <h3>Deposit Withdrawal</h3>
-      <h5>Balance: <span>₦234,620.00 </span></h5>
+      <h5>Balance: <span>₦{balance}</span></h5>
       <div className={styles.container}>
         <div className={styles.type}>
           <div className={styles.one}>

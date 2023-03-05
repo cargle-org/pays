@@ -46,3 +46,45 @@
 .desktopSidebar .container .activeLink .icon{
     margin-right: 6px;
 }
+.bottom{
+    position: absolute;
+    bottom: 0;
+    padding: 20px 0;
+}
+.bottom .profile{
+    display: flex;
+    align-items: center;
+    padding: 12px 5px;
+    border-radius: 12px;
+    background: #f7f7f7;
+    margin-bottom: 16px;
+}
+.bottom .profile img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    background: #7B88AB60;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+.bottom .profile h6{
+    text-transform: capitalize;
+    color: #333;
+    font-weight: 500;
+    margin: 0;
+    padding: 0%;
+    width: 180px;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+}
+.bottom .exit{
+    color: #ff0000;
+    display: flex;
+    padding: 16px 8px;
+    cursor: pointer;
+}
+.bottom .exit .icon{
+    color: #ff0000;
+    margin-right: 12px;
+}

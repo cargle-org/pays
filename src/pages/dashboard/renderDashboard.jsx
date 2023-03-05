@@ -1,9 +1,9 @@
 import React from 'react'
 import TopBar from '../components/header/topBar'
 import Sidebar from '../components/sidebar/sidebar'
-import DashboardBody from './dashboardBody'
 import styles from "../../styles/components/maindashboardpage.module.css"
 import Metrics from './metrics'
+import VoucherBody from '../voucher/voucherBody'
 
 function RenderDashboard() {
   return (
@@ -15,7 +15,7 @@ function RenderDashboard() {
             <TopBar />
             <div className={styles.body}>
                 <Metrics />
-                <DashboardBody />
+                <VoucherBody />
             </div>
         </div>
     </div>

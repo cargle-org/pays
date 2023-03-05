@@ -12,6 +12,8 @@ const URI_MAP = {
     get_profile: `${BASE_URL}user/one`,
     get_all_vouchers: `${BASE_URL}user/vouchers/all`,
     get_one_voucher: `${BASE_URL}user/vouchers/one`,
+    get_all_banks: `${BASE_URL}utils/banks/all`,
+    cashout_a_voucher: `${BASE_URL}utils/voucher/claim`,
     // update_delivery_status: `${BASE_URL}deliveries/update`,
     // pickup_delivery: `${BASE_URL}deliveries/select`,
     // get_all_deliveries: `${BASE_URL}deliveries`,

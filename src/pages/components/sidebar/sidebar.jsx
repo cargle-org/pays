@@ -7,6 +7,7 @@ import Payment from "../../../assets/payment.svg";
 import Voucher from "../../../assets/voucher.svg";
 import Profile from "../../../assets/profile.svg";
 import { useSidebarContext } from "@/pages/context/sidebarConetxt";
+import Logout from "../../../assets/Logout.svg"
 
 function Sidebar() {
   const router = useRouter();
@@ -39,7 +40,13 @@ function Sidebar() {
           </li>
         </div>
         <div className={styles.bottom}>
-            <div className={styles.profile}></div>
+            <div className={styles.profile}>
+              <img src="https://res.cloudinary.com/dmixz7eur/image/upload/v1678013020/chike/3d-avatar-teacher-png_l8hyf7.webp" alt="" />
+              <div className={styles.info}>
+                <h6 >Dwayne Johnson</h6>
+                <p>Jameson & co</p>
+              </div>
+            </div>
           <li
             onClick={() => {
               removeToken();
@@ -47,6 +54,7 @@ function Sidebar() {
             }}
             className={styles.exit}
           >
+            <Logout className={styles.icon}/>
             Logout
           </li>
         </div>

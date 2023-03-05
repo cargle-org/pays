@@ -179,6 +179,7 @@ table{
   margin: 24px 0;
   overflow-x: scroll;
   overflow: hidden;
+  width: 100%;
 }
 tr{
   margin-bottom: 50px;
