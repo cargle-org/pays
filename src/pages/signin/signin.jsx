@@ -33,7 +33,7 @@ function SignIn() {
               onSubmit={loginAccount}
               >
                 <h2>Log In</h2>
-                <h6>Welcome back to spikk deliveries</h6>
+                <h6>Welcome back to cash my gift</h6>
                 {!errorMsg ? (<div> </div>): (<p className={styles.error}>{errorMsg}</p>) }
                 <label>Email</label>
                 <br />

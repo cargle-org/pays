@@ -58,7 +58,7 @@ function SignUp() {
             <div className={styles.content}>
               <form onSubmit={registerAccount}>
                 <h2>Sign Up</h2>
-                <h6>Welcome to spikk delivery</h6>
+                <h6>Welcome to cash my gift</h6>
                 {!errorMsg ? (
                   <div> </div>
                 ) : (
