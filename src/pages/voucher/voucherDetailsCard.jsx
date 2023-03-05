@@ -2,7 +2,6 @@ import React from "react";
 import styles from "../../styles/components/onevoucher.module.css";
 
 function VoucherDetailsCard({ data }) {
-  console.log("data", data);
   return (
     <div className={styles.content}>
       <div className={styles.detail}>

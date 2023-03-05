@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import TopBar from "../components/header/topBar";
 import Sidebar from "../components/sidebar/sidebar";
 import styles from "../../styles/components/maindashboardpage.module.css";
-import VoucherDetailsCard from "./VoucherDetailsCard";
 import { useRouter } from "next/router";
 import { getOneVoucher } from "../api/vouchers/getOneVoucher";
 import VouchersLists from "./vouchersLists";
 import { useSidebarContext } from "../context/sidebarContext";
+import VoucherDetailsCard from "./voucherDetailsCard";
 
 function IndividualVoucherPage() {
   const router = useRouter();

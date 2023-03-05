@@ -7,7 +7,7 @@ import Payment from "../../../assets/payment.svg";
 import Voucher from "../../../assets/voucher.svg";
 import Profile from "../../../assets/profile.svg";
 import { useSidebarContext } from "@/pages/context/sidebarContext";
-import Logout from "../../../assets/Logout.svg"
+import Logout from "../../../assets/logout.svg"
 
 function Sidebar() {
   const router = useRouter();
