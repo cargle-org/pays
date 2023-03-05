@@ -19,7 +19,13 @@ function IndividualVoucherPage() {
   useEffect(() => {
     (async () => {
       const res = await getOneVoucher({ id });
-      setData(res);
+      if (!res) {
+        setData([])
+      } else{
+
+        setData(res);
+      }
+
     })();
     setActiveTab(2);
   }, [id]);
