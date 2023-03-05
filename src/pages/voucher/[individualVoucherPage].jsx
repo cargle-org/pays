@@ -19,11 +19,13 @@ function IndividualVoucherPage() {
   useEffect(() => {
     (async () => {
       const res = await getOneVoucher({ id });
-      if (!res) {
-        setData([]);
-      } else {
-        setData(res);
-      }
+      setData(res);
+
+      console.log("res", res);
+      // if (!res) {
+      //   setData([]);
+      // } else {
+      // }
     })();
     setActiveTab(2);
   }, [id]);
@@ -40,15 +42,17 @@ function IndividualVoucherPage() {
           style={{ padding: 20, background: "#fff" }}
         >
           <div className={styles.back}>Back</div>
-          <h3 style={{ margin: "20px 0" }}>{data.title}</h3>
-          {!data ? (
+          {data ? (
+            <>
+              <h4 style={{ margin: "20px 0" }}>{data.title}</h4>
+              <div style={{ display: "flex", flexWrap: "wrap", width: "100%" }}>
+                <VoucherDetailsCard data={data} />
+                <VouchersLists data={data} />
+              </div>
+            </>
+          ) : (
             <div>
               <h3>No data to render</h3>
-            </div>
-          ) : (
-            <div style={{ display: "flex", flexWrap: "wrap", width: "100%" }}>
-              <VoucherDetailsCard data={data} />
-              <VouchersLists data={data} />
             </div>
           )}
         </div>
