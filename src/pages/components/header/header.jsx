@@ -8,7 +8,7 @@ function Header() {
   return (
     <div className={styles.header}>
       <div className={styles.container}>
-        <div className={styles.logo}>
+        <div className={styles.logo} onClick={() => router.push("/")}>
           <img
             src="https://res.cloudinary.com/dmixz7eur/image/upload/v1677542356/chike/CMG_st67ia.png"
             alt=""

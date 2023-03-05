@@ -11,16 +11,7 @@ export const verifyAccount = async (props) => {
   try {
     const response = await axios.get(
       `${URI_MAP.cmg.verify_account}?${new URLSearchParams(params).toString()}`,
-      // null,
-      // {
-      //   headers: {
-      //     "x-access-token": `${token}`,
-      //       "Content-Type": "multipart/form-data",
-      //       Authorization: `Bearer ${token}`,
-      //   },
-      // }
     );
-    // console.log("response", response);
     return response;
   } catch (error) {
     console.log("error", error);

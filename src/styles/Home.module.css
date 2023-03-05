@@ -31,6 +31,7 @@
 }
 .homePage .container .row .colOne{
   max-width: 50%;
+  z-index: 100;
 }
 .homePage .colOne .buttons{
   display: flex;
@@ -99,5 +100,5 @@
 .homePage .container .row .colTwo{
   width: 70%;
   margin-left: -20%;
-  z-index: -100;
+  z-index: 10;
 }
