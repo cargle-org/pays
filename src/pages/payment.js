@@ -1,19 +1,22 @@
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react'
 import { getToken } from './api/auth/auth';
+import { useSidebarContext } from './context/sidebarConetxt';
 import RenderPayment from './payment/renderPayment'
 
-function payment() {
+function Payment() {
   const router = useRouter();
+  const { setActiveTab } = useSidebarContext();
 
 
   useEffect(() => {
+    setActiveTab(3)
     const token = getToken();
   if (!token) {
     router.push("/login");
   }
   }, []);
-  
+
   return (
     <div>
         <RenderPayment />
@@ -21,4 +24,4 @@ function payment() {
   )
 }
 
-export default payment
+export default Payment

@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import AuthProvider from "./api/auth/AuthContext";
-import SidebarProvider from "./context/sidebarConetxt";
+import SidebarProvider from "./context/sidebarContext";
 
 export default function App({ Component, pageProps }) {
   return (

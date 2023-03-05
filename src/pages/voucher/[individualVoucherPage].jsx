@@ -6,9 +6,11 @@ import VoucherDetailsCard from "./VoucherDetailsCard";
 import { useRouter } from "next/router";
 import { getOneVoucher } from "../api/vouchers/getOneVoucher";
 import VouchersLists from "./vouchersLists";
+import { useSidebarContext } from "../context/sidebarContext";
 
 function IndividualVoucherPage() {
   const router = useRouter();
+  const { setActiveTab } = useSidebarContext();
 
   const id = router.query.individualVoucherPage;
 
@@ -19,7 +21,7 @@ function IndividualVoucherPage() {
       const res = await getOneVoucher({ id });
       setData(res);
     })();
-    // setActiveTab(3);
+    setActiveTab(2);
   }, [id]);
 
   return (
@@ -34,7 +36,7 @@ function IndividualVoucherPage() {
           style={{ padding: 20, background: "#fff" }}
         >
           <div className={styles.back}>Back</div>
-          <h3 style={{margin: "20px 0"}}>Voucher #{data._id}</h3>
+          <h3 style={{margin: "20px 0"}}>{data.title}</h3>
           <div style={{ display: "flex", flexWrap: "wrap", width: "100%" }}>
             <VoucherDetailsCard data={data} />
             <VouchersLists data={data} />

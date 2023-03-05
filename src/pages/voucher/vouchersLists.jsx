@@ -55,7 +55,7 @@ function VouchersLists({ data }) {
                   <div className={styles.cashed}>cashed</div>
                 )}
               </td>
-              <td>N{voucher.cashedBy}</td>
+              <td>{voucher.cashedBy}</td>
               <td>{voucher.cashedDate}</td>
               <td>
                 <EditIcon />

@@ -6,7 +6,7 @@ import Dashboardicon from "../../../assets/dashboard.svg";
 import Payment from "../../../assets/payment.svg";
 import Voucher from "../../../assets/voucher.svg";
 import Profile from "../../../assets/profile.svg";
-import { useSidebarContext } from "@/pages/context/sidebarConetxt";
+import { useSidebarContext } from "@/pages/context/sidebarContext";
 import Logout from "../../../assets/Logout.svg"
 
 function Sidebar() {
