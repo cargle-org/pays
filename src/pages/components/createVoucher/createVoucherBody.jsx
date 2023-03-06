@@ -3,8 +3,11 @@ import styles from "../../../styles/components/createvoucherpage.module.css";
 import Camera from "../../../assets/camera.svg";
 import { useState } from "react";
 import { createVoucher } from "@/pages/api/vouchers/createVoucher";
+import { useRouter } from "next/router";
 
 function CreateVoucherBody() {
+  const router = useRouter();
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [voucherKey, setVoucherKey] = useState("");
@@ -43,6 +46,18 @@ function CreateVoucherBody() {
       setErrMSG("number or vouchers or amount per voucher cannot be empty");
     } else {
       const res = await createVoucher({ formData });
+      if (res) {
+        router.push({
+          pathname: "/voucher/[individualVoucherPage]",
+          query: {
+            individualVoucherPage: res._id,
+          },
+        });
+      } else {
+        setErrMSG(
+          "An error occurred, please check your voucher key and make sure you are sending a correct image format such as jpg, png"
+        );
+      }
     }
   };
   return (
@@ -52,8 +67,8 @@ function CreateVoucherBody() {
         <div className={styles.title}>
           <h3>Create Vouchers</h3>
         </div>
-        <p>{errMSG}</p>
         <div className={styles.content}>
+          {errMSG ? <div className={styles.error}>{errMSG}</div> : <div></div>}
           <form>
             <label>Title</label>
             <input
