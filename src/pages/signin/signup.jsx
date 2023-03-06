@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "../../styles/signin/signup.module.css";
 import { useRouter } from "next/router";
 import { useAuthContext } from "../api/auth/AuthContext";
+import Loading from "../components/loading";
 
 function SignUp() {
   const router = useRouter();
@@ -16,7 +17,8 @@ function SignUp() {
   const [companyLogo, setCompanyLogo] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
-
+  
+  const { isLoading, setIsLoading } = useAuthContext();
   const { errorMsg, setErrorMsg } = useAuthContext();
   const { handleRegister } = useAuthContext();
 
@@ -46,6 +48,10 @@ function SignUp() {
       });
     }
   };
+
+  if (isLoading) {
+    return <Loading />
+  }
 
   return (
     <div className={styles.signup}>

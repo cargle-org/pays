@@ -13,12 +13,8 @@ export const createVoucher = async ({ formData }) => {
         //   Authorization: `Bearer ${token}`,
       },
     });
-    console.log("response", response.data.data.voucher);
-    return response.data.data.voucher;
+    return response.data.data;
   } catch (error) {
-    console.log("error", error);
-    // setErrorMsg(error);
-    // setIsLoading(false);
-    // return error.response.data
+    return error.response.data
   }
 };

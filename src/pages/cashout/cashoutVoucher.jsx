@@ -5,6 +5,7 @@ import { cashoutVoucher } from "../api/cashout/cashoutVoucher";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
+import Loading from "../components/loading";
 
 function CashoutVoucher() {
   const router = useRouter();
@@ -14,6 +15,8 @@ function CashoutVoucher() {
   const [fullName, setFullName] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
   const [voucherCode, setVoucherCode] = useState("");
+  const [isLoading, setIsLoading] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("")
 
   const notify = ({message}) => toast(message);
 
@@ -25,6 +28,7 @@ function CashoutVoucher() {
   }, []);
 
   const handleCashoutVoucher = async () => {
+    setIsLoading(true)
     const res = await cashoutVoucher({
       fullName,
       accountNumber,
@@ -32,24 +36,32 @@ function CashoutVoucher() {
       bankCode,
     });
     if (res.success === true) {
-      
+      setIsLoading(false)
       const message = "Your Voucher reward has been claimed successfully"
       notify({message});
       router.push("/cashout/success");
     } else {
-      const message = res.message
+        setIsLoading(false)
+        setErrorMessage(res.message)
+        const message = res.message
       notify({message});
     }
     
   };
+  if (isLoading) {
+    return <Loading />
+  }
 
   return (
     <div className={styles.cashout}>
       <div className={styles.container}>
         <div className={styles.details}>
           <h3>Cashout Voucher</h3>
-          <ToastContainer />
+          <ToastContainer  />
           <h6></h6>
+          <div className={styles.one}>
+            <div className={styles.error}>{errorMessage}</div>
+          </div>
           <div className={styles.one}>
             <label>Full Account Name</label>
             <input

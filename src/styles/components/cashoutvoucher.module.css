@@ -24,3 +24,12 @@
 .cashout .container .details button{
     width: 100%;
 }
+.cashout .container .error{
+    background-color: #ff000030;
+    color: #ff0000;
+    padding: 16px 12px;
+    text-align: center;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    /* margin-right: 20px; */
+}

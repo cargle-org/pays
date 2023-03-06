@@ -4,6 +4,7 @@ import Camera from "../../../assets/camera.svg";
 import { useState } from "react";
 import { createVoucher } from "@/pages/api/vouchers/createVoucher";
 import { useRouter } from "next/router";
+import Loading from "../loading";
 
 function CreateVoucherBody() {
   const router = useRouter();
@@ -18,6 +19,7 @@ function CreateVoucherBody() {
   );
   const [noOfVouchers, setNoOfVouchers] = useState(0);
   const [amountPerVoucher, setAmountPerVoucher] = useState(0);
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleFileInputChange = (event) => {
     setVoucherThumbnail(event.target.files[0]);
@@ -45,21 +47,26 @@ function CreateVoucherBody() {
     } else if (noOfVouchers === 0 || amountPerVoucher === 0) {
       setErrMSG("number or vouchers or amount per voucher cannot be empty");
     } else {
+      setIsLoading(true)
       const res = await createVoucher({ formData });
-      if (res) {
+      if (res.voucher) {
+        setIsLoading(false)
         router.push({
           pathname: "/voucher/[individualVoucherPage]",
           query: {
-            individualVoucherPage: res._id,
+            individualVoucherPage: res.voucher._id,
           },
         });
-      } else {
-        setErrMSG(
-          "An error occurred, please check your voucher key and make sure you are sending a correct image format such as jpg, png"
-        );
+      } else if (res.message) {
+        setIsLoading(false)
+        setErrMSG(res.message);
       }
     }
   };
+
+  if (isLoading) {
+    return <Loading />
+  }
   return (
     <div className={styles.createVoucherPage}>
       <div className={styles.container}>

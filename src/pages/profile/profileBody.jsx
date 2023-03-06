@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import styles from "../../styles/components/profilepage.module.css";
 import { getProfile } from "../api/profile/getProfile";
+import Loading from "../components/loading";
 
 function ProfileBody() {
   const [firstName, setFirstName] = useState("");
@@ -12,10 +13,12 @@ function ProfileBody() {
   const [companyImage, setCompanyImage] = useState("");
   const [companyEmail, setCompanyEmail] = useState("");
   const [companyPhoneNum, setCompanyPhoneNum] = useState("");
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     (async () => {
-      const res = await getProfile();
+    setIsLoading(true)
+    const res = await getProfile();
       setFirstName(res.firstName);
       setLastName(res.lastName);
       setEmail(res.email);
@@ -24,8 +27,13 @@ function ProfileBody() {
       setCompanyImage(res.companyLogo);
       setCompanyEmail(res.companyEmail);
       setCompanyPhoneNum(res.companyPhone);
-    })();
+        setIsLoading(false)
+      })();
   }, []);
+
+  if (isLoading) {
+    return <Loading />
+  }
 
   return (
     <div className={styles.profilePage}>

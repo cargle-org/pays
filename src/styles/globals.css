@@ -242,3 +242,6 @@ td{
 ::-webkit-scrollbar-thumb:hover {
   background: #bb790080; 
 }
+.Toastify__toast-theme--light{
+  background-color:pink
+}

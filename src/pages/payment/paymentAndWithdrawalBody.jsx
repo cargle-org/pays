@@ -4,11 +4,13 @@ import MoneyIcon from "../../assets/naira.svg";
 import styles from "../../styles/components/paymentpage.module.css"
 import { fundWallet } from "../api/payment/fundWallet";
 import { getProfile } from "../api/profile/getProfile";
+import Loading from "../components/loading";
 
 function PaymentAndWithdrawalBody() {
   const [operation, setOperation] = useState("deposit");
   const [depositAmount, setDepositAmount] = useState(0)
   const [withdrawAmount, setWithdrawAmount] = useState(0)
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleOperation = (e) => {
     setOperation(e.target.value);
@@ -21,15 +23,21 @@ function PaymentAndWithdrawalBody() {
 
   useEffect(() => {
     (async () => {
-      const res = await getProfile();
+    setIsLoading(true)
+    const res = await getProfile();
       setBalance(new Intl.NumberFormat().format(res.walletBalance));
-    })();
+        setIsLoading(false)
+      })();
   }, []);
 
   const handleDeposit = async () => {
     const res = await fundWallet({depositAmount})
     const newWindow = window.open(res, '_blank', 'noopener,noreferrer')
   if (newWindow) newWindow.opener = null
+  }
+
+  if (isLoading) {
+    return <Loading />
   }
 
   return (

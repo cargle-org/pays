@@ -7,9 +7,12 @@ import { getOneVoucher } from "../api/vouchers/getOneVoucher";
 import VouchersLists from "./vouchersLists";
 import { useSidebarContext } from "../context/sidebarContext";
 import VoucherDetailsCard from "./voucherDetailsCard";
+import Loading from "../components/loading";
 
 function IndividualVoucherPage() {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false)
+  
   const { setActiveTab } = useSidebarContext();
 
   const id = router.query.individualVoucherPage;
@@ -18,17 +21,18 @@ function IndividualVoucherPage() {
 
   useEffect(() => {
     (async () => {
-      const res = await getOneVoucher({ id });
+    setIsLoading(true)
+    const res = await getOneVoucher({ id });
       setData(res);
 
-      console.log("res", res);
-      // if (!res) {
-      //   setData([]);
-      // } else {
-      // }
+      setIsLoading(false)
     })();
     setActiveTab(2);
   }, [id]);
+
+  if (isLoading) {
+    return <Loading />
+  }
 
   return (
     <div className={styles.mainDashboardPage}>

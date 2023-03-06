@@ -6,19 +6,27 @@ import EditIcon from "../../assets/edit.svg";
 import styles from "../../styles/components/voucherpage.module.css"
 import { useRouter } from "next/router";
 import { getAllVouchers } from "../api/vouchers/getAllVouchers";
+import Loading from "../components/loading";
 
 function VoucherBody() {
   const router = useRouter();
 
   const [tab, setTab] = useState(1);
   const [vouchers, setVouchers] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     (async () => {
+      setIsLoading(true)
       const res = await getAllVouchers();
       setVouchers(res)
-    })();
+        setIsLoading(false)
+      })();
   }, []);
+
+  if (isLoading) {
+    return <Loading />
+  }
 
   return (
     <div className={styles.voucher}>
