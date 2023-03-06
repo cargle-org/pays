@@ -8,7 +8,7 @@ function CreateVoucherBody() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [voucherKey, setVoucherKey] = useState("");
-  const [errMSG, setErrMSG] = useState("")
+  const [errMSG, setErrMSG] = useState("");
   const [voucherThumbnail, setVoucherThumbnail] = useState("");
   const [cmgThumbnail, setcmgThumbnail] = useState(
     "https://res.cloudinary.com/dmixz7eur/image/upload/v1677536988/chike/CMG_kryufg.png"
@@ -16,15 +16,17 @@ function CreateVoucherBody() {
   const [noOfVouchers, setNoOfVouchers] = useState(0);
   const [amountPerVoucher, setAmountPerVoucher] = useState(0);
 
-
   const handleFileInputChange = (event) => {
     setVoucherThumbnail(event.target.files[0]);
     setcmgThumbnail(URL.createObjectURL(event.target.files[0]));
   };
 
-  const cmgFee = noOfVouchers * 10
-  const subTotalAmount = noOfVouchers * amountPerVoucher;
-  const totalAmount = subTotalAmount + cmgFee;
+  const cmgFee = new Intl.NumberFormat().format(noOfVouchers * 10);
+  const subTotalAmount = new Intl.NumberFormat().format(
+    noOfVouchers * amountPerVoucher
+  );
+  const total = noOfVouchers * amountPerVoucher + noOfVouchers * 10;
+  const totalAmount = new Intl.NumberFormat().format(total);
 
   const handleCreateVoucher = async (e) => {
     e.preventDefault();
@@ -35,12 +37,12 @@ function CreateVoucherBody() {
     formData.append("totalNumberOfVouchers", noOfVouchers);
     formData.append("amountPerVoucher", amountPerVoucher);
     formData.append("voucherKey", voucherKey);
-    if (title === "" || description === ""  || voucherKey === "") {
-      setErrMSG("one or more field cannot be empty ")
+    if (title === "" || description === "" || voucherKey === "") {
+      setErrMSG("one or more field cannot be empty ");
     } else if (noOfVouchers === 0 || amountPerVoucher === 0) {
-      setErrMSG("number or vouchers or amount per voucher cannot be empty")
+      setErrMSG("number or vouchers or amount per voucher cannot be empty");
     } else {
-      const res = await createVoucher({formData})
+      const res = await createVoucher({ formData });
     }
   };
   return (
@@ -115,7 +117,9 @@ function CreateVoucherBody() {
                 <h6>Total Amount</h6> <h4>₦{totalAmount}</h4>
               </div>
             </div>
-            <button onClick={handleCreateVoucher}>Create Vouchers of (₦{totalAmount})</button>
+            <button onClick={handleCreateVoucher}>
+              Create Vouchers of (₦{totalAmount})
+            </button>
           </form>
         </div>
       </div>

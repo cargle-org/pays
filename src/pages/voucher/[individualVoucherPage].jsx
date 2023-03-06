@@ -41,7 +41,7 @@ function IndividualVoucherPage() {
           className={styles.body}
           style={{ padding: 20, background: "#fff" }}
         >
-          <div className={styles.back}>Back</div>
+          <div className={styles.back} onClick={() => router.back()}>Back</div>
           {data ? (
             <>
               <h4 style={{ margin: "20px 0" }}>{data.title}</h4>

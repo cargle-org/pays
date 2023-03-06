@@ -10,7 +10,7 @@ function Payment() {
 
 
   useEffect(() => {
-    setActiveTab(3)
+    setActiveTab(4)
     const token = getToken();
   if (!token) {
     router.push("/login");

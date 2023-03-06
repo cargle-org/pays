@@ -15,6 +15,9 @@
 .mainDashboardPage .mainSection .body{
     min-height: 75vh;
 }
+.mainDashboardPage .mainSection .body .back{
+    cursor: pointer;
+}
 .metrics{
     display: flex;
     flex-wrap: wrap;

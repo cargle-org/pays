@@ -13,10 +13,11 @@ export const cashoutVoucher = async (props) => {
       accountNumber: props.accountNumber,
     },);
     console.log('res', response)
-    return response;
+    return response.data;
   } catch (error) {
     console.log("error", error);
     // setErrorMsg(error);
     // setIsLoading(false);
+    return error.response.data
   }
 };

@@ -38,7 +38,7 @@ function VouchersLists({ data }) {
             <th>SN</th>
             <th>VoucherCode</th>
             <th>Status</th>
-            <th>Cashed Date</th>
+            <th>Cashed By</th>
             <th>Cashed Time</th>
             <th>delete</th>
           </tr>

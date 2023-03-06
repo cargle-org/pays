@@ -2,13 +2,20 @@ import React, { useEffect, useState } from "react";
 import { getBanks } from "../api/cashout/getAllBank";
 import styles from "../../styles/components/cashoutvoucher.module.css";
 import { cashoutVoucher } from "../api/cashout/cashoutVoucher";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/router";
 
 function CashoutVoucher() {
+  const router = useRouter();
+
   const [bankName, setBankName] = useState([]);
   const [bankCode, setBankCode] = useState("");
   const [fullName, setFullName] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
   const [voucherCode, setVoucherCode] = useState("");
+
+  const notify = ({message}) => toast(message);
 
   useEffect(() => {
     (async () => {
@@ -24,6 +31,16 @@ function CashoutVoucher() {
       voucherCode,
       bankCode,
     });
+    if (res.success === true) {
+      
+      const message = "Your Voucher reward has been claimed successfully"
+      notify({message});
+      router.push("/cashout/success");
+    } else {
+      const message = res.message
+      notify({message});
+    }
+    
   };
 
   return (
@@ -31,6 +48,7 @@ function CashoutVoucher() {
       <div className={styles.container}>
         <div className={styles.details}>
           <h3>Cashout Voucher</h3>
+          <ToastContainer />
           <h6></h6>
           <div className={styles.one}>
             <label>Full Account Name</label>

@@ -14,12 +14,15 @@ function PaymentAndWithdrawalBody() {
     setOperation(e.target.value);
   };
 
+  const myDeposit = new Intl.NumberFormat().format(depositAmount)
+  const myWithdrawal = new Intl.NumberFormat().format(withdrawAmount)
+
   const [balance, setBalance] = useState("");
 
   useEffect(() => {
     (async () => {
       const res = await getProfile();
-      setBalance(res.walletBalance);
+      setBalance(new Intl.NumberFormat().format(res.walletBalance));
     })();
   }, []);
 
@@ -66,7 +69,7 @@ function PaymentAndWithdrawalBody() {
               onChange={(e) => setDepositAmount(e.target.value)}
               placeholder="Enter the amount you want to deposit"
             />
-            <button onClick={handleDeposit}>Deposit (₦{depositAmount})</button>
+            <button onClick={handleDeposit}>Deposit (₦{myDeposit})</button>
           </div>
         ) : (
           <div className={styles.withdraw}>
@@ -77,7 +80,7 @@ function PaymentAndWithdrawalBody() {
               onChange={(e) => setWithdrawAmount(e.target.value)}
               placeholder="Enter the amount you want to withdraw"
             />
-            <button>Withdraw ({depositAmount})</button>
+            <button>Withdraw ({myWithdrawal})</button>
           </div>
         )}
       </div>

@@ -10,7 +10,7 @@ function TopBar() {
   useEffect(() => {
     (async () => {
       const res = await getProfile();
-      setBalance(res.walletBalance);
+      setBalance(new Intl.NumberFormat().format(res.walletBalance));
     })();
   }, []);
   return (
