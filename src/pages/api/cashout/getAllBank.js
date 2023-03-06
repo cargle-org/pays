@@ -6,13 +6,7 @@ export const getBanks = async () => {
   const token = getToken();
 
   try {
-    const response = await axios.get(URI_MAP.cmg.get_all_banks, {
-      headers: {
-        "x-access-token": `${token}`,
-        //   "Content-Type": "multipart/form-data",
-        //   Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axios.get(URI_MAP.cmg.get_all_banks);
     return response.data.data.banks;
   } catch (error) {
     console.log("error", error);

@@ -34,7 +34,6 @@ function CreateVoucherBody() {
     formData.append("description", description);
     formData.append("totalNumberOfVouchers", noOfVouchers);
     formData.append("amountPerVoucher", amountPerVoucher);
-    formData.append("totalAmount", totalAmount);
     formData.append("voucherKey", voucherKey);
     if (title === "" || description === ""  || voucherKey === "") {
       setErrMSG("one or more field cannot be empty ")

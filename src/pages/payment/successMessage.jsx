@@ -11,7 +11,7 @@ function SuccessMessage() {
           src="https://res.cloudinary.com/dmixz7eur/image/upload/v1677864171/chike/91068-message-sent-successfully-plane_1_dtltch.gif"
           alt=""
         />
-        <h6>Your Deposit of ₦500 was successful</h6>
+        <h6>Your Deposit was successful</h6>
         <div className={styles.buttons}>
           <button onClick={() => router.push("/payment")}>Go to wallet</button>
           <button onClick={() => router.push("/createvouchers")}>
