@@ -29,7 +29,7 @@ const AuthProvider = (props) => {
       setSuccess(true);
     } catch (error) {
       console.log("error", error);
-      setErrorMsg(error);
+      setErrorMsg("an error occured while trying to register, please check you detail and try again or fill all required field");
       setIsLoading(false);
       setSuccess(false);
     }
@@ -74,7 +74,7 @@ const AuthProvider = (props) => {
       // else {
         // }
         setIsLoading(false);
-          setErrorMsg(error);
+          setErrorMsg("Invalid email or password.");
     }
   };
 
