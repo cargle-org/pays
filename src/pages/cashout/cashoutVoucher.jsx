@@ -60,7 +60,10 @@ function CashoutVoucher() {
           <ToastContainer  />
           <h6></h6>
           <div className={styles.one}>
-            <div className={styles.error}>{errorMessage}</div>
+            {errorMessage ? 
+            <div className={styles.error}>{errorMessage}</div>:
+            <div> </div>
+          }
           </div>
           <div className={styles.one}>
             <label>Full Account Name</label>
@@ -87,6 +90,7 @@ function CashoutVoucher() {
               value={bankCode}
               onChange={(e) => setBankCode(e.target.value)}
             >
+              <option value="">select a bank</option>
               {bankName?.map((banks) => (
                 <option key={banks.id} value={banks.code}>
                   {banks.name}
