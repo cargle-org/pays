@@ -28,9 +28,38 @@
 .header .container .buttons button{
     width: 120px !important;
 }
-.header .container .buttons .btn{
+.header .container .btn{
     margin-right: 16px;
     color: var(--primary-color) !important;
     background-color: #fff !important;
     border: 1px solid #7B88AB99;
+}
+.header .mobileMenu {
+    display: none;
+}
+@media only screen and (max-width: 768px) {
+    .header .container .navLinks{
+        display: none;
+    }
+    .header .container .buttons{
+        display: none;
+    }
+    .header .mobileMenu {
+        display: block;
+    }
+    .header .mobileMenu .menuLinks{
+        height: 100vh;
+        z-index: 1000;
+        width: 100vw;
+        position: fixed;
+        background: var(--background);
+        left: 0;
+        top: 0;
+        padding: 25px;
+    }
+    .header .mobileMenu .menuLinks li{
+        font-size: 16px;
+        margin: 16px 0;
+        padding: 4px;
+    }
 }

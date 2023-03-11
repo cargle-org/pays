@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../../styles/header.module.css";
 import { useRouter } from "next/router";
+import { getToken } from "@/pages/api/auth/auth";
+import MenuIcon from "../../../assets/menu.svg";
+import CloseIcon from "../../../assets/close.svg";
 
 function Header() {
   const router = useRouter();
+  const token = getToken();
+
+  const [openMenu, setOpenMenu] = useState(false);
 
   return (
     <div className={styles.header}>
@@ -20,9 +26,42 @@ function Header() {
           <li className={styles.link}>FAQs</li>
           <li className={styles.link}>Contact</li>
         </div>
-        <div className={styles.buttons}>
-          <button className={styles.btn}onClick={() => router.push("/login")}>Login</button>
-          <button onClick={() => router.push("/register")}>Sign Up</button>
+        {token ? (
+          <button onClick={() => router.push("/dashboard")}>Dashboard</button>
+        ) : (
+          <div className={styles.buttons}>
+            <button
+              className={styles.btn}
+              onClick={() => router.push("/login")}
+            >
+              Login
+            </button>
+            <button onClick={() => router.push("/register")}>Sign Up</button>
+          </div>
+        )}
+        <div className={styles.mobileMenu}>
+          <div className={styles.menu} onClick={() => setOpenMenu(true)}>
+            <MenuIcon className={styles.icon}/>
+          </div>
+          {openMenu && (
+            <div className={styles.menuLinks}>
+              <li onClick={() => setOpenMenu(false)}>
+                <CloseIcon className={styles.icon}/>
+              </li>
+              <li>Home</li>
+              <li>About</li>
+              <li>FAQs</li>
+              <li>Contact</li>
+              <li><button
+              className={styles.btn}
+              onClick={() => router.push("/login")}
+            >
+              Login
+            </button></li>
+              <li>            <button onClick={() => router.push("/register")}>Sign Up</button>
+</li>
+            </div>
+          )}
         </div>
       </div>
     </div>

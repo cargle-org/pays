@@ -29,7 +29,9 @@ const AuthProvider = (props) => {
       setSuccess(true);
     } catch (error) {
       console.log("error", error);
-      setErrorMsg("an error occured while trying to register, please check you detail and try again or fill all required field");
+      setErrorMsg(
+        "an error occured while trying to register, please check you detail and try again or fill all required field"
+      );
       setIsLoading(false);
       setSuccess(false);
     }
@@ -54,27 +56,14 @@ const AuthProvider = (props) => {
       // console.log("response", response);
       router.push("/dashboard");
       const accessToken = response.data.data.token;
-      const user_id = response.data.data.user._id
+      const user_id = response.data.data.user._id;
       userauthstorage({ email, accessToken, user_id });
 
       setIsLoading(false);
-
     } catch (error) {
       console.log("error", error);
-      // if (!error?.response) {
-      //   setErrorMsg("No Server Response");
-      // } else if (error.response?.status === 409) {
-      //   setErrorMsg("User Already Exist");
-      // } else if (error.response?.status === 401) {
-      //   setErrorMsg("invalid email or password");
-      // }
-      // else if (error.response?.status === 400) {
-      //   setErrorMsg("Pending Account. Please Verify Your Email!");
-      // }
-      // else {
-        // }
-        setIsLoading(false);
-          setErrorMsg("Invalid email or password.");
+      setIsLoading(false);
+      setErrorMsg("Invalid email or password.");
     }
   };
 

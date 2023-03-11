@@ -36,6 +36,7 @@
 .homePage .colOne .buttons{
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
 }
 .homePage .colOne .btn{
   height: 50px;
@@ -101,4 +102,32 @@
   width: 70%;
   margin-left: -20%;
   z-index: 10;
+}
+
+@media only screen and (max-width: 768px) {
+  .homePage .container{
+    margin: 20px;
+    width: calc(100% - 40px);
+  }
+  .homePage .container h1{
+    font-size: 40px;
+    line-height: 48px;
+  }
+  .homePage .container h5{
+    font-size: 14px;
+  }
+  .homePage .container .row .colOne{
+    max-width: 100%;
+  }
+  .homePage .container .row .colTwo{
+    width: 100%;
+    margin: 0;
+  }
+  .homePage .container .row .colTwo img{
+    width: 100%;
+    margin: 24px 0;
+  }
+  .homePage .colOne .btnTwo{
+    margin-top: 20px;
+  }
 }

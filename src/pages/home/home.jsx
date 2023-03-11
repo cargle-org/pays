@@ -3,10 +3,20 @@ import Header from "../components/header/header";
 import styles from "../../styles/Home.module.css";
 import { HiArrowUpRight } from "react-icons/hi2";
 import { useRouter } from "next/router";
+import { getToken } from "../api/auth/auth";
 
 function HomePage() {
   const router = useRouter();
+  const token = getToken();
 
+  const handleUser = () => {
+
+    if (token) {
+      router.push("/createvouchers")
+    } else {
+      router.push("/login")
+    }
+  }
   return (
     <div className={styles.homePage}>
       <Header />
@@ -21,7 +31,7 @@ function HomePage() {
                 consequuntur voluptatum laborum
               </h5>
               <div className={styles.buttons}>
-                <div className={styles.btn} onClick={() => router.push("/createvouchers")}>
+                <div className={styles.btn} onClick={handleUser}>
                   Create Vouchers
                   <div className={styles.icon}>
                     <HiArrowUpRight />
