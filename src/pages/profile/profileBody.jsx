@@ -5,8 +5,10 @@ import { getProfile } from "../api/profile/getProfile";
 import Loading from "../components/loading";
 import Logout from "../../assets/logout.svg"
 import { removeToken } from "../api/auth/auth";
+import { useRouter } from "next/router";
 
 function ProfileBody() {
+  const router = useRouter();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
