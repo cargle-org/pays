@@ -40,7 +40,7 @@ function VoucherBody() {
       </div>
       <div className={styles.tabs}>
         <div onClick={() => setTab(1)} className={tab === 1 ? styles.activeTab : styles.tab }>All Vouchers</div>
-        <div onClick={() => setTab()} className={tab === 2 ? styles.activeTab : styles.tab }>Active</div>
+        <div onClick={() => setTab(2)} className={tab === 2 ? styles.activeTab : styles.tab }>Active</div>
         <div onClick={() => setTab(3)} className={tab === 3 ? styles.activeTab : styles.tab }>History</div>
       </div>
       <div className={styles.search}>
@@ -57,7 +57,7 @@ function VoucherBody() {
             <tr>
               <th>Img</th>
               <th>Title</th>
-              <th>Description</th>
+              <th style={{minWidth: 300}}>Description</th>
               <th>Total Amount</th>
               <th>Total Vouchers</th>
               <th>Voucher Cashed</th>

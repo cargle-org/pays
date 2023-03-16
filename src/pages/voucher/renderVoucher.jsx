@@ -3,6 +3,7 @@ import styles from "../../styles/components/maindashboardpage.module.css"
 import VoucherBody from './voucherBody'
 import TopBar from '../components/header/topBar'
 import Sidebar from '../components/sidebar/sidebar'
+import MobileSidebar from '../components/sidebar/mobileSidebar'
 
 function RenderVoucher() {
   return (
@@ -10,6 +11,10 @@ function RenderVoucher() {
         <div className={styles.sidebar}>
             <Sidebar />
         </div>
+        <div className={styles.mobileNav}>
+
+            <MobileSidebar />
+          </div>
         <div className={styles.mainSection}>
             <TopBar />
             <div className={styles.body}>

@@ -67,3 +67,23 @@
     border-radius: 50%;
     border-radius: 3px solid #55555599;
 }
+@media only screen and (max-width: 768px) {
+    .voucher #table{
+        width: 100%;
+        max-width: 360px;
+        overflow-x: scroll;
+        margin-bottom: 70px;
+    }
+    .voucher table{
+        width: 100%;
+        max-width: 360px;
+        overflow-x: scroll;
+    }
+    .voucher .search .input{
+        margin: 0;
+        margin-bottom: 12px;
+    }
+    .voucher .filter{
+        height: 40px;
+    }
+}

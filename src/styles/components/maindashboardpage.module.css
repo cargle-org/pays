@@ -36,3 +36,53 @@
     font-size: 15px;
     margin: 8px 0;
 }
+.mobileNav{
+    display: none;
+}
+@media only screen and (max-width: 768px) {
+    .mobileNav{
+      display: block;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    .mainboard .dashboardContainer{
+      width: 100%;
+      margin-bottom: 100px;
+    }
+    .mainDashboardPage .sidebar{
+        display: none;
+    }
+    .mainDashboardPage .mainSection{
+        width: 100%;
+    padding: 0px;
+}
+    .mainSection  .title h6 {
+      max-width: 100%;
+      margin-bottom: 32px;
+    }
+    .mainSection  .activityCards {
+      justify-content: space-between;
+    }
+    .mainSection  .table .search{
+      flex-wrap: wrap;
+      justify-content: left;
+    }
+    .mainSection  .table .input{
+      width: 100%;
+      margin: 0;
+      margin-bottom: 12px;
+    }
+    .mainSection  .table th{
+        min-width: 120px;
+    }
+    .mainboard{
+        margin: 0;
+    }
+    .metrics{
+        padding: 16px;
+    }
+    .metrics .card{
+        margin-bottom: 16px;
+    }
+  }

@@ -32,6 +32,8 @@ function VouchersLists({ data }) {
           <SearchIcon /> <input type="text" placeholder="Search" />
         </div>
       </div>
+      <div id="table">
+
       <table>
         <thead>
           <tr>
@@ -53,7 +55,7 @@ function VouchersLists({ data }) {
                   <div className={styles.pending}>pending</div>
                 ) : (
                   <div className={styles.cashed}>cashed</div>
-                )}
+                  )}
               </td>
               <td>{voucher.cashedBy}</td>
               <td>{voucher.cashedDate}</td>
@@ -64,6 +66,7 @@ function VouchersLists({ data }) {
           ))}
         </tbody>
       </table>
+          </div>
     </div>
   );
 }

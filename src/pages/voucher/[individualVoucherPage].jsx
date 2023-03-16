@@ -8,6 +8,7 @@ import VouchersLists from "./vouchersLists";
 import { useSidebarContext } from "../context/sidebarContext";
 import VoucherDetailsCard from "./voucherDetailsCard";
 import Loading from "../components/loading";
+import MobileSidebar from "../components/sidebar/mobileSidebar";
 
 function IndividualVoucherPage() {
   const router = useRouter();
@@ -39,6 +40,10 @@ function IndividualVoucherPage() {
       <div className={styles.sidebar}>
         <Sidebar />
       </div>
+        <div className={styles.mobileNav}>
+
+            <MobileSidebar />
+          </div>
       <div className={styles.mainSection}>
         <TopBar />
         <div

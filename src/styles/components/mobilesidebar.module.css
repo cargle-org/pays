@@ -1,0 +1,48 @@
+  .mobileSidebar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
+    height: 80px;
+    background-color: var(--background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px -4px 16px #cccccc;
+  }
+
+  .mobileSidebar .navlinks {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  .mobileSidebar .navlinks .activeLink {
+    margin: 0 10px;
+    display: block;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+    color: var(--primary-color);
+    font-weight: 600;
+    height: 40px;
+    width: 20%;
+    text-align: center;
+  }
+  .mobileSidebar .navlinks .link {
+    margin: 0 10px;
+    display: block;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+    color: var(--text-inactive);
+    height: 40px;
+    text-align: center;
+    font-weight: 300;
+    width: 20%;
+  }
+  .mobileSidebar .navlinks .sideIcon {
+    font-size: 24px;
+  }
+  .mobileSidebar .navlinks li {
+    font-size: 9px;
+  }

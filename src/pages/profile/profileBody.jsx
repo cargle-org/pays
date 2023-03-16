@@ -3,6 +3,8 @@ import { useState } from "react";
 import styles from "../../styles/components/profilepage.module.css";
 import { getProfile } from "../api/profile/getProfile";
 import Loading from "../components/loading";
+import Logout from "../../assets/logout.svg"
+import { removeToken } from "../api/auth/auth";
 
 function ProfileBody() {
   const [firstName, setFirstName] = useState("");
@@ -108,6 +110,16 @@ function ProfileBody() {
           <div className={styles.button}>
             <button>Save</button>
           </div>
+        <li
+            onClick={() => {
+              removeToken();
+              router.push("/login");
+            }}
+            className={styles.exit}
+          >
+            <Logout className={styles.icon}/>
+            Logout
+          </li>
         </div>
       </div>
     </div>

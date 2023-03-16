@@ -70,7 +70,7 @@ function CreateVoucherBody() {
   return (
     <div className={styles.createVoucherPage}>
       <div className={styles.container}>
-        <div className={styles.back}>Back</div>
+        <div className={styles.back} onClick={() => router.back()}>Back</div>
         <div className={styles.title}>
           <h3>Create Vouchers</h3>
         </div>

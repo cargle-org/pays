@@ -40,3 +40,32 @@
     object-fit: cover;
     border: 3px solid #99999999;
 }
+.profilePage .exit{
+    display: none;
+}
+@media only screen and (max-width: 768px){
+    .profilePage .details .input {
+        width: 100%;
+    }
+    .profilePage .details .input input {
+        margin: 0;
+        width: 100%;
+    }
+    .profilePage{
+        padding-bottom: 100px;
+    }
+    .profilePage .exit{
+        color: #ff0000;
+        display: flex;
+        padding: 16px 8px;
+        cursor: pointer;
+        margin-top: 16px;
+    }
+    .profilePage .exit .icon{
+        color: #ff0000;
+        margin-right: 12px;
+    }
+    .profilePage button{
+        width: 100%;
+    }
+}

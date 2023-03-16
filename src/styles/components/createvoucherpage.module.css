@@ -85,3 +85,31 @@
 .createVoucherPage .content .thumbnail .btn input{
     display: none;
 }
+@media only screen and (max-width: 768px){
+    .createVoucherPage input, .createVoucherPage textarea{
+        width: 100%;
+    }
+    .createVoucherPage button{
+        width: 100% !important;
+        margin-right: 0%;
+    }
+    .createVoucherPage .content .sortAmount{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .createVoucherPage .content .sortAmount .input{
+        width: 100%;
+    }
+    .createVoucherPage .content .thumbnail{
+        width: 100%;
+    }
+    .createVoucherPage .content .thumbnail .btn{
+        margin-left: 150px;
+    }
+    .createVoucherPage .content .amounts{
+        margin-right: 0px;
+    }
+    .createVoucherPage .content .error{
+        width: 100%;
+    }
+}

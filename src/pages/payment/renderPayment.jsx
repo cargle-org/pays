@@ -3,6 +3,7 @@ import TopBar from '../components/header/topBar'
 import Sidebar from '../components/sidebar/sidebar'
 import PaymentAndWithdrawalBody from './paymentAndWithdrawalBody'
 import styles from "../../styles/components/maindashboardpage.module.css"
+import MobileSidebar from '../components/sidebar/mobileSidebar'
 
 function RenderPayment() {
   return (
@@ -10,6 +11,10 @@ function RenderPayment() {
         <div className={styles.sidebar}>
             <Sidebar />
         </div>
+        <div className={styles.mobileNav}>
+
+            <MobileSidebar />
+          </div>
         <div className={styles.mainSection}>
             <TopBar />
             <div className={styles.body}>
