@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../../styles/components/sidebar.module.css";
 import { useRouter } from "next/router";
 import { removeToken } from "@/pages/api/auth/auth";
@@ -8,10 +8,22 @@ import Voucher from "../../../assets/voucher.svg";
 import Profile from "../../../assets/profile.svg";
 import { useSidebarContext } from "@/pages/context/sidebarContext";
 import Logout from "../../../assets/logout.svg"
+import { getProfile } from "@/pages/api/profile/getProfile";
 
 function Sidebar() {
   const router = useRouter();
   const {activeTab, setActiveTab} = useSidebarContext()
+
+  const [name, setName] = useState("");
+  const [companyName, setCompanyName] = useState("");
+
+  useEffect(() => {
+    (async () => {
+      const res = await getProfile();
+      setName(res.firstName + " " + res.lastName)
+      setCompanyName(res.companyName)
+    })();
+  }, []);
 
   return (
     <div className={styles.desktopSidebar}>
@@ -43,8 +55,8 @@ function Sidebar() {
             <div className={styles.profile}>
               <img src="https://res.cloudinary.com/dmixz7eur/image/upload/v1678013020/chike/3d-avatar-teacher-png_l8hyf7.webp" alt="" />
               <div className={styles.info}>
-                <h6 >Dwayne Johnson</h6>
-                <p>Jameson & co</p>
+                <h6 >{name}</h6>
+                <p>{companyName}</p>
               </div>
             </div>
           <li

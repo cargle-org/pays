@@ -6,17 +6,19 @@ import styles from '../../../styles/components/topbar.module.css'
 function TopBar() {
 
   const [balance, setBalance] = useState("");
+  const [name, setName] = useState("");
 
   useEffect(() => {
     (async () => {
       const res = await getProfile();
       setBalance(new Intl.NumberFormat().format(res.walletBalance));
+      setName(res.firstName)
     })();
   }, []);
   return (
     <div className={styles.topbar}>
       <div className={styles.message}>
-        <h3>Hello Chike✋</h3>
+        <h3>Hello {name}✋</h3>
         <h6>Your dashboard today</h6>
       </div>
       <div className={styles.balance}><Naira /><h5>₦{balance}</h5></div>
