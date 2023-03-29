@@ -8,8 +8,8 @@ import Loading from "../components/loading";
 
 function PaymentAndWithdrawalBody() {
   const [operation, setOperation] = useState("deposit");
-  const [depositAmount, setDepositAmount] = useState(0)
-  const [withdrawAmount, setWithdrawAmount] = useState(0)
+  const [depositAmount, setDepositAmount] = useState(null)
+  const [withdrawAmount, setWithdrawAmount] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
 
   const handleOperation = (e) => {
@@ -75,7 +75,7 @@ function PaymentAndWithdrawalBody() {
               type="number"
               value={depositAmount}
               onChange={(e) => setDepositAmount(e.target.value)}
-              placeholder="Enter the amount you want to deposit"
+              placeholder="0"
             />
             <button onClick={handleDeposit}>Deposit (₦{myDeposit})</button>
           </div>
