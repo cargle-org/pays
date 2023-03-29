@@ -46,6 +46,8 @@ function CreateVoucherBody() {
       setErrMSG("one or more field cannot be empty ");
     } else if (noOfVouchers === 0 || amountPerVoucher === 0) {
       setErrMSG("number or vouchers or amount per voucher cannot be empty");
+    }else if (voucherKey.length !== 5) {
+      setErrMSG("your voucher key must be five character");
     } else {
       setIsLoading(true)
       const res = await createVoucher({ formData });
@@ -106,7 +108,7 @@ function CreateVoucherBody() {
             <label>Voucher Key</label>
             <input
               value={voucherKey}
-              placeholder="Enter three unique letter for your voucher key"
+              placeholder="Enter five unique letter for your voucher key"
               onChange={(e) => setVoucherKey(e.target.value)}
               type="text"
             />
