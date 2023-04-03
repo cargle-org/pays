@@ -34,8 +34,12 @@
 .signup .row .colTwo .content {
   margin: 20px;
   width: 100%;
-  max-width: 450px;
+  max-width: 500px;
   margin: auto;
+  background: var(--background);
+  padding: 30px;
+  border-radius: 30px;
+  box-shadow: 0px 10px 50px -20px #25252531;
 }
 .signup .row .colTwo h6 {
   margin-bottom: 32px;
@@ -62,13 +66,13 @@
   background-color: #ff000020;
 }
 @media only screen and (max-width: 768px) {
-    .signup .row .colOne {
-        display: none;
-    }
-    .signup .row .colTwo {
-        width: 100%;
-    }
-    .signup .row .colTwo .content{
-        max-width: 88%;
-    }
+  .signup .row .colOne {
+    display: none;
+  }
+  .signup .row .colTwo {
+    width: 100%;
+  }
+  .signup .row .colTwo .content {
+    max-width: 88%;
+  }
 }
