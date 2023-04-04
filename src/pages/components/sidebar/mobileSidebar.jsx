@@ -6,6 +6,8 @@ import Profile from "../../../assets/profile.svg";
 import { useSidebarContext } from '@/pages/context/sidebarContext';
 import { useRouter } from 'next/router';
 import styles from "../../../styles/components/mobilesidebar.module.css"
+import Logout from "../../../assets/logout.svg"
+import { removeToken } from '@/pages/api/auth/auth';
 
 function MobileSidebar() {
   const router = useRouter();
@@ -36,6 +38,15 @@ function MobileSidebar() {
               onClick={() => {setActiveTab(4); router.push("/payment")}}
             >
               <Payment  className={styles.sideIcon}/> <li>Payment & withdrawal</li>
+            </div>
+            <div
+              className={styles.logout}
+              onClick={() => {
+                removeToken();
+                router.push("/login");
+              }}
+            >
+              <Logout  className={styles.sideIcon}/> <li>Logout</li>
             </div>
           </div>
     </div>

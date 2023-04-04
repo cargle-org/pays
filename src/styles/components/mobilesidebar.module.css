@@ -40,6 +40,19 @@
     font-weight: 300;
     width: 20%;
   }
+  
+  .mobileSidebar .navlinks .logout {
+    margin: 0 10px;
+    display: block;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+    color: #ff0000;
+    height: 40px;
+    text-align: center;
+    font-weight: 300;
+    width: 20%;
+  }
   .mobileSidebar .navlinks .sideIcon {
     font-size: 24px;
   }
