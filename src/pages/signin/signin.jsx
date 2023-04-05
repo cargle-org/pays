@@ -3,12 +3,14 @@ import styles from "../../styles/signin/signup.module.css";
 import { useRouter } from "next/router";
 import { useAuthContext } from "../api/auth/AuthContext";
 import Loading from "../components/loading";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 function SignIn() {
   const router = useRouter();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [viewPassword, setViewPassword] = useState(false);
 
   const { errorMsg, setErrorMsg } = useAuthContext();
   const { isLoading, setIsLoading } = useAuthContext();
@@ -57,15 +59,24 @@ function SignIn() {
                 />
                 <label>Password</label>
                 <br />
-                <input
-                  autoComplete="on"
-                  onChange={(e) => setPassword(e.target.value)}
-                  value={password}
-                  required
-                  aria-describedby="uiddnote"
-                  type="password"
-                  placeholder="Enter your password"
-                />
+                <div className={styles.input}>
+                  <input
+                    autoComplete="on"
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                    required
+                    aria-describedby="uiddnote"
+                    type={!viewPassword ? "password" : "text"}
+                    placeholder="Enter your password"
+                  />
+                  {viewPassword ? (
+                    <AiFillEyeInvisible
+                      onClick={() => setViewPassword(false)}
+                    />
+                  ) : (
+                    <AiFillEye onClick={() => setViewPassword(true)} />
+                  )}
+                </div>
                 <button type="submit">Login</button>
               </form>
               <br />

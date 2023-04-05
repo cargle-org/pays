@@ -65,6 +65,22 @@
   padding: 10px;
   background-color: #ff000020;
 }
+.signup .input{
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0;
+  padding-right: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  border: 1px solid var(--stroke);
+  font-family: var(--font-family);
+}
+.signup .input input{
+  margin: 0;
+  border: none;
+  outline: none;
+}
 @media only screen and (max-width: 768px) {
   .signup .row .colOne {
     display: none;
