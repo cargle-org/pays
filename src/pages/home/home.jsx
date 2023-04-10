@@ -39,7 +39,7 @@ function HomePage() {
               </h5>
               <div className={styles.buttons}>
                 <div className={styles.btn} onClick={handleUser}>
-                  Create Vouchers
+                Start Here
                   <div className={styles.icon}>
                     <HiArrowUpRight />
                   </div>
