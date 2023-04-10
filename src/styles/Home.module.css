@@ -12,7 +12,7 @@
   margin: 0;
   padding: 0%;
   height: 100vh;
-  overflow: scroll;
+  overflow-y: scroll;
   background: #f6f8fa;
 }
 .homePage .container {
@@ -39,6 +39,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 .homePage .colOne .btn {
   height: 50px;
@@ -115,6 +116,11 @@
   padding: 0;
   height: 100%;
 }
+
+
+
+
+/* metrics */
 .metrics {
   width: 100%;
   justify-content: center;
@@ -141,6 +147,43 @@
 .metrics .container .row .display {
   font-size: 80px;
   font-weight: 600;
+}
+
+
+
+
+/*  subscribe  */
+.subscribe{
+  text-align: center;
+  width: 100%;
+  margin: 0%;
+  padding: 0%;
+}
+.subscribe .container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.subscribe .container .content{
+  max-width: 600px;
+  padding: 32px;
+  background-color: var(--background);
+  margin: 50px 0;
+  border-radius: 32px;
+  box-shadow: 0px 10px 50px -12px #1919251a;
+}
+.subscribe .container .content h2{
+  margin-top: 10px;
+  color: var(--primary-color);
+}
+.subscribe .container .content h6{
+  margin: 20px;
+}
+.subscribe .container .content button{
+  margin: 20px;
 }
 @media only screen and (max-width: 768px) {
   .homePage .container {

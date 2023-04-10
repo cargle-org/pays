@@ -5,6 +5,8 @@ import { HiArrowUpRight } from "react-icons/hi2";
 import { useRouter } from "next/router";
 import { getToken } from "../api/auth/auth";
 import Metrics from "./metrics";
+import Subscribe from "./subscribe";
+import Footer from "../components/footer/footer";
 
 function HomePage() {
   const router = useRouter();
@@ -52,6 +54,7 @@ function HomePage() {
                   </div>
                 </div>
               </div>
+              <img src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681130016/Group_8_ry1bif.png" alt="" />
             </div>
             <div className={styles.colTwo}>
               <img
@@ -63,6 +66,8 @@ function HomePage() {
         </div>
       </div>
       <Metrics />
+      <Subscribe />
+      <Footer />
     </div>
   );
 }
