@@ -16,7 +16,7 @@ function Header() {
       <div className={styles.container}>
         <div className={styles.logo} onClick={() => router.push("/")}>
           <img
-            src="https://res.cloudinary.com/dmixz7eur/image/upload/v1677542356/chike/CMG_st67ia.png"
+            src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681115530/Group_1000000881_edg81o.png"
             alt=""
           />
         </div>
