@@ -55,7 +55,7 @@ function QuestionsAndAnswers() {
               {activeQuestion === 2 && (
                 <h6>
                   Yes, you can customize the gift voucher with a personal
-                  message and the recipient's name.
+                  message and the recipient&apos;s name.
                 </h6>
               )}
               {activeQuestion === 3 && (
