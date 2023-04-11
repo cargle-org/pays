@@ -21,10 +21,10 @@ function Header() {
           />
         </div>
         <div className={styles.navLinks}>
-          <li className={styles.link}>Home</li>
-          <li className={styles.link}>About</li>
-          <li className={styles.link}>FAQs</li>
-          <li className={styles.link}>Contact</li>
+          <li className={styles.link} onClick={() => router.push("/")}>Home</li>
+          <li className={styles.link} onClick={() => router.push("/about_us")}>About</li>
+          <li className={styles.link} onClick={() => router.push("/faqs")}>FAQs</li>
+          <li className={styles.link} onClick={() => router.push("/dashboard")}>Contact</li>
         </div>
         {token ? (
           <button onClick={() => router.push("/dashboard")}>Dashboard</button>

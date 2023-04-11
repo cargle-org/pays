@@ -26,6 +26,7 @@
 .header .container .navLinks li{
     list-style: none;
     margin: 0px 15px;
+    cursor: pointer;
 }
 .header .container .buttons button{
     width: 120px !important;
