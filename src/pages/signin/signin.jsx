@@ -37,6 +37,12 @@ function SignIn() {
       <div className={styles.container}>
         <div className={styles.row}>
           <div className={styles.colTwo}>
+          <div className={styles.logo} onClick={() => router.push("/login")}>
+              <img
+                src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681115530/Group_1000000881_edg81o.png"
+                alt=""
+              />
+            </div>
             <div className={styles.content}>
               <form onSubmit={loginAccount}>
                 <h2>Log In</h2>
@@ -80,11 +86,20 @@ function SignIn() {
                 <button type="submit">Login</button>
               </form>
               <br />
+                <p><span onClick={() => router.push("/signin/forgotpassword")}>Forgot Password?</span></p>
+                <br />
               <p>
                 Don&apos;t have an account?{" "}
                 <span onClick={() => router.push("/register")}>Sign Up</span>
               </p>
             </div>
+          </div>
+           
+          <div className={styles.colOne}>
+            <img
+              src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681288615/chike/pexels-ketut-subiyanto-4559951_y7tzis.jpg"
+              alt=""
+            />
           </div>
         </div>
       </div>
