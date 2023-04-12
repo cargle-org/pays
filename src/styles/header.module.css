@@ -23,7 +23,15 @@
 .header .container .navLinks{
     display: flex;
 }
-.header .container .navLinks li{
+.header .container .navLinks .link{
+    list-style: none;
+    margin: 0px 15px;
+    cursor: pointer;
+    color: #777;
+}
+.header .container .navLinks .activeLink    {
+    font-weight: 600;
+    color: var(--primary-color);
     list-style: none;
     margin: 0px 15px;
     cursor: pointer;

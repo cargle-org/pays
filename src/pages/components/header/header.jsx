@@ -4,12 +4,14 @@ import { useRouter } from "next/router";
 import { getToken } from "@/pages/api/auth/auth";
 import MenuIcon from "../../../assets/menu.svg";
 import CloseIcon from "../../../assets/close.svg";
+import { useSidebarContext } from "@/pages/context/sidebarContext";
 
 function Header() {
   const router = useRouter();
   const token = getToken();
 
   const [openMenu, setOpenMenu] = useState(false);
+  const {activePage, setActivePage} = useSidebarContext()
 
   return (
     <div className={styles.header}>
@@ -21,10 +23,10 @@ function Header() {
           />
         </div>
         <div className={styles.navLinks}>
-          <li className={styles.link} onClick={() => router.push("/")}>Home</li>
-          <li className={styles.link} onClick={() => router.push("/about_us")}>About</li>
-          <li className={styles.link} onClick={() => router.push("/faqs")}>FAQs</li>
-          <li className={styles.link} onClick={() => router.push("/dashboard")}>Contact</li>
+          <li className={activePage === 1 ? styles.activeLink : styles.link} onClick={() => {router.push("/"); setActivePage(1)}}>Home</li>
+          <li className={activePage === 2 ? styles.activeLink : styles.link} onClick={() => {router.push("/about_us"); setActivePage(2)}}>About</li>
+          <li className={activePage === 3 ? styles.activeLink : styles.link} onClick={() => {router.push("/faqs"); setActivePage(3)}}>FAQs</li>
+          <li className={activePage === 4 ? styles.activeLink : styles.link} onClick={() => {router.push("/dashboard"); setActivePage(4)}}>Contact</li>
         </div>
         {token ? (
           <button onClick={() => router.push("/dashboard")}>Dashboard</button>

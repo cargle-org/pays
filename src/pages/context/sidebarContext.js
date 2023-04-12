@@ -6,6 +6,7 @@ export const SidebarContext = createContext({});
 
 const SidebarProvider = (props) => {
   const [activeTab, setActiveTab] = useState(1);
+  const [activePage, setActivePage] = useState(1)
 
 
   return (
@@ -13,6 +14,8 @@ const SidebarProvider = (props) => {
       value={{
         activeTab,
         setActiveTab,
+        activePage, 
+        setActivePage,
       }}
     >
       {props.children}
