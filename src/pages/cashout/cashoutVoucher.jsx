@@ -15,10 +15,10 @@ function CashoutVoucher() {
   const [fullName, setFullName] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
   const [voucherCode, setVoucherCode] = useState("");
-  const [isLoading, setIsLoading] = useState(false)
-  const [errorMessage, setErrorMessage] = useState("")
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const notify = ({message}) => toast(message);
+  const notify = ({ message }) => toast(message);
 
   useEffect(() => {
     (async () => {
@@ -27,9 +27,8 @@ function CashoutVoucher() {
     })();
   }, []);
 
-
   const handleCashoutVoucher = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     const res = await cashoutVoucher({
       fullName,
       accountNumber,
@@ -37,78 +36,94 @@ function CashoutVoucher() {
       bankCode,
     });
     if (res.success === true) {
-      setIsLoading(false)
-      const message = "Your Voucher reward has been claimed successfully"
-      notify({message});
+      setIsLoading(false);
+      const message = "Your Voucher reward has been claimed successfully";
+      notify({ message });
       router.push("/cashout/success");
     } else {
-        setIsLoading(false)
-        setErrorMessage(res.message)
-        const message = res.message
-      notify({message});
+      setIsLoading(false);
+      setErrorMessage(res.message);
+      const message = res.message;
+      notify({ message });
     }
-    
   };
   if (isLoading) {
-    return <Loading />
+    return <Loading />;
   }
 
   return (
     <div className={styles.cashout}>
       <div className={styles.container}>
-        <div className={styles.details}>
-          <h3>Cashout Voucher</h3>
-          <ToastContainer  />
-          <h6></h6>
-          <div className={styles.one}>
-            {errorMessage ? 
-            <div className={styles.error}>{errorMessage}</div>:
-            <div> </div>
-          }
+        <div className={styles.row}>
+          <div className={styles.colTwo}>
+          <div className={styles.logo} onClick={() => router.push("/")}>
+              <img
+                src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681115530/Group_1000000881_edg81o.png"
+                alt=""
+              />
+            </div>
+            <div className={styles.details}>
+              <h3>Cashout Voucher</h3>
+              <ToastContainer />
+              <h6></h6>
+              <div className={styles.one}>
+                {errorMessage ? (
+                  <div className={styles.error}>{errorMessage}</div>
+                ) : (
+                  <div> </div>
+                )}
+              </div>
+              <div className={styles.one}>
+                <label>Full Account Name</label>
+                <input
+                  type="text"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  placeholder="Enter your full account name"
+                />
+              </div>
+              <div className={styles.one}>
+                <label>Account Number</label>
+                <input
+                  type="number"
+                  value={accountNumber}
+                  onChange={(e) => setAccountNumber(e.target.value)}
+                  placeholder="Enter account number"
+                />
+              </div>
+              <div className={styles.one}>
+                <label>Bank</label>
+                <select
+                  name="banks"
+                  value={bankCode}
+                  onChange={(e) => setBankCode(e.target.value)}
+                >
+                  <option value="">select a bank</option>
+                  {bankName?.map((banks) => (
+                    <option key={banks.id} value={banks.code}>
+                      {banks.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className={styles.one}>
+                <label>Voucher Code</label>
+                <input
+                  type="text"
+                  value={voucherCode}
+                  onChange={(e) => setVoucherCode(e.target.value)}
+                  placeholder="Enter your voucher code e.g XXX-638-hs8wn"
+                />
+              </div>
+              <button onClick={handleCashoutVoucher}>Cashout Voucher</button>
+            </div>
           </div>
-          <div className={styles.one}>
-            <label>Full Account Name</label>
-            <input
-              type="text"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-              placeholder="Enter your full account name"
+          <div className={styles.colOne}>
+            <img
+              src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681288615/chike/pexels-ketut-subiyanto-4559951_y7tzis.jpg"
+              alt=""
             />
           </div>
-          <div className={styles.one}>
-            <label>Account Number</label>
-            <input
-              type="number"
-              value={accountNumber}
-              onChange={(e) => setAccountNumber(e.target.value)}
-              placeholder="Enter account number"
-            />
-          </div>
-          <div className={styles.one}>
-            <label>Bank</label>
-            <select
-              name="banks"
-              value={bankCode}
-              onChange={(e) => setBankCode(e.target.value)}
-            >
-              <option value="">select a bank</option>
-              {bankName?.map((banks) => (
-                <option key={banks.id} value={banks.code}>
-                  {banks.name}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className={styles.one}>
-            <label>Voucher Code</label>
-            <input
-              type="text"
-              value={voucherCode}
-              onChange={(e) => setVoucherCode(e.target.value)}
-              placeholder="Enter your voucher code e.g XXX-638-hs8wn"
-            />
-          </div>
-          <button onClick={handleCashoutVoucher}>Cashout Voucher</button>
         </div>
       </div>
     </div>
