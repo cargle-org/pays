@@ -132,6 +132,13 @@
   border: none;
   outline: none;
 }
+.message {
+  width: 100%;
+  color: #008000;
+  text-align: center;
+  padding: 20px;
+  background-color: #00800020;
+}
 @media only screen and (max-width: 768px) {
   .signup .row .colOne {
     display: none;
