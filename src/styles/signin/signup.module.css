@@ -76,6 +76,7 @@
   position: absolute;
   top: 30px;
   left: 30px;
+  cursor: pointer;
 }
 .signup .row .colTwo .content {
   margin: 20px;

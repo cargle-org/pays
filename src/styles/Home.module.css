@@ -199,10 +199,13 @@
   }
   .homePage .container .row .colOne {
     max-width: 100%;
+    height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
   }
   .homePage .container .row .colTwo {
-    width: 100%;
-    margin: 0;
+    display: none;
   }
   .homePage .container .row .colTwo img {
     width: 100%;
@@ -210,5 +213,16 @@
   }
   .homePage .colOne .btnTwo {
     margin-top: 20px;
+  }
+
+  /*  */
+  .subscribe .container{
+    padding: 12px;
+  }
+  .subscribe .container .content{
+    padding: 16px;
+  }
+  .subscribe .container .content h2{
+    line-height: 50px;
   }
 }

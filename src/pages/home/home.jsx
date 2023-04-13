@@ -26,6 +26,8 @@ function HomePage() {
         <div className={styles.content}>
           <div className={styles.row}>
             <div className={styles.colOne}>
+              <div>
+
               <h1>
                 Create gift vouchers, <br />
                 <span> Redeem gifts in cash</span>
@@ -55,7 +57,8 @@ function HomePage() {
                 </div>
               </div>
               <img src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681130016/Group_8_ry1bif.png" alt="" />
-            </div>
+              </div>
+            </div>  
             <div className={styles.colTwo}>
               <img
                 src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681125297/Group_10_zu4ygs.png"

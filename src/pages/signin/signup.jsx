@@ -65,7 +65,7 @@ function SignUp() {
             style={{ paddingTop: 50, paddingBottom: 50 }}
             className={styles.colTwo}
           >
-            <div className={styles.logo} onClick={() => router.push("/login")}>
+            <div className={styles.logo} onClick={() => router.push("/")}>
               <img
                 src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681115530/Group_1000000881_edg81o.png"
                 alt=""
