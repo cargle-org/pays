@@ -17,11 +17,13 @@ const AuthProvider = (props) => {
   const handleRegister = async ({ formData }) => {
     setIsLoading(true);
     try {
-      const response = await axios.post(URI_MAP.cmg.register, formData, {
+      const response = await axios.post(URI_MAP.cmg.register, formData, 
+        {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-      });
+      }
+      );
 
       // console.log("response", response);
       setIsLoading(false);

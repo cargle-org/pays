@@ -12,11 +12,12 @@ function SignUp() {
 
   // const [companyName, setCompanyName] = useState("");
   // const [companyPhoneNum, setCompanyPhoneNum] = useState("");
-  const [email, setEmail] = useState("");
   // const [companyEmail, setCompanyEmail] = useState("");
+  // const [lastName, setLastName] = useState("");
+
+  const [email, setEmail] = useState("");
   const [phoneNum, setPhoneNum] = useState("");
   const [fullName, setFullName] = useState("");
-  // const [lastName, setLastName] = useState("");
   const [companyLogo, setCompanyLogo] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
@@ -33,7 +34,6 @@ function SignUp() {
   const registerAccount = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("companyLogo", companyLogo);
     formData.append("name", fullName);
     // formData.append("lastName", lastName);
     formData.append("email", email);
@@ -42,7 +42,8 @@ function SignUp() {
     // formData.append("companyEmail", companyEmail);
     // formData.append("companyPhone", companyPhoneNum);
     formData.append("password", password);
-    if (password.length <= 7) {
+    formData.append("companyLogo", companyLogo);
+    if (password.length <= 4) {
       setErrorMsg("your password is too short");
     } else if (confirmPassword !== password) {
       setErrorMsg("your password doesn't match");
@@ -79,6 +80,7 @@ function SignUp() {
               ) : (
                 <p className={styles.error}>{errorMsg}</p>
               )}
+              <br />
               <div className={styles.tabs}>
                 <div
                   className={
@@ -99,7 +101,7 @@ function SignUp() {
               </div>
               {userType === "individual" && (
                 <form onSubmit={registerAccount}>
-                  <label>First Name</label>
+                  <label>Full Name</label>
                   <br />
                   <input
                     autoComplete="on"
@@ -108,7 +110,7 @@ function SignUp() {
                     required
                     aria-describedby="uiddnote"
                     type="text"
-                    placeholder="Enter your first name"
+                    placeholder="Enter your full name"
                   />
                   {/* <label>Last Name</label>
                   <br />
