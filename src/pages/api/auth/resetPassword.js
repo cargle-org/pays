@@ -7,7 +7,7 @@ export const resetPassword = async (props) => {
   };
 
   try {
-    const response = await axios.put(
+    const response = await axios.post(
       `${URI_MAP.cmg.reset_password}?${new URLSearchParams(
         params
       ).toString()}`,
