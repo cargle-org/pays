@@ -8,7 +8,7 @@ export const resetPassword = async (props) => {
 
   try {
     const response = await axios.put(
-      `${URI_MAP.cmg.reset_password}?${params}`,
+      `${URI_MAP.cmg.reset_password}?${params.toString()}`,
       { newPassword: props.password, confirmPassword: props.passwordTwo },
       {
         headers: {
