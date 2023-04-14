@@ -10,13 +10,13 @@ function SignUp() {
 
   const [userType, setUserType] = useState("individual");
 
-  const [companyName, setCompanyName] = useState("");
-  const [companyPhoneNum, setCompanyPhoneNum] = useState("");
+  // const [companyName, setCompanyName] = useState("");
+  // const [companyPhoneNum, setCompanyPhoneNum] = useState("");
   const [email, setEmail] = useState("");
-  const [companyEmail, setCompanyEmail] = useState("");
+  // const [companyEmail, setCompanyEmail] = useState("");
   const [phoneNum, setPhoneNum] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [fullName, setFullName] = useState("");
+  // const [lastName, setLastName] = useState("");
   const [companyLogo, setCompanyLogo] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
@@ -34,13 +34,13 @@ function SignUp() {
     e.preventDefault();
     const formData = new FormData();
     formData.append("companyLogo", companyLogo);
-    formData.append("firstName", firstName);
-    formData.append("lastName", lastName);
+    formData.append("name", fullName);
+    // formData.append("lastName", lastName);
     formData.append("email", email);
     formData.append("phone", phoneNum);
-    formData.append("companyName", companyName);
-    formData.append("companyEmail", companyEmail);
-    formData.append("companyPhone", companyPhoneNum);
+    // formData.append("companyName", companyName);
+    // formData.append("companyEmail", companyEmail);
+    // formData.append("companyPhone", companyPhoneNum);
     formData.append("password", password);
     if (password.length <= 7) {
       setErrorMsg("your password is too short");
@@ -103,14 +103,14 @@ function SignUp() {
                   <br />
                   <input
                     autoComplete="on"
-                    onChange={(e) => setFirstName(e.target.value)}
-                    value={firstName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    value={fullName}
                     required
                     aria-describedby="uiddnote"
                     type="text"
                     placeholder="Enter your first name"
                   />
-                  <label>Last Name</label>
+                  {/* <label>Last Name</label>
                   <br />
                   <input
                     autoComplete="on"
@@ -120,7 +120,7 @@ function SignUp() {
                     aria-describedby="uiddnote"
                     type="text"
                     placeholder="Enter your last name"
-                  />
+                  /> */}
                   <label>Email</label>
                   <br />
                   <input
@@ -187,8 +187,8 @@ function SignUp() {
                   <br />
                   <input
                     autoComplete="on"
-                    onChange={(e) => setCompanyName(e.target.value)}
-                    value={companyName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    value={fullName}
                     required={false}
                     aria-describedby="uiddnote"
                     type="text"
@@ -201,8 +201,8 @@ function SignUp() {
                   <br />
                   <input
                     autoComplete="on"
-                    onChange={(e) => setCompanyEmail(e.target.value)}
-                    value={companyEmail}
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
                     required={false}
                     aria-describedby="uiddnote"
                     type="text"
@@ -212,8 +212,8 @@ function SignUp() {
                   <br />
                   <input
                     // autoComplete="on"
-                    onChange={(e) => setCompanyPhoneNum(e.target.value)}
-                    value={companyPhoneNum}
+                    onChange={(e) => setPhoneNum(e.target.value)}
+                    value={phoneNum}
                     required={false}
                     // aria-describedby="uiddnote"
                     type="number"
