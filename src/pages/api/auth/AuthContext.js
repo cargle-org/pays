@@ -11,6 +11,7 @@ const AuthProvider = (props) => {
   // const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [loginErrorMsg, setLoginErrorMsg] = useState("");
   const [success, setSuccess] = useState(false);
 
   //   sign up request
@@ -31,9 +32,7 @@ const AuthProvider = (props) => {
       setSuccess(true);
     } catch (error) {
       console.log("error", error);
-      setErrorMsg(
-        "an error occured while trying to register, please check you detail and try again or fill all required field"
-      );
+      setErrorMsg(error.response.data.message);
       setIsLoading(false);
       setSuccess(false);
     }
@@ -65,7 +64,7 @@ const AuthProvider = (props) => {
     } catch (error) {
       console.log("error", error);
       setIsLoading(false);
-      setErrorMsg("Invalid email or password.");
+      setLoginErrorMsg("Invalid email or password.");
     }
   };
 
@@ -82,6 +81,8 @@ const AuthProvider = (props) => {
         setErrorMsg,
         success,
         setSuccess,
+        loginErrorMsg, 
+        setLoginErrorMsg,
       }}
     >
       {props.children}

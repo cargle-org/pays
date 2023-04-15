@@ -34,15 +34,18 @@ function SignUp() {
   const registerAccount = (e) => {
     e.preventDefault();
     const formData = new FormData();
+
     formData.append("name", fullName);
-    // formData.append("lastName", lastName);
-    formData.append("email", email);
     formData.append("phone", phoneNum);
-    // formData.append("companyName", companyName);
-    // formData.append("companyEmail", companyEmail);
-    // formData.append("companyPhone", companyPhoneNum);
+    formData.append("email", email);
     formData.append("password", password);
-    formData.append("companyLogo", companyLogo);
+    
+    console.log('companyLogo :>> ', companyLogo);
+    if (companyLogo) {
+      formData.append("companyLogo", companyLogo);
+    } 
+    
+    
     if (password.length <= 4) {
       setErrorMsg("your password is too short");
     } else if (confirmPassword !== password) {
