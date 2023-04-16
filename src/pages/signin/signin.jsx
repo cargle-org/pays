@@ -12,7 +12,7 @@ function SignIn() {
   const [password, setPassword] = useState("");
   const [viewPassword, setViewPassword] = useState(false);
 
-  const { errorMsg, setErrorMsg } = useAuthContext();
+  const { loginErrorMsg, setLoginErrorMsg } = useAuthContext();
   const { isLoading, setIsLoading } = useAuthContext();
   const { handleLogIn } = useAuthContext();
 
@@ -47,10 +47,10 @@ function SignIn() {
               <form onSubmit={loginAccount}>
                 <h2>Log In</h2>
                 <h6>Welcome back to cash my gift</h6>
-                {!errorMsg ? (
+                {!loginErrorMsg ? (
                   <div> </div>
                 ) : (
-                  <p className={styles.error}>{errorMsg}</p>
+                  <p className={styles.error}>{loginErrorMsg}</p>
                 )}
                 <label>Email</label>
                 <br />

@@ -56,14 +56,19 @@ function CashoutVoucher() {
       <div className={styles.container}>
         <div className={styles.row}>
           <div className={styles.colTwo}>
-          <div className={styles.logo} onClick={() => router.push("/")}>
+            <div className={styles.logo} onClick={() => router.push("/")}>
               <img
                 src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681115530/Group_1000000881_edg81o.png"
                 alt=""
               />
             </div>
             <div className={styles.details}>
-              <h3>Cashout Voucher</h3>
+              <h3>Redeem your gift vouchers</h3>
+              <p>
+                Got unused gift vouchers? We’ve got you covered. Just type in a
+                few details to exchange your vouchers for cash and get credited
+                immediately.
+              </p>
               <ToastContainer />
               <h6></h6>
               <div className={styles.one}>
