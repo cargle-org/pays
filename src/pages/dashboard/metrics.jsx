@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Currency from "../../assets/currency.svg"
+import Currency from "../../assets/naira.svg"
 import styles from "../../styles/components/maindashboardpage.module.css"
 import { getProfile } from '../api/profile/getProfile';
 
