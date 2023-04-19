@@ -80,7 +80,28 @@
   align-items: center;
   overflow-y: scroll;
 }
-@media only screen and (max-width: 768px) {
+.cashout .card{
+  text-align: center;
+}
+.cashout .card h3{
+  color: var(--primary-color);
+}
+.cashout .card p{
+  margin: 1rem auto;
+}
+.cashout .card .detail p{
+  margin-bottom: 0%;
+}
+.cashout .card .detail{
+  color: var(--primary-color);
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  background-color: #F0F7FD;
+}
+.cashout .card .detail h2{
+  color: var(--primary-color);
+}
+  @media only screen and (max-width: 768px) {
   .cashout .container {
     padding: 20px;
   }

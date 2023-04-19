@@ -38,8 +38,8 @@ function Metrics() {
         </div>
         <div className={styles.card}>
             <Currency />
-            <h6>Pending vouchers</h6>
-            <h2>{data?.totalVouchers}</h2>
+            <h6>Cashed vouchers</h6>
+            <h2>{data?.cashedVouchers}</h2>
         </div>
     </div>
   )

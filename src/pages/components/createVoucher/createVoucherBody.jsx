@@ -5,6 +5,7 @@ import { useState } from "react";
 import { createVoucher } from "@/pages/api/vouchers/createVoucher";
 import { useRouter } from "next/router";
 import Loading from "../loading";
+import Back from "../../../assets/back.svg";
 
 function CreateVoucherBody() {
   const router = useRouter();
@@ -15,11 +16,11 @@ function CreateVoucherBody() {
   const [errMSG, setErrMSG] = useState("");
   const [voucherThumbnail, setVoucherThumbnail] = useState("");
   const [cmgThumbnail, setcmgThumbnail] = useState(
-    "https://res.cloudinary.com/dmixz7eur/image/upload/v1677536988/chike/CMG_kryufg.png"
+    "https://res.cloudinary.com/dmixz7eur/image/upload/v1681749139/5fcf0eb48684a01b5a30caff0896a2f8_qzi2jp.jpg"
   );
   const [noOfVouchers, setNoOfVouchers] = useState(0);
   const [amountPerVoucher, setAmountPerVoucher] = useState(0);
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleFileInputChange = (event) => {
     setVoucherThumbnail(event.target.files[0]);
@@ -46,13 +47,13 @@ function CreateVoucherBody() {
       setErrMSG("one or more field cannot be empty ");
     } else if (noOfVouchers === 0 || amountPerVoucher === 0) {
       setErrMSG("number or vouchers or amount per voucher cannot be empty");
-    }else if (voucherKey.length !== 5) {
+    } else if (voucherKey.length !== 5) {
       setErrMSG("your voucher key must be five character");
     } else {
-      setIsLoading(true)
+      setIsLoading(true);
       const res = await createVoucher({ formData });
       if (res.voucher) {
-        setIsLoading(false)
+        setIsLoading(false);
         router.push({
           pathname: "/voucher/[individualVoucherPage]",
           query: {
@@ -60,33 +61,89 @@ function CreateVoucherBody() {
           },
         });
       } else if (res.message) {
-        setIsLoading(false)
+        setIsLoading(false);
         setErrMSG(res.message);
       }
     }
   };
 
   if (isLoading) {
-    return <Loading />
+    return <Loading />;
   }
   return (
     <div className={styles.createVoucherPage}>
       <div className={styles.container}>
-        <div className={styles.back} onClick={() => router.back()}>Back</div>
-        <div className={styles.title}>
-          <h3>Create Vouchers</h3>
-        </div>
-        <div className={styles.content}>
-          {errMSG ? <div className={styles.error}>{errMSG}</div> : <div></div>}
-          <form>
-            <label>Title</label>
-            <input
-              placeholder="Enter voucher title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              type="text"
-            />
-            <label>Thumbnail/image/banner (5 by 2)</label>
+        <form>
+          <div className={styles.colOne}>
+            <div className={styles.back} onClick={() => router.back()}>
+              <Back /> Back
+            </div>
+            <div className={styles.title}>
+              <h2>Create Vouchers</h2>
+            </div>
+            <div className={styles.content}>
+              {errMSG ? (
+                <div className={styles.error}>{errMSG}</div>
+              ) : (
+                <div></div>
+              )}
+              <label>Title</label>
+              <input
+                placeholder="Enter voucher title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                type="text"
+              />
+              <label>Thumbnail/image/banner (5 by 2)</label>
+
+              <label>Description</label>
+              <textarea
+                placeholder="Enter voucher description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
+              <label>Voucher Key</label>
+              <input
+                value={voucherKey}
+                placeholder="Enter five unique letter for your voucher key"
+                onChange={(e) => setVoucherKey(e.target.value)}
+                type="text"
+              />
+              <div className={styles.sortAmount}>
+                <div className={styles.input}>
+                  <label>Number of vouchers</label>
+                  <input
+                    value={noOfVouchers}
+                    onChange={(e) => setNoOfVouchers(e.target.value)}
+                    type="text"
+                  />
+                </div>
+                <div className={styles.input}>
+                  <label>Amount per voucher</label>
+                  <input
+                    value={amountPerVoucher}
+                    onChange={(e) => setAmountPerVoucher(e.target.value)}
+                    type="text"
+                  />
+                </div>
+              </div>
+              <div className={styles.amounts}>
+                <div className={styles.one}>
+                  <h6>Sub total</h6> <h5>₦{subTotalAmount}</h5>
+                </div>
+                <div className={styles.one}>
+                  <h6>CMG Fee</h6> <h5>₦{cmgFee}</h5>
+                </div>
+                <div className={styles.two}>
+                  <h6>Total Amount</h6> <h4>₦{totalAmount}</h4>
+                </div>
+              </div>
+              <button onClick={handleCreateVoucher}>
+                Create Vouchers of (₦{totalAmount})
+              </button>
+            </div>
+          </div>
+          <div className={styles.colTwo}>
             <div className={styles.thumbnail}>
               {!voucherThumbnail ? (
                 <img src={cmgThumbnail} alt="" />
@@ -99,53 +156,8 @@ function CreateVoucherBody() {
                 <input onChange={handleFileInputChange} type="file" />
               </label>
             </div>
-            <label>Description</label>
-            <textarea
-              placeholder="Enter voucher description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            ></textarea>
-            <label>Voucher Key</label>
-            <input
-              value={voucherKey}
-              placeholder="Enter five unique letter for your voucher key"
-              onChange={(e) => setVoucherKey(e.target.value)}
-              type="text"
-            />
-            <div className={styles.sortAmount}>
-              <div className={styles.input}>
-                <label>Total Number of vouchers</label>
-                <input
-                  value={noOfVouchers}
-                  onChange={(e) => setNoOfVouchers(e.target.value)}
-                  type="text"
-                />
-              </div>
-              <div className={styles.input}>
-                <label>Amount per voucher</label>
-                <input
-                  value={amountPerVoucher}
-                  onChange={(e) => setAmountPerVoucher(e.target.value)}
-                  type="text"
-                />
-              </div>
-            </div>
-            <div className={styles.amounts}>
-              <div className={styles.one}>
-                <h6>Sub total</h6> <h5>₦{subTotalAmount}</h5>
-              </div>
-              <div className={styles.one}>
-                <h6>CMG Fee</h6> <h5>₦{cmgFee}</h5>
-              </div>
-              <div className={styles.two}>
-                <h6>Total Amount</h6> <h4>₦{totalAmount}</h4>
-              </div>
-            </div>
-            <button onClick={handleCreateVoucher}>
-              Create Vouchers of (₦{totalAmount})
-            </button>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
   );
