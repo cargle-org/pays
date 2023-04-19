@@ -35,6 +35,7 @@ function CashoutVoucher() {
       setVoucherIsFetched(true);
       setVoucherDetails(result.data.voucher);
     } else {
+      setErrorMessage("An error occurred, please check your voucher code and try again")
     }
   };
   const handleCashoutVoucher = async () => {
@@ -75,11 +76,6 @@ function CashoutVoucher() {
             <div className={styles.details}>
               {!voucherIsFetched ? (
                 <div>
-                  {errorMessage ? (
-                    <div className={styles.error}>{errorMessage}</div>
-                  ) : (
-                    <div> </div>
-                  )}
                   <h3>Redeem your gift vouchers</h3>
                   <p>
                     Got unused gift vouchers? We’ve got you covered. Just type
@@ -87,12 +83,17 @@ function CashoutVoucher() {
                     credited immediately.
                   </p>
                   <br />
+                  {errorMessage ? (
+                    <div className={styles.error}>{errorMessage}</div>
+                  ) : (
+                    <div> </div>
+                  )}
                   <div className={styles.one}>
                     <label>Voucher Code</label>
                     <input
                       type="text"
                       value={voucherCode}
-                      onChange={(e) => setVoucherCode(e.target.value)}
+                      onChange={(e) => {setVoucherCode(e.target.value); setErrorMessage("")}}
                       placeholder="Enter your voucher code e.g XXX-638-hs8wn"
                     />
                   </div>
