@@ -5,17 +5,23 @@ import styles from "../../styles/components/paymentpage.module.css";
 import { fundWallet } from "../api/payment/fundWallet";
 import { getProfile } from "../api/profile/getProfile";
 import Loading from "../components/loading";
+import { getBanks } from "../api/cashout/getAllBank";
+import { withdraw } from "../api/payment/withdraw";
 
 function PaymentAndWithdrawalBody() {
   const [operation, setOperation] = useState("deposit");
   const [depositAmount, setDepositAmount] = useState(null);
   const [withdrawAmount, setWithdrawAmount] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [bankName, setBankName] = useState([]);
+  const [bankCode, setBankCode] = useState("");
+  const [accountNumber, setAccountNumber] = useState("");
+  const [withdrawSuccess, setWithdrawSuccess] = useState(false);
+  const [errMsg, setErrMsg] = useState("");
 
   const handleOperation = (e) => {
     setOperation(e.target.value);
   };
-
 
   const myDeposit = new Intl.NumberFormat().format(depositAmount);
   const myWithdrawal = new Intl.NumberFormat().format(withdrawAmount);
@@ -28,6 +34,8 @@ function PaymentAndWithdrawalBody() {
       const res = await getProfile();
       setBalance(new Intl.NumberFormat().format(res.walletBalance));
       setIsLoading(false);
+      const result = await getBanks();
+      setBankName(result);
     })();
   }, []);
 
@@ -35,6 +43,16 @@ function PaymentAndWithdrawalBody() {
     const res = await fundWallet({ depositAmount });
     const newWindow = window.open(res, "_blank", "noopener,noreferrer");
     if (newWindow) newWindow.opener = null;
+  };
+  const handleWithdraw = async () => {
+    setErrMsg("")
+    const res = await withdraw({ withdrawAmount, bankCode, accountNumber });
+    if (res) {
+      setWithdrawSuccess(true);
+    } else {
+      setWithdrawSuccess(false);
+      setErrMsg("Withdrawal failed, please try again");
+    }
   };
 
   if (isLoading) {
@@ -84,14 +102,60 @@ function PaymentAndWithdrawalBody() {
           </div>
         ) : (
           <div className={styles.withdraw}>
-            <label>Amount</label>
-            <input
-              type="number"
-              value={withdrawAmount}
-              onChange={(e) => setWithdrawAmount(e.target.value)}
-              placeholder="Enter the amount you want to withdraw"
-            />
-            <button>Withdraw ({myWithdrawal})</button>
+            {!withdrawSuccess ? (
+              <div>
+                {errMsg ? (
+                  <div className={styles.error}>{errMsg}</div>
+                ) : (
+                  <div> </div>
+                )}
+                <label>Amount</label>
+                <input
+                  type="number"
+                  value={withdrawAmount}
+                  onChange={(e) => setWithdrawAmount(e.target.value)}
+                  placeholder="Enter the amount you want to withdraw"
+                />
+                <div className={styles.one}>
+                  <label>Bank</label>
+                  <select
+                    name="banks"
+                    value={bankCode}
+                    onChange={(e) => setBankCode(e.target.value)}
+                  >
+                    <option value="">select a bank</option>
+                    {bankName?.map((banks) => (
+                      <option key={banks.id} value={banks.code}>
+                        {banks.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className={styles.one}>
+                  <label>Account Number</label>
+                  <input
+                    type="number"
+                    value={accountNumber}
+                    onChange={(e) => setAccountNumber(e.target.value)}
+                    placeholder="Enter account number"
+                  />
+                </div>
+                <button onClick={handleWithdraw}>
+                  Withdraw ({myWithdrawal})
+                </button>
+              </div>
+            ) : (
+              <div className={styles.message}>
+        <img
+          src="https://res.cloudinary.com/dmixz7eur/image/upload/v1677864171/chike/91068-message-sent-successfully-plane_1_dtltch.gif"
+          alt=""
+        />
+        <h6>Your withdrawal was successful</h6>
+        <div className={styles.buttons}>
+          <button onClick={() => router.push("/payment")}>Ok Thanks</button>
+        </div>
+      </div>
+            )}
           </div>
         )}
       </div>

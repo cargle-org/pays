@@ -14,6 +14,7 @@ function CashoutVoucher() {
   const [bankName, setBankName] = useState([]);
   const [bankCode, setBankCode] = useState("");
   const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
   const [voucherCode, setVoucherCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -45,6 +46,7 @@ function CashoutVoucher() {
       accountNumber,
       voucherCode,
       bankCode,
+      email
     });
     if (res.success === true) {
       setIsLoading(false);
@@ -151,15 +153,15 @@ function CashoutVoucher() {
                       ))}
                     </select>
                   </div>
-                  {/* <div className={styles.one}>
+                  <div className={styles.one}>
                     <label>Voucher Code</label>
                     <input
                       type="text"
-                      value={voucherCode}
-                      onChange={(e) => setVoucherCode(e.target.value)}
-                      placeholder="Enter your voucher code e.g XXX-638-hs8wn"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your email address"
                     />
-                  </div> */}
+                  </div>
                   <button onClick={handleCashoutVoucher}>
                     Cashout Voucher
                   </button>

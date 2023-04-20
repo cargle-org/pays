@@ -7,6 +7,7 @@ const URI_MAP = {
     login: `${BASE_URL}auth/login/`,
     create_voucher: `${BASE_URL}utils/voucher/create`,
     fund_wallet: `${BASE_URL}utils/wallet/fund`,
+    withdraw_from_wallet: `${BASE_URL}utils/wallet/withdraw`,
     verify_payment: `${BASE_URL}utils/wallet/verifyTrx`,
     verify_account: `${BASE_URL}auth/verify`,
     get_profile: `${BASE_URL}user/one`,
