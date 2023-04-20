@@ -2,15 +2,37 @@ import axios from "axios";
 import { getToken, getUserId } from "../auth/auth";
 import URI_MAP from "../URI/URI_MAP";
 
-export const getAllVouchers = async () => {
+const handleParams = (paramsPayload) => {
+  if (!paramsPayload.amount) {
+    delete paramsPayload.amount;
+  }  if (!paramsPayload.from) {
+    delete paramsPayload.from;
+  }  if (!paramsPayload.to) {
+    delete paramsPayload.to;
+  }
+   if (!paramsPayload.status) {
+    delete paramsPayload.status;
+  } 
+  return paramsPayload;
+};
+
+export const getAllVouchers = async (props) => {
   const token = getToken();
   const id = getUserId();
+
+
   const params = {
     userId: id,
+    amount: props.amount,
+    from: props.fromDate,
+    to: props.toDate,
+    status: props.status,
   };
+
+
   try {
     const response = await axios.get(
-      `${URI_MAP.cmg.get_all_vouchers}?${new URLSearchParams(params).toString()}`,
+      `${URI_MAP.cmg.get_all_vouchers}?${new URLSearchParams( handleParams(params)).toString()}`,
       // null,
       {
         headers: {

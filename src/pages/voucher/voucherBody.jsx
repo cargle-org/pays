@@ -3,29 +3,81 @@ import CreateIcon from "../../assets/create.svg";
 import SearchIcon from "../../assets/search.svg";
 import FilterIcon from "../../assets/filter.svg";
 import EditIcon from "../../assets/edit.svg";
-import styles from "../../styles/components/voucherpage.module.css"
+import styles from "../../styles/components/voucherpage.module.css";
 import { useRouter } from "next/router";
 import { getAllVouchers } from "../api/vouchers/getAllVouchers";
 import Loading from "../components/loading";
+import Modal from "react-modal";
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    boxShadow: "0px 0px 20px 10px #55555525"
+  },
+};
 
 function VoucherBody() {
   const router = useRouter();
 
   const [tab, setTab] = useState(1);
-  const [vouchers, setVouchers] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
+  const [vouchers, setVouchers] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [amount, setAmount] = useState("");
+  const [status, setStatus] = useState("");
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+  const [errorMsg, setErrorMsg] = useState("")
+
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+  let subtitle;
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = "#000";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   useEffect(() => {
     (async () => {
-      setIsLoading(true)
-      const res = await getAllVouchers();
-      setVouchers(res)
-        setIsLoading(false)
-      })();
+      setIsLoading(true);
+      const res = await getAllVouchers({ amount, fromDate, toDate, status });
+      setVouchers(res);
+      setIsLoading(false);
+    })();
   }, []);
 
+  const handleGetVouchers = async () => {
+    if (!fromDate && toDate){
+      setErrorMsg("you must select a date range")
+    } else if (fromDate && !toDate){
+      setErrorMsg("you must select a date range")
+    } else{
+      setErrorMsg("")
+      const res = await getAllVouchers({ amount, fromDate, toDate, status })
+      closeModal()
+    }
+  }
+  const handleResetVouchers =  () => {
+    setAmount("")
+    setFromDate("")
+    setToDate("")
+    setStatus("")
+  }
   if (isLoading) {
-    return <Loading />
+    return <Loading />;
   }
 
   return (
@@ -38,26 +90,95 @@ function VoucherBody() {
           </button>
         </div>
       </div>
-      <div className={styles.tabs}>
-        <div onClick={() => setTab(1)} className={tab === 1 ? styles.activeTab : styles.tab }>All Vouchers</div>
-        <div onClick={() => setTab(2)} className={tab === 2 ? styles.activeTab : styles.tab }>Active</div>
-        <div onClick={() => setTab(3)} className={tab === 3 ? styles.activeTab : styles.tab }>History</div>
-      </div>
+      {/* <div className={styles.tabs}>
+        <div
+          onClick={() => setTab(1)}
+          className={tab === 1 ? styles.activeTab : styles.tab}
+        >
+          All Vouchers
+        </div>
+        <div
+          onClick={() => setTab(2)}
+          className={tab === 2 ? styles.activeTab : styles.tab}
+        >
+          Active
+        </div>
+        <div
+          onClick={() => setTab(3)}
+          className={tab === 3 ? styles.activeTab : styles.tab}
+        >
+          History
+        </div>
+      </div> */}
       <div className={styles.search}>
         <div className={styles.input}>
           <SearchIcon /> <input type="text" placeholder="Search" />
         </div>
-        <div className={styles.filter}>
+        <div className={styles.filter} onClick={openModal}>
           <FilterIcon /> Filter
         </div>
       </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        className={styles.modal}
+        contentLabel="Example Modal"
+      >
+        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Filter your vouchers</h2>
+        <br />
+        {errorMsg ? (
+                <div className={styles.error}>{errorMsg}</div>
+              ) : (
+                <div></div>
+              )}
+          <label>Amount</label>
+          <input
+            type="number"
+            value={amount}
+            placeholder="Enter amount"
+            onChange={(e) => setAmount(e.target.value)}
+          />
+          <br /><br />
+          <label>From</label>
+          <input
+            type="date"
+            value={fromDate}
+            onChange={(e) => setFromDate(e.target.value)}
+          />
+          <br />
+          <br />
+          <label>To</label>
+          <br />
+          <input
+            type="date"
+            value={toDate}
+            onChange={(e) => setToDate(e.target.value)}
+          />
+          <br />
+          <br />
+          <label>Status</label>
+          <br />
+          <select name="" value={status} id="">
+          <option value="">Select an option</option>
+          <option value="cashed">Cashed</option>
+          <option value="pending">Pending</option>
+          </select>
+          <div className={styles.buttons}>
+            <br />
+        <button onClick={closeModal} style={{ background: "#ff0000", marginRight: 16 }}>close</button>
+            <button onClick={handleResetVouchers} style={{ background: "#008000", marginRight: 16 }}>Reset</button>
+            <button onClick={handleGetVouchers}>Apply</button>
+          </div>
+      </Modal>
       <div id={styles.table}>
         <table>
           <thead>
             <tr>
               <th>Img</th>
               <th>Title</th>
-              <th style={{minWidth: 300}}>Description</th>
+              <th style={{ minWidth: 300 }}>Description</th>
               <th>Total Amount</th>
               <th>Total Vouchers</th>
               <th>Voucher Cashed</th>
@@ -67,14 +188,14 @@ function VoucherBody() {
           </thead>
           <tbody>
             {vouchers.map((voucher) => (
-
-              <tr key={voucher._id}
-              onClick={() =>
-                router.push({
-                  pathname: "/voucher/[individualVoucherPage]",
-                  query: { individualVoucherPage: voucher._id },
-                })
-              }
+              <tr
+                key={voucher._id}
+                onClick={() =>
+                  router.push({
+                    pathname: "/voucher/[individualVoucherPage]",
+                    query: { individualVoucherPage: voucher._id },
+                  })
+                }
               >
                 <td>
                   <img src={voucher.thumbnail} alt="" />
@@ -85,7 +206,14 @@ function VoucherBody() {
                 <td>{voucher.totalNumberOfVouchers}</td>
                 <td>N{voucher.totalCashedAmount}</td>
                 <td>
-                <progress id="file" value={voucher.totalCashedAmount} max={voucher.totalAmount}> {voucher.totalCashedAmount}</progress>
+                  <progress
+                    id="file"
+                    value={voucher.totalCashedAmount}
+                    max={voucher.totalAmount}
+                  >
+                    {" "}
+                    {voucher.totalCashedAmount}
+                  </progress>
                 </td>
                 <td>
                   <EditIcon />
