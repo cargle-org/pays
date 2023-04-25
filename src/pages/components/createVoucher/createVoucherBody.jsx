@@ -94,7 +94,7 @@ function CreateVoucherBody() {
                 onChange={(e) => setTitle(e.target.value)}
                 type="text"
               />
-              <label>Thumbnail/image/banner (5 by 2)</label>
+              {/* <label>Thumbnail/image/banner (5 by 6)</label> */}
 
               <label>Description</label>
               <textarea
