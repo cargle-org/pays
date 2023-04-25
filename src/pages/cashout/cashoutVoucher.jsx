@@ -154,7 +154,7 @@ function CashoutVoucher() {
                     </select>
                   </div>
                   <div className={styles.one}>
-                    <label>Voucher Code</label>
+                    <label>Email Address</label>
                     <input
                       type="text"
                       value={email}
