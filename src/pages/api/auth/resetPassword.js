@@ -3,6 +3,7 @@ import URI_MAP from "../URI/URI_MAP";
 
 export const resetPassword = async (props) => {
   const params = {
+    id: props.id,
     resetToken: props.resetToken,
   };
 

@@ -6,7 +6,7 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 function ResetPassword() {
   const router = useRouter();
-  const { resetToken } = router.query;
+  const { resetToken, id } = router.query;
 
   const [viewPassword, setViewPassword] = useState(false);
 
@@ -25,6 +25,7 @@ function ResetPassword() {
     } else {
       const res = await resetPassword({
         password,
+        id,
         resetToken,
         passwordTwo,
       });
