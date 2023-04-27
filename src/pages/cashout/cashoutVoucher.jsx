@@ -36,7 +36,9 @@ function CashoutVoucher() {
       setVoucherIsFetched(true);
       setVoucherDetails(result.data.voucher);
     } else {
-      setErrorMessage("An error occurred, please check your voucher code and try again")
+      setErrorMessage(
+        "An error occurred, please check your voucher code and try again"
+      );
     }
   };
   const handleCashoutVoucher = async () => {
@@ -46,7 +48,7 @@ function CashoutVoucher() {
       accountNumber,
       voucherCode,
       bankCode,
-      email
+      email,
     });
     if (res.success === true) {
       setIsLoading(false);
@@ -95,7 +97,10 @@ function CashoutVoucher() {
                     <input
                       type="text"
                       value={voucherCode}
-                      onChange={(e) => {setVoucherCode(e.target.value); setErrorMessage("")}}
+                      onChange={(e) => {
+                        setVoucherCode(e.target.value);
+                        setErrorMessage("");
+                      }}
                       placeholder="Enter your voucher code e.g XXX-638-hs8wn"
                     />
                   </div>
@@ -108,11 +113,12 @@ function CashoutVoucher() {
                     <h3>{voucherDetails?.title}</h3>
                     <p>{voucherDetails?.description}</p>
                     <div className={styles.detail}>
-                    <h5>{voucherCode}</h5>
-                    <p>Amount</p>
-                    <h2>₦{voucherDetails?.amount}</h2>
+                      <h5>{voucherCode}</h5>
+                      <p>Amount</p>
+                      <h2>₦{voucherDetails?.amount}</h2>
                     </div>
                   </div>
+                  <br />
                   <div className={styles.one}>
                     {errorMessage ? (
                       <div className={styles.error}>{errorMessage}</div>
@@ -171,10 +177,10 @@ function CashoutVoucher() {
           </div>
           <div className={styles.colOne}>
             {!voucherIsFetched ? (
-            <img
-              src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681288615/chike/pexels-ketut-subiyanto-4559951_y7tzis.jpg"
-              alt=""
-            />
+              <img
+                src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681288615/chike/pexels-ketut-subiyanto-4559951_y7tzis.jpg"
+                alt=""
+              />
             ) : (
               <img src={voucherDetails?.thumbnail} alt="" />
             )}
