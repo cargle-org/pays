@@ -1,4 +1,4 @@
-const BASE_URL = "https://cmg-api.onrender.com/api/";
+const BASE_URL = "https://usepays-api.herokuapp.com/api/";
 
 
 const URI_MAP = {
