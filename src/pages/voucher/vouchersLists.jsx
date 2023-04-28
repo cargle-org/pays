@@ -1,10 +1,21 @@
 import React, { useState } from "react";
 import styles from "../../styles/components/onevoucher.module.css";
 import SearchIcon from "../../assets/search.svg";
-import EditIcon from "../../assets/edit.svg";
+import {MdContentCopy} from 'react-icons/md';
 
-function VouchersLists({ data }) {
+function VouchersLists({ data, notify }) {
   const [tab, setTab] = useState(1);
+  const [copySuccess, setCopySuccess] = useState('');
+
+  const copyToClipBoard = async copyMe => {
+    try {
+      await navigator.clipboard.writeText(copyMe);
+      setCopySuccess('Copied!');
+    } catch (err) {
+      setCopySuccess('Failed to copy!');
+    }
+  };
+
   return (
     <div className={styles.table}>
       <div className={styles.tabs}>
@@ -59,8 +70,8 @@ function VouchersLists({ data }) {
               </td>
               <td>{voucher.cashedBy}</td>
               <td>{voucher.cashedDate}</td>
-              <td>
-                <EditIcon />
+              <td onClick={() => {copyToClipBoard(voucher.couponCode); notify(copySuccess)}}>
+                <MdContentCopy /> copy 
               </td>
             </tr>
           ))}

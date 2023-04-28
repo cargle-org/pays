@@ -9,10 +9,12 @@ import { useSidebarContext } from "../context/sidebarContext";
 import VoucherDetailsCard from "./voucherDetailsCard";
 import Loading from "../components/loading";
 import MobileSidebar from "../components/sidebar/mobileSidebar";
+import { ToastContainer, toast } from "react-toastify";
 
 function IndividualVoucherPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false)
+  const notify = ({copySuccess}) => toast(copySuccess);
   
   const { setActiveTab } = useSidebarContext();
 
@@ -37,6 +39,7 @@ function IndividualVoucherPage() {
 
   return (
     <div className={styles.mainDashboardPage}>
+      <ToastContainer/>
       <div className={styles.sidebar}>
         <Sidebar />
       </div>
@@ -56,7 +59,7 @@ function IndividualVoucherPage() {
               <h4 style={{ margin: "20px 0" }}>{data.title}</h4>
               <div style={{ display: "flex", flexWrap: "wrap", width: "100%" }}>
                 <VoucherDetailsCard data={data} />
-                <VouchersLists data={data} />
+                <VouchersLists notify={notify} data={data} />
               </div>
             </>
           ) : (
