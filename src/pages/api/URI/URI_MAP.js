@@ -18,7 +18,7 @@ const URI_MAP = {
     forgot_password: `${BASE_URL}auth/forgot-password`,
     reset_password: `${BASE_URL}auth/reset-password`,
     fetch_a_voucher_details: `${BASE_URL}utils/voucher/one`,
-    // update_delivery_status: `${BASE_URL}deliveries/update`,
+    edit_profile: `${BASE_URL}user/edit`,
     // pickup_delivery: `${BASE_URL}deliveries/select`,
     // get_all_deliveries: `${BASE_URL}deliveries`,
     // assign_delivery: `${BASE_URL}deliveries/assign`,
