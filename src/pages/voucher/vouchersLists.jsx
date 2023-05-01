@@ -70,7 +70,7 @@ function VouchersLists({ data, notify }) {
               </td>
               <td>{voucher.cashedBy}</td>
               <td>{voucher.cashedDate}</td>
-              <td onClick={() => {copyToClipBoard(voucher.couponCode); notify(copySuccess)}}>
+              <td onClick={() => {copyToClipBoard(voucher.couponCode); notify(voucher.couponCode)}}>
                 <MdContentCopy /> copy 
               </td>
             </tr>

@@ -10,11 +10,12 @@ import VoucherDetailsCard from "./voucherDetailsCard";
 import Loading from "../components/loading";
 import MobileSidebar from "../components/sidebar/mobileSidebar";
 import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function IndividualVoucherPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false)
-  const notify = ({copySuccess}) => toast(copySuccess);
+  const notify = (vouchercode) => toast(`Voucher code ${vouchercode} copied successfully`);
   
   const { setActiveTab } = useSidebarContext();
 
