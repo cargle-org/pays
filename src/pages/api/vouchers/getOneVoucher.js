@@ -2,10 +2,11 @@ import axios from "axios";
 import { getToken, getUserId } from "../auth/auth";
 import URI_MAP from "../URI/URI_MAP";
 
-export const getOneVoucher = async ({id}) => {
+export const getOneVoucher = async ({id, status}) => {
   const token = getToken();
   const params = {
     voucherId: id,
+    status: status,
   };
   try {
     const response = await axios.get(

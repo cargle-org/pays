@@ -17,8 +17,6 @@ export const editProfile = async (props) => {
     }, {
       headers: {
         "x-access-token": `${token}`,
-        //   "Content-Type": "multipart/form-data",
-        //   Authorization: `Bearer ${token}`,
       },
     });
     console.log('response :>> ', response.data.success);

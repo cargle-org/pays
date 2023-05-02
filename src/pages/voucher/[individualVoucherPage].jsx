@@ -15,24 +15,25 @@ import 'react-toastify/dist/ReactToastify.css';
 function IndividualVoucherPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false)
-  const notify = (vouchercode) => toast(`Voucher code ${vouchercode} copied successfully`);
+  const notify = (voucher_code) => toast(`Voucher code ${voucher_code} copied successfully`);
   
   const { setActiveTab } = useSidebarContext();
 
   const id = router.query.individualVoucherPage;
 
   const [data, setData] = useState([]);
+  const [status, setStatus] = useState("");
 
   useEffect(() => {
     (async () => {
     setIsLoading(true)
-    const res = await getOneVoucher({ id });
+    const res = await getOneVoucher({ id, status });
       setData(res);
 
       setIsLoading(false)
     })();
     setActiveTab(2);
-  }, [id]);
+  }, [id, status]);
 
   if (isLoading) {
     return <Loading />
@@ -60,7 +61,7 @@ function IndividualVoucherPage() {
               <h4 style={{ margin: "20px 0" }}>{data.title}</h4>
               <div style={{ display: "flex", flexWrap: "wrap", width: "100%" }}>
                 <VoucherDetailsCard data={data} />
-                <VouchersLists notify={notify} data={data} />
+                <VouchersLists setStatus={setStatus} notify={notify} data={data} />
               </div>
             </>
           ) : (
