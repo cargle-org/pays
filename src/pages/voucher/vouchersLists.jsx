@@ -7,7 +7,7 @@ import { FaShare } from "react-icons/fa";
 function VouchersLists({ data, notify }) {
   const [tab, setTab] = useState(1);
   const [copySuccess, setCopySuccess] = useState("");
-  const [filteredData, setFilteredData] = useState(data.voucherCoupons);
+  const [filteredData, setFilteredData] = useState(data?.voucherCoupons);
 
   const handleFilterVoucherStatus = (status) => {
     if (data) {
@@ -36,7 +36,7 @@ function VouchersLists({ data, notify }) {
         <div
           onClick={() => {
             setTab(1);
-            setFilteredData(data.voucherCoupons);
+            setFilteredData(data?.voucherCoupons);
           }}
           className={tab === 1 ? styles.activeTab : styles.tab}
         >
@@ -79,7 +79,6 @@ function VouchersLists({ data, notify }) {
               <th>Share</th>
             </tr>
           </thead>
-          {data ? (
             <tbody>
               {filteredData?.map((voucher) => (
                 <tr key={voucher.couponId}>
@@ -113,11 +112,6 @@ function VouchersLists({ data, notify }) {
                 </tr>
               ))}
             </tbody>
-          ) : (
-            <div>
-              <h3>No data to render</h3>
-            </div>
-          )}
         </table>
       </div>
     </div>
