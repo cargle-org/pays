@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken, getUserId } from "../auth/auth";
 import URI_MAP from "../URI/URI_MAP";
 
-export const editProfile = async (props) => {
+export const editProfile = async ({formData}) => {
   const token = getToken();
   const id = getUserId();
   const params = {
@@ -10,11 +10,9 @@ export const editProfile = async (props) => {
   };
 
   try {
-    const response = await axios.post(`${URI_MAP.cmg.edit_profile}?${new URLSearchParams(params).toString()}`, {
-      name: props.fullName,
-      phone: props.phoneNum,
-      email: props.email,
-    }, {
+    const response = await axios.post(`${URI_MAP.cmg.edit_profile}?${new URLSearchParams(params).toString()}`, 
+      formData
+    , {
       headers: {
         "x-access-token": `${token}`,
       },

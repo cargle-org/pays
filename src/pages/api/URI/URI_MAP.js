@@ -17,6 +17,7 @@ const URI_MAP = {
     cashout_a_voucher: `${BASE_URL}utils/voucher/claim`,
     forgot_password: `${BASE_URL}auth/forgot-password`,
     reset_password: `${BASE_URL}auth/reset-password`,
+    change_password: `${BASE_URL}auth/change-password`,
     fetch_a_voucher_details: `${BASE_URL}utils/voucher/one`,
     edit_profile: `${BASE_URL}user/edit`,
     // pickup_delivery: `${BASE_URL}deliveries/select`,
