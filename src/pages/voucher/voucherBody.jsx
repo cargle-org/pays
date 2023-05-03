@@ -8,6 +8,8 @@ import { useRouter } from "next/router";
 import { getAllVouchers } from "../api/vouchers/getAllVouchers";
 import Loading from "../components/loading";
 import Modal from "react-modal";
+import { GrClose } from 'react-icons/gr';
+
 
 const customStyles = {
   content: {
@@ -126,7 +128,10 @@ function VoucherBody() {
         className={styles.modal}
         contentLabel="Example Modal"
       >
-        <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Filter your vouchers</h2>
+        <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+        <h3 ref={(_subtitle) => (subtitle = _subtitle)}>Filter your vouchers</h3>
+      <GrClose onClick={closeModal} style={{fontSize: 24}} />
+        </div>
         <br />
         {errorMsg ? (
                 <div className={styles.error}>{errorMsg}</div>
@@ -167,7 +172,7 @@ function VoucherBody() {
           </select>
           <div className={styles.buttons}>
             <br />
-        <button onClick={closeModal} style={{ background: "#ff0000", marginRight: 16 }}>close</button>
+            <button style={{opacity: 0}}>close</button>
             <button onClick={handleResetVouchers} style={{ background: "#008000", marginRight: 16 }}>Reset</button>
             <button onClick={handleGetVouchers}>Apply</button>
           </div>

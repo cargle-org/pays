@@ -109,13 +109,6 @@
   width: 100%;
   margin-top: 16px;
 }
-.error {
-  width: 100%;
-  color: #ff0000;
-  text-align: center;
-  padding: 10px;
-  background-color: #ff000020;
-}
 .signup .input{
   display: flex;
   align-items: center;
@@ -131,6 +124,13 @@
   margin: 0;
   border: none;
   outline: none;
+}
+.error {
+  width: 100%;
+  color: #ff0000;
+  text-align: center;
+  padding: 10px;
+  background-color: #ff000020;
 }
 .message {
   width: 100%;

@@ -1,5 +1,5 @@
 .profilePage{
-    padding: 20px;
+    padding: 32px;
     background: var(--background);
     min-height: 75vh;
 }
@@ -43,6 +43,38 @@
 .profilePage .exit{
     display: none;
 }
+.profilePage     .tabs{
+    display: flex;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #93959D60;
+}
+.profilePage     .tabs .tab{
+    padding: 6px 20px;
+    border-bottom: 3px solid #fff;
+    color: #93959D;
+    font-weight: 500;
+    cursor: pointer;
+}
+.profilePage     .tabs .activeTab{
+    padding: 6px 20px;
+    border-bottom: 3px solid var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 500;
+}
+.error {
+    width: 100%;
+    color: #ff0000;
+    text-align: center;
+    padding: 10px;
+    background-color: #ff000020;
+  }
+  .message {
+    width: 100%;
+    color: #008000;
+    text-align: center;
+    padding: 20px;
+    background-color: #00800020;
+  }
 @media only screen and (max-width: 768px){
     .profilePage .details .input {
         width: 100%;

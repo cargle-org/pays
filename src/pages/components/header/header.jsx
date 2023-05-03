@@ -26,7 +26,7 @@ function Header() {
           <li className={activePage === 1 ? styles.activeLink : styles.link} onClick={() => {router.push("/"); setActivePage(1)}}>Home</li>
           <li className={activePage === 2 ? styles.activeLink : styles.link} onClick={() => {router.push("/about_us"); setActivePage(2)}}>About</li>
           <li className={activePage === 3 ? styles.activeLink : styles.link} onClick={() => {router.push("/faqs"); setActivePage(3)}}>FAQs</li>
-          <li className={activePage === 4 ? styles.activeLink : styles.link} onClick={() => {router.push("/dashboard"); setActivePage(4)}}>Contact</li>
+          <li className={activePage === 4 ? styles.activeLink : styles.link} onClick={() => {router.push("/contact"); setActivePage(4)}}>Contact</li>
         </div>
         {token ? (
           <button onClick={() => router.push("/dashboard")}>Dashboard</button>
