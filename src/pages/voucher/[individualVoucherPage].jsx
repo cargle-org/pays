@@ -35,6 +35,11 @@ function IndividualVoucherPage() {
     setActiveTab(2);
   }, [id, status]);
 
+  const handleStatusFilter = async (status) => {
+    const res = await getOneVoucher({ id, status })
+    setData(res);
+  }
+
   if (isLoading) {
     return <Loading />
   }
@@ -61,7 +66,7 @@ function IndividualVoucherPage() {
               <h4 style={{ margin: "20px 0" }}>{data.title}</h4>
               <div style={{ display: "flex", flexWrap: "wrap", width: "100%" }}>
                 <VoucherDetailsCard data={data} />
-                <VouchersLists setStatus={setStatus} notify={notify} data={data} />
+                <VouchersLists handleStatusFilter={handleStatusFilter} notify={notify} data={data} />
               </div>
             </>
           ) : (
