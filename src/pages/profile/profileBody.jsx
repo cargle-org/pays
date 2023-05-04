@@ -13,7 +13,7 @@ import { changePassword } from "../api/auth/changePassword";
 
 function ProfileBody() {
   const router = useRouter();
-  const [fullName, setFullName] = useState("");
+  const [name, setName] = useState("");
   const [tab, setTab] = useState(1);
   const [email, setEmail] = useState("");
   const [phoneNum, setPhoneNum] = useState("");
@@ -41,7 +41,7 @@ function ProfileBody() {
     (async () => {
       setIsLoading(true);
       const res = await getProfile();
-      setFullName(`${res.firstName}  ${res.lastName}`);
+      setName(res.name);
       setEmail(res.email);
       setPhoneNum(res.phone);
       setCompanyName(res.companyName);
@@ -55,7 +55,7 @@ function ProfileBody() {
     e.preventDefault();
     const formData = new FormData();
 
-    formData.append("name", fullName);
+    formData.append("name", name);
     formData.append("phone", phoneNum);
     formData.append("email", email);
     if (companyLogo) {
@@ -136,7 +136,7 @@ function ProfileBody() {
                 <div className={styles.input}>
                   <label>Company’s name</label>
                   <input
-                    onChange={(e) => setFullName(e.target.value)}
+                    onChange={(e) => setName(e.target.value)}
                     type="text"
                     value={companyName}
                   />
@@ -145,9 +145,9 @@ function ProfileBody() {
                 <div className={styles.input}>
                   <label>Full Name</label>
                   <input
-                    onChange={(e) => setFullName(e.target.value)}
+                    onChange={(e) => setName(e.target.value)}
                     type="text"
-                    value={fullName}
+                    value={name}
                   />
                 </div>
               )}
@@ -194,7 +194,7 @@ function ProfileBody() {
               {/* <div className={styles.input}>
                 <label>Company’s Email Address</label>
                 <input
-                  onChange={(e) => setFullName(e.target.value)}
+                  onChange={(e) => setName(e.target.value)}
                   type="text"
                   value={companyEmail}
                 />

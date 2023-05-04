@@ -12,7 +12,7 @@ function TopBar() {
     (async () => {
       const res = await getProfile();
       setBalance(new Intl.NumberFormat().format(res.walletBalance));
-      setName(res.firstName)
+      setName(res.name)
     })();
   }, []);
   return (

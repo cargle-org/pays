@@ -20,7 +20,7 @@ function Sidebar() {
   useEffect(() => {
     (async () => {
       const res = await getProfile();
-      setName(res?.firstName + " " + res?.lastName)
+      setName(res?.name)
       setCompanyName(res?.companyName)
     })();
   }, []);
