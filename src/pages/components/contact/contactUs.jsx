@@ -2,34 +2,44 @@ import React, { useState } from "react";
 import styles from "../../../styles/signin/signup.module.css";
 import { useRouter } from "next/router";
 import Header from "../header/header";
+import { contactUs } from "@/pages/api/contactUs";
 
 function ContactUs() {
   const router = useRouter();
 
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
   const [errorMsg, setErrorMsg] = useState("");
   const [responseMessage, setResponseMessage] = useState("");
   // const { resendEmail } = useAuthContext();
 
-  const handleForgotPassword = async (e) => {
-    // e.preventDefault();
-    // if (email === "") {
-    //   setErrorMsg("your email field cannot be empty");
-    // } else {
-    //   const res = await forgotPassword({
-    //     email,
-    //   });
-    //   if (res?.success) {
-    //     setErrorMsg("");
-    //     setResponseMessage(
-    //       "Please refer to your mail to complete this process"
-    //     );
-    //   } else {
-    //     setResponseMessage("");
-    //     setErrorMsg(res?.message.toString());
-    //   }
-    // }
+  const handleContactUs = async (e) => {
+    e.preventDefault();
+    if (email === "") {
+      setErrorMsg("your email field cannot be empty");
+    } else if (name === "") {
+      setErrorMsg("Please enter your full name");
+    } else if (message === "") {
+      setErrorMsg("Please enter your message");
+    } else {
+      const res = await contactUs({
+        email, name, message
+      });
+      if (res?.success) {
+        setErrorMsg("");
+        setEmail("")
+        setName("")
+        setMessage("")
+        setResponseMessage(
+          "Your message have been submitted successfully"
+        );
+      } else {
+        setResponseMessage("");
+        setErrorMsg(res?.message.toString());
+      }
+    }
   };
   return (
     <div className={styles.signup}>
@@ -44,11 +54,11 @@ function ContactUs() {
               />
             </div> */}
             <div className={styles.content}>
-              <form onSubmit={handleForgotPassword}>
+              <form onSubmit={handleContactUs}>
                 <h2>Contact Us</h2>
                 {responseMessage ? (
                   <p className={styles.message}>
-                    A reset link has been sent to you email address.{" "}
+                    
                     {responseMessage}
                   </p>
                 ) : (
@@ -59,25 +69,25 @@ function ContactUs() {
                 ) : (
                   <div> </div>
                 )}
-                {/* <br /> */}
-                {!responseMessage ? (
+                <br />
+                
                   <div>
                   <label>Full name</label>
                   <br />
                   <input
                     autoComplete="on"
-                    onChange={(e) => {setEmail(e.target.value); setErrorMsg("")}}
-                    value={email}
+                    onChange={(e) => {setName(e.target.value); setResponseMessage(""); setErrorMsg("")}}
+                    value={name}
                     required
                     aria-describedby="uiddnote"
-                    type="email"
+                    type="text"
                     placeholder="Enter your full name"
                   />
                   <label>Email address</label>
                   <br />
                   <input
                     autoComplete="on"
-                    onChange={(e) => {setEmail(e.target.value); setErrorMsg("")}}
+                    onChange={(e) => {setEmail(e.target.value); setResponseMessage(""); setErrorMsg("")}}
                     value={email}
                     required
                     aria-describedby="uiddnote"
@@ -88,18 +98,16 @@ function ContactUs() {
                   <br />
                   <textarea style={{width: "100%",}}
                     autoComplete="on"
-                    onChange={(e) => {setEmail(e.target.value); setErrorMsg("")}}
-                    value={email}
+                    onChange={(e) => {setMessage(e.target.value); setResponseMessage(""); setErrorMsg("")}}
+                    value={message}
                     required
                     aria-describedby="uiddnote"
-                    type="email"
-                    placeholder="Enter your email address"
+                    type="text"
+                    placeholder="Enter your Message"
                   />
                     <button type="submit">Send Message</button>
                   </div>
-                ) : (
-                  <div></div>
-                )}
+                
               </form>              
             </div>
           </div>

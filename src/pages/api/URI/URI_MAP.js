@@ -20,6 +20,7 @@ const URI_MAP = {
     change_password: `${BASE_URL}auth/change-password`,
     fetch_a_voucher_details: `${BASE_URL}utils/voucher/one`,
     edit_profile: `${BASE_URL}user/edit`,
+    contact_us: `${BASE_URL}utils/contact-us`,
     // pickup_delivery: `${BASE_URL}deliveries/select`,
     // get_all_deliveries: `${BASE_URL}deliveries`,
     // assign_delivery: `${BASE_URL}deliveries/assign`,
