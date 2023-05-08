@@ -150,8 +150,8 @@ function VouchersLists({ data, notify }) {
               alignItems: "center",
             }}
           >
-            <h3 ref={(_subtitle) => (subtitle = _subtitle)}>
-              Filter your vouchers
+            <h3 style={{marginRight: 50}} ref={(_subtitle) => (subtitle = _subtitle)}>
+              Share Voucher code
             </h3>
             <GrClose onClick={closeModal} style={{ fontSize: 24 }} />
           </div>
