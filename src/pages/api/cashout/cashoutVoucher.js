@@ -9,8 +9,9 @@ export const cashoutVoucher = async (props) => {
     const response = await axios.post(URI_MAP.cmg.cashout_a_voucher, {
       fullName: props.fullName,
       voucherCode: props.voucherCode,
-      bankCode: props.bankCode,
-      accountNumber: props.accountNumber,
+      destinationBankCode: props.bankCode,
+      destinationAccountNumber: props.accountNumber,
+      destinationAccountName: props.destinationAccountName,
       email: props.email,
     },);
     console.log('res', response)

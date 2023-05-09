@@ -16,6 +16,7 @@ function CashoutVoucher() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
+  const [destinationAccountName, setDestinationAccountName] = useState("");
   const [voucherCode, setVoucherCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -46,6 +47,7 @@ function CashoutVoucher() {
     const res = await cashoutVoucher({
       fullName,
       accountNumber,
+      destinationAccountName,
       voucherCode,
       bankCode,
       email,
@@ -133,6 +135,15 @@ function CashoutVoucher() {
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                       placeholder="Enter your full account name"
+                    />
+                  </div>
+                  <div className={styles.one}>
+                    <label>Account Name</label>
+                    <input
+                      type="number"
+                      value={destinationAccountName}
+                      onChange={(e) => setDestinationAccountName(e.target.value)}
+                      placeholder="Enter account name"
                     />
                   </div>
                   <div className={styles.one}>
