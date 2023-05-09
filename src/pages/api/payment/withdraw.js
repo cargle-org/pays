@@ -8,8 +8,9 @@ export const withdraw = async (props) => {
   try {
     const response = await axios.post(URI_MAP.cmg.withdraw_from_wallet, {
       amount: props.withdrawAmount,
-      bankCode: props.bankCode,
-      accountNumber: props.accountNumber,
+      destinationBankCode: props.bankCode,
+      destinationAccountNumber: props.accountNumber,
+      destinationAccountName: props.destinationAccountName,
     }, {
       headers: {
         "x-access-token": `${token}`,

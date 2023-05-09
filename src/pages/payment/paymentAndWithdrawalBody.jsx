@@ -16,6 +16,7 @@ function PaymentAndWithdrawalBody() {
   const [bankName, setBankName] = useState([]);
   const [bankCode, setBankCode] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
+  const [destinationAccountName, setDestinationAccountName] = useState("");
   const [withdrawSuccess, setWithdrawSuccess] = useState(false);
   const [errMsg, setErrMsg] = useState("");
 
@@ -45,8 +46,8 @@ function PaymentAndWithdrawalBody() {
     if (newWindow) newWindow.opener = null;
   };
   const handleWithdraw = async () => {
-    setErrMsg("")
-    const res = await withdraw({ withdrawAmount, bankCode, accountNumber });
+    setErrMsg("");
+    const res = await withdraw({ withdrawAmount, bankCode, accountNumber, destinationAccountName });
     if (res) {
       setWithdrawSuccess(true);
     } else {
@@ -132,6 +133,15 @@ function PaymentAndWithdrawalBody() {
                   </select>
                 </div>
                 <div className={styles.one}>
+                  <label>Account Name</label>
+                  <input
+                    type="number"
+                    value={destinationAccountName}
+                    onChange={(e) => setDestinationAccountName(e.target.value)}
+                    placeholder="Enter account Name"
+                  />
+                </div>
+                <div className={styles.one}>
                   <label>Account Number</label>
                   <input
                     type="number"
@@ -146,15 +156,17 @@ function PaymentAndWithdrawalBody() {
               </div>
             ) : (
               <div className={styles.message}>
-        <img
-          src="https://res.cloudinary.com/dmixz7eur/image/upload/v1677864171/chike/91068-message-sent-successfully-plane_1_dtltch.gif"
-          alt=""
-        />
-        <h6>Your withdrawal was successful</h6>
-        <div className={styles.buttons}>
-          <button onClick={() => router.push("/payment")}>Ok Thanks</button>
-        </div>
-      </div>
+                <img
+                  src="https://res.cloudinary.com/dmixz7eur/image/upload/v1677864171/chike/91068-message-sent-successfully-plane_1_dtltch.gif"
+                  alt=""
+                />
+                <h6>Your withdrawal was successful</h6>
+                <div className={styles.buttons}>
+                  <button onClick={() => router.push("/payment")}>
+                    Ok Thanks
+                  </button>
+                </div>
+              </div>
             )}
           </div>
         )}

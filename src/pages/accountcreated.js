@@ -26,7 +26,7 @@ function AccountCreated() {
         }}
       >
         <h6 style={{ margin: 20 }}>
-          Your account have been created successfully, please check your email to get started.
+          Your account have been created successfully, please verify your email to get started.
         </h6>
 
         <div style={{ width: "100%", margin: 20 }}>
