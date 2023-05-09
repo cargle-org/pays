@@ -140,7 +140,7 @@ function CashoutVoucher() {
                   <div className={styles.one}>
                     <label>Account Name</label>
                     <input
-                      type="number"
+                      type="text"
                       value={destinationAccountName}
                       onChange={(e) => setDestinationAccountName(e.target.value)}
                       placeholder="Enter account name"
