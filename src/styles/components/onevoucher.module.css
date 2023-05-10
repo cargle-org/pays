@@ -69,6 +69,22 @@
 .table table th{
     padding: 20px 16px;
 }
+.shareModal .rws-icon {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    border: 0;
+    background: #1a78f6;
+    padding: 0 !important;
+    border-radius: 0.5rem;
+    font-size: 0;
+}
+.rws-icon *{
+    width: 50px;
+}
+.shareModal .rws-container{
+    max-width: 40rem;
+}
 @media only screen and (max-width: 768px) {
      /* #table{
         width: 100%;
