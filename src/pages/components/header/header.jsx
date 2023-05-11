@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { getToken } from "@/pages/api/auth/auth";
 import MenuIcon from "../../../assets/menu.svg";
 import CloseIcon from "../../../assets/close.svg";
+import Logo from "../../../assets/logo.svg";
 import { useSidebarContext } from "@/pages/context/sidebarContext";
 
 function Header() {
@@ -11,22 +12,51 @@ function Header() {
   const token = getToken();
 
   const [openMenu, setOpenMenu] = useState(false);
-  const {activePage, setActivePage} = useSidebarContext()
+  const { activePage, setActivePage } = useSidebarContext();
 
   return (
     <div className={styles.header}>
       <div className={styles.container}>
         <div className={styles.logo} onClick={() => router.push("/")}>
-          <img
-            src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681115530/Group_1000000881_edg81o.png"
-            alt=""
-          />
+          <Logo />
         </div>
         <div className={styles.navLinks}>
-          <li className={activePage === 1 ? styles.activeLink : styles.link} onClick={() => {router.push("/"); setActivePage(1)}}>Home</li>
-          <li className={activePage === 2 ? styles.activeLink : styles.link} onClick={() => {router.push("/about_us"); setActivePage(2)}}>About</li>
-          <li className={activePage === 3 ? styles.activeLink : styles.link} onClick={() => {router.push("/faqs"); setActivePage(3)}}>FAQs</li>
-          <li className={activePage === 4 ? styles.activeLink : styles.link} onClick={() => {router.push("/contact"); setActivePage(4)}}>Contact</li>
+          <li
+            className={activePage === 1 ? styles.activeLink : styles.link}
+            onClick={() => {
+              router.push("/");
+              setActivePage(1);
+            }}
+          >
+            Home
+          </li>
+          <li
+            className={activePage === 2 ? styles.activeLink : styles.link}
+            onClick={() => {
+              router.push("/about_us");
+              setActivePage(2);
+            }}
+          >
+            About
+          </li>
+          <li
+            className={activePage === 3 ? styles.activeLink : styles.link}
+            onClick={() => {
+              router.push("/faqs");
+              setActivePage(3);
+            }}
+          >
+            FAQs
+          </li>
+          <li
+            className={activePage === 4 ? styles.activeLink : styles.link}
+            onClick={() => {
+              router.push("/contact");
+              setActivePage(4);
+            }}
+          >
+            Contact
+          </li>
         </div>
         {token ? (
           <button onClick={() => router.push("/dashboard")}>Dashboard</button>
@@ -43,25 +73,30 @@ function Header() {
         )}
         <div className={styles.mobileMenu}>
           <div className={styles.menu} onClick={() => setOpenMenu(true)}>
-            <MenuIcon className={styles.icon}/>
+            <MenuIcon className={styles.icon} />
           </div>
           {openMenu && (
             <div className={styles.menuLinks}>
               <li onClick={() => setOpenMenu(false)}>
-                <CloseIcon className={styles.icon}/>
+                <CloseIcon className={styles.icon} />
               </li>
               <li>Home</li>
               <li>About</li>
               <li>FAQs</li>
               <li>Contact</li>
-              <li><button
-              className={styles.btn}
-              onClick={() => router.push("/login")}
-            >
-              Login
-            </button></li>
-              <li>            <button onClick={() => router.push("/register")}>Sign Up</button>
-</li>
+              <li>
+                <button
+                  className={styles.btn}
+                  onClick={() => router.push("/login")}
+                >
+                  Login
+                </button>
+              </li>
+              <li>
+                <button onClick={() => router.push("/register")}>
+                  Sign Up
+                </button>
+              </li>
             </div>
           )}
         </div>

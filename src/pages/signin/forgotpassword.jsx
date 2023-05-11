@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "../../styles/signin/signup.module.css";
 import { useRouter } from "next/router";
 import { forgotPassword } from "../api/auth/forgotPassword";
+import Logo from "../../assets/logo.svg";
 
 function ForgotPassword() {
   const router = useRouter();
@@ -37,10 +38,7 @@ function ForgotPassword() {
         <div className={styles.row}>
           <div className={styles.colTwo}>
             <div className={styles.logo} onClick={() => router.push("/")}>
-              <img
-                src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681115530/Group_1000000881_edg81o.png"
-                alt=""
-              />
+              <Logo />
             </div>
             <div className={styles.content}>
               <form onSubmit={handleForgotPassword}>

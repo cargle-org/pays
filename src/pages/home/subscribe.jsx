@@ -15,7 +15,7 @@ function Subscribe() {
             <input type="text" placeholder="Enter  Email address" />
             <button>Subscribe</button>
           </form>
-            <img src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681130016/Group_8_ry1bif.png" alt="" />
+            <img src="https://res.cloudinary.com/dmixz7eur/image/upload/v1683798079/chike/Group_8_v3ntku.png" alt="" />
         </div>
       </div>
     </div>

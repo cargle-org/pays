@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useAuthContext } from "../api/auth/AuthContext";
 import Loading from "../components/loading";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import Logo from "../../assets/logo.svg";
 
 function SignUp() {
   const router = useRouter();
@@ -70,10 +71,7 @@ function SignUp() {
             className={styles.colTwo}
           >
             <div className={styles.logo} onClick={() => router.push("/")}>
-              <img
-                src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681115530/Group_1000000881_edg81o.png"
-                alt=""
-              />
+              <Logo />
             </div>
             <div className={styles.content}>
               <h2>Sign Up</h2>

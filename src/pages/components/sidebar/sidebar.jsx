@@ -5,6 +5,7 @@ import { removeToken } from "@/pages/api/auth/auth";
 import Dashboardicon from "../../../assets/dashboard.svg";
 import Payment from "../../../assets/payment.svg";
 import Voucher from "../../../assets/voucher.svg";
+import Logo from "../../../assets/logo.svg";
 import Profile from "../../../assets/profile.svg";
 import { useSidebarContext } from "@/pages/context/sidebarContext";
 import Logout from "../../../assets/logout.svg"
@@ -29,10 +30,8 @@ function Sidebar() {
     <div className={styles.desktopSidebar}>
       <div className={styles.container}>
         <div className={styles.logo}>
-          <img
-            src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681115530/Group_1000000881_edg81o.png"
-            alt=""
-          />
+        <Logo />
+
         </div>
         <h6>Main Menu</h6>
         <div className={styles.sideLinks}>
