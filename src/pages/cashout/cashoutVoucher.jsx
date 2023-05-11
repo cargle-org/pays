@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
 import Loading from "../components/loading";
 import { getAVoucherDetails } from "../api/cashout/getAVoucherDetails";
+import Logo from "../../assets/logo.svg";
 
 function CashoutVoucher() {
   const router = useRouter();
@@ -74,10 +75,7 @@ function CashoutVoucher() {
         <div className={styles.row}>
           <div className={styles.colTwo}>
             <div className={styles.logo} onClick={() => router.push("/")}>
-              <img
-                src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681115530/Group_1000000881_edg81o.png"
-                alt=""
-              />
+            <Logo />
             </div>
             <div className={styles.details}>
               {!voucherIsFetched ? (
