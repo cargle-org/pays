@@ -16,7 +16,6 @@ function PaymentAndWithdrawalBody() {
   const [bankName, setBankName] = useState([]);
   const [bankCode, setBankCode] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
-  const [destinationAccountName, setDestinationAccountName] = useState("");
   const [withdrawSuccess, setWithdrawSuccess] = useState(false);
   const [errMsg, setErrMsg] = useState("");
 
@@ -47,7 +46,7 @@ function PaymentAndWithdrawalBody() {
   };
   const handleWithdraw = async () => {
     setErrMsg("");
-    const res = await withdraw({ withdrawAmount, bankCode, accountNumber, destinationAccountName });
+    const res = await withdraw({ withdrawAmount, bankCode, accountNumber });
     if (res) {
       setWithdrawSuccess(true);
     } else {
@@ -131,15 +130,6 @@ function PaymentAndWithdrawalBody() {
                       </option>
                     ))}
                   </select>
-                </div>
-                <div className={styles.one}>
-                  <label>Account Name</label>
-                  <input
-                    type="text"
-                    value={destinationAccountName}
-                    onChange={(e) => setDestinationAccountName(e.target.value)}
-                    placeholder="Enter account Name"
-                  />
                 </div>
                 <div className={styles.one}>
                   <label>Account Number</label>

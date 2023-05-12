@@ -8,15 +8,15 @@ import SuccessMessage from "./successMessage";
 
 function DepositCompleted() {
   const router = useRouter();
-  const { paymentReference } = router.query;
-  // const { tx_ref } = router.query;
-  // const { transaction_id } = router.query;
+  // const { paymentReference } = router.query;
+  const { tx_ref } = router.query;
+  const { id } = router.query;
 //   console.log('status', status, transaction_id, tx_ref)
 
 
   useEffect(() => {
     (async () => {
-      const res = await verifyPayment({ paymentReference });
+      const res = await verifyPayment({ id, tx_ref  });
     })();
   }, [paymentReference]);
 
