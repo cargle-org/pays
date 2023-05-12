@@ -18,7 +18,7 @@ function DepositCompleted() {
     (async () => {
       const res = await verifyPayment({ id, tx_ref  });
     })();
-  }, [paymentReference]);
+  }, [id, tx_ref]);
 
   return (
     <div className={styles.mainDashboardPage}>
