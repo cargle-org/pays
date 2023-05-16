@@ -21,15 +21,6 @@ const URI_MAP = {
     fetch_a_voucher_details: `${BASE_URL}utils/voucher/one`,
     edit_profile: `${BASE_URL}user/edit`,
     contact_us: `${BASE_URL}utils/contact-us`,
-    // pickup_delivery: `${BASE_URL}deliveries/select`,
-    // get_all_deliveries: `${BASE_URL}deliveries`,
-    // assign_delivery: `${BASE_URL}deliveries/assign`,
-    // reassign_delivery: `${BASE_URL}deliveries/reassign`,
-    // remove_Rider_Delivery: `${BASE_URL}deliveries/remove`,
-    // admin_my_delivery: `${BASE_URL}deliveries`,
-    // riders: `${BASE_URL}riders`,
-    // upload_Ddelivery_file: `${BASE_URL}deliveries/add`,
-    // create_delivery: `${BASE_URL}deliveries/new`,
   },
 };
 
