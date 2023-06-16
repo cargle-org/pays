@@ -80,10 +80,38 @@ function Header() {
               <li onClick={() => setOpenMenu(false)}>
                 <CloseIcon className={styles.icon} />
               </li>
-              <li>Home</li>
-              <li>About</li>
-              <li>FAQs</li>
-              <li>Contact</li>
+              <li
+                onClick={() => {
+                  router.push("/");
+                  setActivePage(1);
+                }}
+              >
+                Home
+              </li>
+              <li
+                onClick={() => {
+                  router.push("/about_us");
+                  setActivePage(2);
+                }}
+              >
+                About
+              </li>
+              <li
+                onClick={() => {
+                  router.push("/faqs");
+                  setActivePage(3);
+                }}
+              >
+                FAQs
+              </li>
+              <li
+                onClick={() => {
+                  router.push("/contact");
+                  setActivePage(4);
+                }}
+              >
+                Contact
+              </li>
               <li>
                 <button
                   className={styles.btn}
