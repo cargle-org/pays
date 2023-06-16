@@ -29,7 +29,7 @@ function Sidebar() {
   return (
     <div className={styles.desktopSidebar}>
       <div className={styles.container}>
-        <div className={styles.logo}>
+        <div onClick={() => router.push("/")} className={styles.logo}>
         <Logo />
 
         </div>

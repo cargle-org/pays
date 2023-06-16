@@ -11,6 +11,7 @@
 }
 .desktopSidebar .container .logo{
     margin: 0 0 40px 0;
+    cursor: pointer;
 }
 .desktopSidebar .container h6{
     text-transform: uppercase;
