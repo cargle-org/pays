@@ -16,7 +16,7 @@ export const fundWallet = async ({ depositAmount }) => {
       },
     });
     console.log('response :>> ', response);
-    return response.data.data.response;
+    return response.data.data;
   } catch (error) {
     console.log("error", error);
     // setErrorMsg(error);

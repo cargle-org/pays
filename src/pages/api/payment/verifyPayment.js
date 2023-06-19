@@ -5,8 +5,7 @@ import URI_MAP from "../URI/URI_MAP";
 export const verifyPayment = async (props) => {
   const token = getToken();
   const params = {
-    tx_ref: props.tx_ref,
-    id: props.id,
+    paymentReference: props.paymentReference,
   };
   try {
     const response = await axios.get(
