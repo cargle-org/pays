@@ -7,6 +7,7 @@ import { getProfile } from "../api/profile/getProfile";
 import Loading from "../components/loading";
 import { getBanks } from "../api/cashout/getAllBank";
 import { withdraw } from "../api/payment/withdraw";
+import TransactionHistory from "./transactionHistory";
 
 function PaymentAndWithdrawalBody() {
   const [operation, setOperation] = useState("deposit");
@@ -161,6 +162,7 @@ function PaymentAndWithdrawalBody() {
           </div>
         )}
       </div>
+      <TransactionHistory />
     </div>
   );
 }

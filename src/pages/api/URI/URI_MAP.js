@@ -14,6 +14,7 @@ const URI_MAP = {
     get_all_vouchers: `${BASE_URL}user/vouchers/all`,
     get_one_voucher: `${BASE_URL}user/vouchers/one`,
     get_all_banks: `${BASE_URL}utils/banks/all`,
+    get_all_transactions: `${BASE_URL}utils/transactions/all`,
     cashout_a_voucher: `${BASE_URL}utils/voucher/claim`,
     forgot_password: `${BASE_URL}auth/forgot-password`,
     reset_password: `${BASE_URL}auth/reset-password`,
