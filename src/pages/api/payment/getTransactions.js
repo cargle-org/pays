@@ -1,16 +1,17 @@
 import axios from "axios";
-import { getToken } from "../auth/auth";
+// import { getToken } from "../auth/auth";
 import URI_MAP from "../URI/URI_MAP";
+import { getToken, getUserId } from "../auth/auth";
 
-export const verifyPayment = async (props) => {
+export const getTransactions = async (props) => {
   const token = getToken();
+  const userId = getUserId()
   const params = {
-    paymentReference: props.paymentReference,
+    userId: userId,
   };
   try {
     const response = await axios.get(
-      `${URI_MAP.cmg.verify_payment}?${new URLSearchParams(params).toString()}`,
-      // null,
+      `${URI_MAP.cmg.get_all_transactions}?${new URLSearchParams(params).toString()}`,
       {
         headers: {
           "x-access-token": `${token}`,
@@ -19,8 +20,8 @@ export const verifyPayment = async (props) => {
         },
       }
     );
-    console.log("pay", response);
-    return response.data.message;
+    console.log('transactions :>> ', response);
+    return response.data.data;
   } catch (error) {
     console.log("error", error);
     // setErrorMsg(error);
