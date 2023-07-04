@@ -39,7 +39,7 @@ function TransactionHistory() {
       <table>
         <thead>
           <tr>
-            <th>Img</th>
+            <th>S/N</th>
             <th>Amount</th>
             <th>Status</th>
             <th>Transaction Ref</th>

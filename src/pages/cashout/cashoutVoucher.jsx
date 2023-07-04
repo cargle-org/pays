@@ -7,6 +7,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
 import Loading from "../components/loading";
 import { getAVoucherDetails } from "../api/cashout/getAVoucherDetails";
+import { Modal, Radio, Divider, Input, Progress, Button } from "antd";
+import nubanChecker from "../components/nubanChecker";
+import axios from "axios";
 import Logo from "../../assets/logo.svg";
 
 function CashoutVoucher() {
@@ -14,16 +17,24 @@ function CashoutVoucher() {
 
   const [bankName, setBankName] = useState([]);
   const [bankCode, setBankCode] = useState("");
-  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
+  const [suggestedBanks, setSuggestedBanks] = useState([]);
+  const [otherBanks, setOtherBanks] = useState([]);
+  const [accountName, setAccountName] = useState("");
   const [voucherCode, setVoucherCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [voucherIsFetched, setVoucherIsFetched] = useState(false);
   const notify = ({ message }) => toast(message);
   const [voucherDetails, setVoucherDetails] = useState("");
-  console.log("voucherDetails :>> ", voucherDetails);
+  const [showAccountDetailsModal, setShowAccountDetailsModal] = useState(false)
+  const [showAllBanks, setShowAllBanks] = useState(false)
+  const [searchValue, setSearchValue] = useState("")
+  const [accountValidated, setAccountValidated] = useState(false)
+  const [showProgressBar, setShowProgressBar] = useState(false)
+  const [fetchPercentage, setFetchPercentage] = useState(70)
+
   useEffect(() => {
     (async () => {
       const res = await getBanks();
@@ -43,6 +54,7 @@ function CashoutVoucher() {
     }
   };
   const handleCashoutVoucher = async () => {
+    const fullName = accountName;
     setIsLoading(true);
     const res = await cashoutVoucher({
       fullName,
@@ -67,13 +79,84 @@ function CashoutVoucher() {
     return <Loading />;
   }
 
+  const fetchBanks = (accountNumber) => {
+    const { suggestedBanks = [], otherBanks = [] } = nubanChecker.getAccountBanks(accountNumber, bankName);
+    setSuggestedBanks([...suggestedBanks]);
+    setOtherBanks([...otherBanks]);
+  }
+
+  const getAccountNumber = (e) => {
+    const { value } = e.target;
+    setAccountNumber(value)
+    if (value.length === 10) {
+      fetchBanks(value)
+      openAccountDetailsModal()
+    }
+  }
+
+  const handleBankSelection = async (e) => {
+    const { code, name } = e.target.value;
+    setShowProgressBar(true);
+    setBankCode(code);
+
+    try {
+      const response = await axios.get(`https://maylancer.org/api/nuban/api.php?account_number=${accountNumber}&bank_code=${code}`);
+      if (response?.status === 200 && response?.data.account_name) {
+        setFetchPercentage(100)
+        setAccountValidated(true)
+        setAccountName(response.data.account_name)
+        setShowAccountDetailsModal(false)
+      } else {
+        setAccountValidated(false)
+        setFetchPercentage(100)
+        setShowAccountDetailsModal(false)
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  const openAccountDetailsModal = () => {
+    setShowAccountDetailsModal(true);
+    setShowProgressBar(false);
+    setFetchPercentage(70);
+  }
+
+  const closeAccountDetailsModal = () => {
+    setShowAccountDetailsModal(false);
+    setShowAllBanks(false);
+    setFetchPercentage(70);
+    setShowProgressBar(false);
+  }
+
+  const handleViewAllBanks = () => {
+    setShowAllBanks(true);
+  }
+
+  const handleSearchInput = (e) => {
+    setSearchValue(e.target.value.toLowerCase());
+  };
+
+  const filterBank = ({ name = "" }) => {
+    if (searchValue) {
+      if (name.toLowerCase().includes(searchValue)) {
+        return true;
+      }
+      return false;
+    }
+    return true;
+  };
+
+  const bankData = bankName.filter(filterBank);
+
+
   return (
     <div className={styles.cashout}>
       <div className={styles.container}>
         <div className={styles.row}>
           <div className={styles.colTwo}>
             <div className={styles.logo} onClick={() => router.push("/")}>
-            <Logo />
+              <Logo />
             </div>
             <div className={styles.details}>
               {!voucherIsFetched ? (
@@ -124,7 +207,7 @@ function CashoutVoucher() {
                       <div> </div>
                     )}
                   </div>
-                  <div className={styles.one}>
+                  {/* <div className={styles.one}>
                     <label>Full Account Name</label>
                     <input
                       type="text"
@@ -132,17 +215,28 @@ function CashoutVoucher() {
                       onChange={(e) => setFullName(e.target.value)}
                       placeholder="Enter your full account name"
                     />
-                  </div>
+                  </div> */}
                   <div className={styles.one}>
                     <label>Account Number</label>
                     <input
                       type="number"
                       value={accountNumber}
-                      onChange={(e) => setAccountNumber(e.target.value)}
+                      onChange={getAccountNumber}
                       placeholder="Enter account number"
                     />
+                    <div>
+                      {fetchPercentage === 100 && accountValidated ?
+                        <p style={{ color: 'green' }}>{accountName}</p>
+                        :
+                        fetchPercentage === 100 && !accountValidated ?
+                          <p style={{ color: 'red' }}>Unable to validate account, please try again </p>
+                          :
+                          ''
+                      }
+                    </div>
                   </div>
-                  <div className={styles.one}>
+
+                  {/* <div className={styles.one}>
                     <label>Bank</label>
                     <select
                       name="banks"
@@ -156,8 +250,11 @@ function CashoutVoucher() {
                         </option>
                       ))}
                     </select>
-                  </div>
-                  <div className={styles.one}>
+                  </div> */}
+                  <div
+                    className={styles.one}
+                    style={{ marginTop: '6px' }}
+                  >
                     <label>Email Address</label>
                     <input
                       type="text"
@@ -169,6 +266,99 @@ function CashoutVoucher() {
                   <button onClick={handleCashoutVoucher}>
                     Cashout Voucher
                   </button>
+                  <Modal
+                    bodyStyle={{ maxHeight: "700px", overflowY: 'hidden', overflowX: 'hidden' }}
+                    open={showAccountDetailsModal}
+                    footer={null}
+                    className={styles.accountDetailsModal}
+                    closable={false}
+                    centered
+                    width={500}
+                    onCancel={closeAccountDetailsModal}
+                    destroyOnClose
+                  >
+                    <div>
+                      {showProgressBar ?
+                        <div className={styles.progressBar}>
+                          <Progress
+                            percent={fetchPercentage}
+                            status="active"
+                            strokeColor="#410d85"
+                            showInfo={false}
+                          />
+                          <p
+                            style={{
+                              color: 'black',
+                              fontWeight: '600',
+                              justifyContent: 'center',
+                              display: 'flex'
+                            }}
+                          >Fetching Beneficiary Details
+                          </p>
+                          <p
+                            style={{
+                              color: 'black',
+                              fontSize: '12px',
+                              justifyContent: 'center',
+                              display: 'flex',
+                              marginTop: '12px'
+                            }}
+                          >Please wait...</p>
+                        </div>
+                        :
+                        <Radio.Group
+                          onChange={handleBankSelection}
+                          style={{ width: '100%' }}
+                        >
+                          <div style={{ marginBottom: '24px' }}>
+                            <h5 className="">Suggested Banks</h5>
+                            <p>Select the bank you're sending to:</p>
+                            <p className={styles.accountNumberSection}>Account Number: {accountNumber}</p>
+                            {showAllBanks ?
+                              <Input
+                                placeholder="Search Banks"
+                                style={{ marginTop: '15px' }}
+                                onChange={handleSearchInput}
+                                value={searchValue}
+                              />
+                              :
+                              ''}
+                          </div>
+                          <div
+                            style={{ height: '550px', overflowY: 'auto', overflowX: 'hidden' }}>
+                            {showAllBanks ? bankData && bankData.map((bank) => (
+                              <React.Fragment key={bank.code}>
+                                <Radio value={bank} className="bank-radio">
+                                  {bank.name}
+                                </Radio>
+                                <Divider />
+                              </React.Fragment>
+                            ))
+                              :
+                              suggestedBanks && suggestedBanks.map((bank) => (
+                                <React.Fragment key={bank.code}>
+                                  <Radio value={bank} className="bank-radio">
+                                    {bank.name}
+                                  </Radio>
+                                  <Divider />
+                                </React.Fragment>
+                              ))
+                            }
+                            <div className={styles.viewAllBtn}>
+                              {showAllBanks ? '' :
+                                <button
+                                  onClick={handleViewAllBanks}
+                                >
+                                  View All Banks</button>
+                              }
+                            </div>
+                          </div>
+                        </Radio.Group>
+                      }
+                    </div>
+
+                  </Modal>
+
                 </div>
               )}
             </div>

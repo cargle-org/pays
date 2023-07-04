@@ -21,7 +21,7 @@ function TopBar() {
         <h3>Hello {name}✋</h3>
         <h6>Your dashboard today</h6>
       </div>
-      <div className={styles.balance}><Naira /><h5>₦{balance}</h5></div>
+      <div className={styles.balance}><h5>₦{balance}</h5></div>
     </div>
   );
 }

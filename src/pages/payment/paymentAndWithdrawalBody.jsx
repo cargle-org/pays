@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import MoneyIcon from "../../assets/naira.svg";
 import styles from "../../styles/components/paymentpage.module.css";
 import { fundWallet } from "../api/payment/fundWallet";
@@ -7,18 +8,32 @@ import { getProfile } from "../api/profile/getProfile";
 import Loading from "../components/loading";
 import { getBanks } from "../api/cashout/getAllBank";
 import { withdraw } from "../api/payment/withdraw";
+import { Modal, Radio, Divider, Input, Progress, Button } from "antd";
 import TransactionHistory from "./transactionHistory";
+import nubanChecker from "../components/nubanChecker";
+import axios from "axios";
 
 function PaymentAndWithdrawalBody() {
+  const router = useRouter();
+
   const [operation, setOperation] = useState("deposit");
   const [depositAmount, setDepositAmount] = useState(null);
   const [withdrawAmount, setWithdrawAmount] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [bankName, setBankName] = useState([]);
   const [bankCode, setBankCode] = useState("");
+  const [suggestedBanks, setSuggestedBanks] = useState([]);
+  const [otherBanks, setOtherBanks] = useState([]);
   const [accountNumber, setAccountNumber] = useState("");
+  const [accountName, setAccountName] = useState("");
   const [withdrawSuccess, setWithdrawSuccess] = useState(false);
   const [errMsg, setErrMsg] = useState("");
+  const [showAccountDetailsModal, setShowAccountDetailsModal] = useState(false)
+  const [showAllBanks, setShowAllBanks] = useState(false)
+  const [searchValue, setSearchValue] = useState("")
+  const [accountValidated, setAccountValidated] = useState(false)
+  const [showProgressBar, setShowProgressBar] = useState(false)
+  const [fetchPercentage, setFetchPercentage] = useState(70)
 
   const handleOperation = (e) => {
     setOperation(e.target.value);
@@ -60,6 +75,86 @@ function PaymentAndWithdrawalBody() {
     return <Loading />;
   }
 
+  const fetchBanks = (accountNumber) => {
+    const { suggestedBanks = [], otherBanks = [] } = nubanChecker.getAccountBanks(accountNumber, bankName);
+    setSuggestedBanks([...suggestedBanks]);
+    setOtherBanks([...otherBanks]);
+  }
+
+  const getAccountNumber = (e) => {
+    const { value } = e.target;
+    setAccountNumber(value)
+    if (value.length === 10) {
+      fetchBanks(value)
+      openAccountDetailsModal()
+    }
+  }
+
+  const handleBankSelection = async (e) => {
+    const { code, name } = e.target.value;
+    setShowProgressBar(true);
+    setBankCode(code);
+
+    try {
+      const response = await axios.get(`https://maylancer.org/api/nuban/api.php?account_number=${accountNumber}&bank_code=${code}`);
+      if (response?.status === 200 && response?.data.account_name) {
+        setFetchPercentage(100)
+        setAccountValidated(true)
+        setAccountName(response.data.account_name)
+        setShowAccountDetailsModal(false)
+      } else {
+        setAccountValidated(false)
+        setFetchPercentage(100)
+        setShowAccountDetailsModal(false)
+      }
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
+  const openAccountDetailsModal = () => {
+    setShowAccountDetailsModal(true);
+    setShowProgressBar(false);
+    setFetchPercentage(70);
+  }
+
+  const closeAccountDetailsModal = () => {
+    setShowAccountDetailsModal(false);
+    setShowAllBanks(false);
+    setFetchPercentage(70);
+    setShowProgressBar(false);
+  }
+
+  const handleViewAllBanks = () => {
+    setShowAllBanks(true);
+  }
+
+  const handleSearchInput = (e) => {
+    setSearchValue(e.target.value.toLowerCase());
+  };
+
+  const filterBank = ({ name = "" }) => {
+    if (searchValue) {
+      if (name.toLowerCase().includes(searchValue)) {
+        return true;
+      }
+      return false;
+    }
+    return true;
+  };
+
+  const disableWithdrawalBTN = () => {
+    if (!accountValidated) {
+      return true
+    }
+    // if (parseInt(myWithdrawal) > parseInt(balance)) {
+    //   return true
+    // }
+    return false
+  }
+
+  const bankData = bankName.filter(filterBank);
+
   return (
     <div className={styles.payment}>
       <h3>Deposit Withdrawal</h3>
@@ -75,6 +170,7 @@ function PaymentAndWithdrawalBody() {
               name="operation"
               defaultChecked
               onChange={handleOperation}
+              style={{ cursor: 'pointer' }}
             />
             <MoneyIcon />
             <span>Deposit cash</span>
@@ -85,6 +181,7 @@ function PaymentAndWithdrawalBody() {
               value="withdraw"
               name="operation"
               onChange={handleOperation}
+              style={{ cursor: 'pointer' }}
             />
             <MoneyIcon />
             <span>Withdraw cash</span>
@@ -116,34 +213,35 @@ function PaymentAndWithdrawalBody() {
                   value={withdrawAmount}
                   onChange={(e) => setWithdrawAmount(e.target.value)}
                   placeholder="Enter the amount you want to withdraw"
+                  max={10}
                 />
-                <div className={styles.one}>
-                  <label>Bank</label>
-                  <select
-                    name="banks"
-                    value={bankCode}
-                    onChange={(e) => setBankCode(e.target.value)}
-                  >
-                    <option value="">select a bank</option>
-                    {bankName?.map((banks) => (
-                      <option key={banks.id} value={banks.code}>
-                        {banks.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className={styles.one}>
+
+                <div className={styles.one} style={{ marginTop: '24px' }}>
                   <label>Account Number</label>
                   <input
                     type="number"
                     value={accountNumber}
-                    onChange={(e) => setAccountNumber(e.target.value)}
+                    onChange={getAccountNumber}
                     placeholder="Enter account number"
                   />
                 </div>
-                <button onClick={handleWithdraw}>
-                  Withdraw ({myWithdrawal})
-                </button>
+                <div style={{ marginTop: '6px' }}>
+                  {fetchPercentage === 100 && accountValidated ?
+                    <p style={{ color: 'green' }}>{accountName}</p>
+                    :
+                    fetchPercentage === 100 && !accountValidated ?
+                      <p style={{ color: 'red' }}>Unable to validate account, please try again </p>
+                      :
+                      ''
+                  }
+                </div>
+                <Button
+                  onClick={handleWithdraw}
+                  disabled={disableWithdrawalBTN()}
+                  className={styles.withdrawBtn}
+                >
+                  Withdraw (₦{myWithdrawal})
+                </Button>
               </div>
             ) : (
               <div className={styles.message}>
@@ -151,7 +249,7 @@ function PaymentAndWithdrawalBody() {
                   src="https://res.cloudinary.com/dmixz7eur/image/upload/v1677864171/chike/91068-message-sent-successfully-plane_1_dtltch.gif"
                   alt=""
                 />
-                <h6 style={{textAlign: "center"}}>Your withdrawal was successful</h6>
+                <h6 style={{ textAlign: "center" }}>Your withdrawal was successful</h6>
                 <div className={styles.buttons}>
                   <button onClick={() => router.push("/payment")}>
                     Ok Thanks
@@ -163,6 +261,98 @@ function PaymentAndWithdrawalBody() {
         )}
       </div>
       <TransactionHistory />
+      <Modal
+        bodyStyle={{ maxHeight: "700px", overflowY: 'hidden', overflowX: 'hidden' }}
+        open={showAccountDetailsModal}
+        footer={null}
+        className={styles.accountDetailsModal}
+        closable={false}
+        centered
+        width={500}
+        onCancel={closeAccountDetailsModal}
+        destroyOnClose
+      >
+        <div>
+          {showProgressBar ?
+            <div className={styles.progressBar}>
+              <Progress
+                percent={fetchPercentage}
+                status="active"
+                strokeColor="#410d85"
+                showInfo={false}
+              />
+              <p
+                style={{
+                  color: 'black',
+                  fontWeight: '600',
+                  justifyContent: 'center',
+                  display: 'flex'
+                }}
+              >Fetching Beneficiary Details
+              </p>
+              <p
+                style={{
+                  color: 'black',
+                  fontSize: '12px',
+                  justifyContent: 'center',
+                  display: 'flex',
+                  marginTop: '12px'
+                }}
+              >Please wait...</p>
+            </div>
+            :
+            <Radio.Group
+              onChange={handleBankSelection}
+              style={{ width: '100%' }}
+            >
+              <div style={{ marginBottom: '24px' }}>
+                <h5 className="">Suggested Banks</h5>
+                <p>Select the bank you're sending to:</p>
+                <p className={styles.accountNumberSection}>Account Number: {accountNumber}</p>
+                {showAllBanks ?
+                  <Input
+                    placeholder="Search Banks"
+                    style={{ marginTop: '15px' }}
+                    onChange={handleSearchInput}
+                    value={searchValue}
+                  />
+                  :
+                  ''}
+              </div>
+              <div
+                style={{ height: '550px', overflowY: 'auto', overflowX: 'hidden' }}>
+                {showAllBanks ? bankData && bankData.map((bank) => (
+                  <React.Fragment key={bank.code}>
+                    <Radio value={bank} className="bank-radio">
+                      {bank.name}
+                    </Radio>
+                    <Divider />
+                  </React.Fragment>
+                ))
+                  :
+                  suggestedBanks && suggestedBanks.map((bank) => (
+                    <React.Fragment key={bank.code}>
+                      <Radio value={bank} className="bank-radio">
+                        {bank.name}
+                      </Radio>
+                      <Divider />
+                    </React.Fragment>
+                  ))
+                }
+                <div className={styles.viewAllBtn}>
+                  {showAllBanks ? '' :
+                    <button
+                      onClick={handleViewAllBanks}
+                    >
+                      View All Banks</button>
+                  }
+                </div>
+              </div>
+            </Radio.Group>
+          }
+        </div>
+
+      </Modal>
     </div>
   );
 }
