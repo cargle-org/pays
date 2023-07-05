@@ -34,7 +34,6 @@ function PaymentAndWithdrawalBody() {
   const [accountValidated, setAccountValidated] = useState(false)
   const [showProgressBar, setShowProgressBar] = useState(false)
   const [fetchPercentage, setFetchPercentage] = useState(70)
-  const [depositLoading, setDepositLoading] = useState(false)
 
   const handleOperation = (e) => {
     setOperation(e.target.value);
@@ -57,8 +56,7 @@ function PaymentAndWithdrawalBody() {
   }, []);
 
   const handleDeposit = async () => {
-    setDepositLoading(true)
-    const res = await fundWallet({ depositAmount }, ()=>{  setDepositLoading(false)});
+    const res = await fundWallet({ depositAmount });
     const newWindow = window.open(res, "_blank", "noopener,noreferrer");
     if (newWindow) newWindow.opener = null;
   };
@@ -149,7 +147,7 @@ function PaymentAndWithdrawalBody() {
     if (!accountValidated) {
       return true
     }
-    if (withdrawAmount === null || myWithdrawal > balance || withdrawAmount === ""){
+    if (withdrawAmount === null || withdrawAmount === ""){
       return true
     }
     return false
