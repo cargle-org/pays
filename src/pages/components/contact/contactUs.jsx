@@ -33,7 +33,7 @@ function ContactUs() {
         setName("")
         setMessage("")
         setResponseMessage(
-          "Your message have been submitted successfully"
+          "Your message has been submitted successfully"
         );
       } else {
         setResponseMessage("");

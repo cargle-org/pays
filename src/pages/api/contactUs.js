@@ -13,7 +13,6 @@ export const contactUs = async (props) => {
         "Content-Type": "application/json",
       },
     });
-    console.log('response :>> ', response);
     return response.data;
   } catch (error) {
     return error.response.data

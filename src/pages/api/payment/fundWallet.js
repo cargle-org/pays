@@ -15,7 +15,6 @@ export const fundWallet = async ({ depositAmount }) => {
         //   Authorization: `Bearer ${token}`,
       },
     });
-    console.log('response :>> ', response);
     return response.data.data;
   } catch (error) {
     console.log("error", error);

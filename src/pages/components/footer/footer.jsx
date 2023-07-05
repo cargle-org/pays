@@ -11,10 +11,10 @@ function Footer() {
             <div className={styles.content}>
                 <p>Copyright @ pays.co</p>
                 <div className={styles.socials}>
-                <BsFacebook className={styles.icon}/>
-                <AiFillLinkedin className={styles.icon}/>
-                <AiOutlineTwitter className={styles.icon}/>
-                <GrInstagram className={styles.icon}/>
+                <a href="#" style={{color: 'white'}}><BsFacebook className={styles.icon}/></a>
+                <a href="https://www.linkedin.com/company/usepays-co/" target='_blank' rel='noreferrer' style={{color: 'white'}}><AiFillLinkedin className={styles.icon}/></a>
+                <a href="#" style={{color: 'white'}}><AiOutlineTwitter className={styles.icon}/></a>
+                <a href="https://instagram.com/usepays_co" target='_blank' rel='noreferrer' style={{color: 'white'}}><GrInstagram className={styles.icon}/></a>
                 </div>
             </div>
         </div>

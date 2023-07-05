@@ -40,13 +40,12 @@ function SignUp() {
     formData.append("phone", phoneNum);
     formData.append("email", email);
     formData.append("password", password);
-    
-    console.log('companyLogo :>> ', companyLogo);
+
     if (companyLogo) {
       formData.append("companyLogo", companyLogo);
-    } 
-    
-    
+    }
+
+
     if (password.length <= 4) {
       setErrorMsg("your password is too short");
     } else if (confirmPassword !== password) {
@@ -196,10 +195,11 @@ function SignUp() {
                     aria-describedby="uiddnote"
                     type="text"
                     placeholder="Enter your company's name"
+                    style={{ margin: '8px 0px 20px 0'}}
                   />
                   <label>Company’s logo/image</label>
                   <br />
-                  <input type="file" onChange={handleFileInputChange} />
+                  <input type="file" onChange={handleFileInputChange}  style={{ margin: '8px 0px 20px 0'}} />
                   <label>Company’s Email Address</label>
                   <br />
                   <input
@@ -210,6 +210,7 @@ function SignUp() {
                     aria-describedby="uiddnote"
                     type="text"
                     placeholder="Enter your company's email address"
+                    style={{ margin: '8px 0px 20px 0'}}
                   />
                   <label>Company’s Phone Number</label>
                   <br />
@@ -221,6 +222,7 @@ function SignUp() {
                     // aria-describedby="uiddnote"
                     type="number"
                     placeholder="Enter your company's phoneNumber"
+                    style={{ margin: '8px 0px 20px 0'}}
                   />
                   <label>Password</label>
                   <br />
@@ -233,6 +235,7 @@ function SignUp() {
                       aria-describedby="uiddnote"
                       type={!viewPassword ? "password" : "text"}
                       placeholder="Enter your password"
+                      style={{ margin: '8px 0px 20px 0'}}
                     />
                     {viewPassword ? (
                       <AiFillEyeInvisible
@@ -252,6 +255,7 @@ function SignUp() {
                     aria-describedby="uiddnote"
                     type="password"
                     placeholder="Re-Enter your password"
+                    style={{ margin: '8px 0px 20px 0'}}
                   />
                   <button type="submit">Create Account</button>
                 </form>

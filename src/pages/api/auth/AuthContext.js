@@ -26,7 +26,6 @@ const AuthProvider = (props) => {
       }
       );
 
-      // console.log("response", response);
       setIsLoading(false);
       router.push("/accountcreated");
       setSuccess(true);
@@ -54,7 +53,6 @@ const AuthProvider = (props) => {
           },
         }
       );
-      // console.log("response", response);
       router.push("/dashboard");
       const accessToken = response.data.data.token;
       const user_id = response.data.data.user._id;

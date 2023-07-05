@@ -32,14 +32,15 @@ function TransactionHistory() {
     }
   }
   return (
-    <div id={styles.table}>
+    <div className={styles.voucher}>
         <ToastContainer />
       <br />
       <h3>Transaction history</h3>
-      <table>
+    <div id={styles.table}>
+    <table>
         <thead>
           <tr>
-            <th>Img</th>
+            <th>S/N</th>
             <th>Amount</th>
             <th>Status</th>
             <th>Transaction Ref</th>
@@ -54,16 +55,17 @@ function TransactionHistory() {
               key={transaction?._id}
             >
               <td>{index + 1}</td>
-              <td>{transaction?.amount}</td>
+              <td>₦{transaction?.amount}</td>
               <td>{transaction?.status}</td>
-              <td>N{transaction?.transactionReference}</td>
+              <td>{transaction?.transactionReference}</td>
               <td>{handleSlice(transaction?.createdAt)}</td>
-              <td>N{transaction?.type}</td>
+              <td>{transaction?.type}</td>
               <td>{transaction.status === "initiated" ? <button onClick={() => handleVerifyPayment(transaction.paymentReference)}>Verify</button> : ""}</td>
             </tr>
           ))}
         </tbody>
       </table>
+    </div>
     </div>
   );
 }

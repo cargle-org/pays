@@ -20,7 +20,6 @@ export const getTransactions = async (props) => {
         },
       }
     );
-    console.log('transactions :>> ', response);
     return response.data.data;
   } catch (error) {
     console.log("error", error);
