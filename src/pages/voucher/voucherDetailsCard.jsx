@@ -10,7 +10,7 @@ function VoucherDetailsCard({ data }) {
         <h5>{data?.title}</h5>
       </div>
       <div className={styles.detail}>
-        <img src={data.thumbnail === '' ? '/createVoucher.svg' : data.thumbnail} alt="" style={{ objectFit: "contain" }} />
+        <img src={data?.thumbnail === '' ? '/createVoucher.svg' : data?.thumbnail} alt="" style={{ objectFit: "contain" }} />
       </div>
       <div className={styles.detail}>
         <label>Description</label>

@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import Loading from "../components/loading";
 import { getAVoucherDetails } from "../api/cashout/getAVoucherDetails";
 import { Modal, Radio, Divider, Input, Progress, Button } from "antd";
-import nubanChecker from "../components/nubanChecker";
+import getAccountBanks from "../components/nubanChecker";
 import axios from "axios";
 import Logo from "../../assets/logo.svg";
 
@@ -20,7 +20,6 @@ function CashoutVoucher() {
   const [email, setEmail] = useState("");
   const [accountNumber, setAccountNumber] = useState("");
   const [suggestedBanks, setSuggestedBanks] = useState([]);
-  const [otherBanks, setOtherBanks] = useState([]);
   const [accountName, setAccountName] = useState("");
   const [voucherCode, setVoucherCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -80,9 +79,8 @@ function CashoutVoucher() {
   }
 
   const fetchBanks = (accountNumber) => {
-    const { suggestedBanks = [], otherBanks = [] } = nubanChecker.getAccountBanks(accountNumber, bankName);
+    const suggestedBanks = getAccountBanks(accountNumber, bankName && bankName);
     setSuggestedBanks([...suggestedBanks]);
-    setOtherBanks([...otherBanks]);
   }
 
   const getAccountNumber = (e) => {
@@ -112,7 +110,9 @@ function CashoutVoucher() {
         setShowAccountDetailsModal(false)
       }
     } catch (error) {
-      console.log("error", error);
+      setAccountValidated(false)
+      setFetchPercentage(100)
+      setShowAccountDetailsModal(false)
     }
   };
 
@@ -207,15 +207,6 @@ function CashoutVoucher() {
                       <div> </div>
                     )}
                   </div>
-                  {/* <div className={styles.one}>
-                    <label>Full Account Name</label>
-                    <input
-                      type="text"
-                      value={fullName}
-                      onChange={(e) => setFullName(e.target.value)}
-                      placeholder="Enter your full account name"
-                    />
-                  </div> */}
                   <div className={styles.one}>
                     <label>Account Number</label>
                     <input
@@ -235,22 +226,6 @@ function CashoutVoucher() {
                       }
                     </div>
                   </div>
-
-                  {/* <div className={styles.one}>
-                    <label>Bank</label>
-                    <select
-                      name="banks"
-                      value={bankCode}
-                      onChange={(e) => setBankCode(e.target.value)}
-                    >
-                      <option value="">select a bank</option>
-                      {bankName?.map((banks) => (
-                        <option key={banks.id} value={banks.code}>
-                          {banks.name}
-                        </option>
-                      ))}
-                    </select>
-                  </div> */}
                   <div
                     className={styles.one}
                     style={{ marginTop: '6px' }}
@@ -311,8 +286,8 @@ function CashoutVoucher() {
                           style={{ width: '100%' }}
                         >
                           <div style={{ marginBottom: '24px' }}>
-                            <h5 className="">Suggested Banks</h5>
-                            <p>Select the bank you're sending to:</p>
+                            <h5>Suggested Banks</h5>
+                            <p>Select the bank you&apos;re sending to:</p>
                             <p className={styles.accountNumberSection}>Account Number: {accountNumber}</p>
                             {showAllBanks ?
                               <Input
@@ -370,7 +345,7 @@ function CashoutVoucher() {
                 alt=""
               />
             ) : (
-              <img src='/createVoucher.svg' alt="" style={{ objectFit: 'cover'}}/>
+              <img src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681288615/chike/pexels-ketut-subiyanto-4559951_y7tzis.jpg" alt="" style={{ objectFit: 'cover' }} />
             )}
           </div>
         </div>

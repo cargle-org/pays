@@ -10,20 +10,19 @@ import { getBanks } from "../api/cashout/getAllBank";
 import { withdraw } from "../api/payment/withdraw";
 import { Modal, Radio, Divider, Input, Progress, Button } from "antd";
 import TransactionHistory from "./transactionHistory";
-import nubanChecker from "../components/nubanChecker";
+import getAccountBanks from "../components/nubanChecker";
 import axios from "axios";
 
 function PaymentAndWithdrawalBody() {
   const router = useRouter();
 
   const [operation, setOperation] = useState("deposit");
-  const [depositAmount, setDepositAmount] = useState(null);
-  const [withdrawAmount, setWithdrawAmount] = useState(null);
+  const [depositAmount, setDepositAmount] = useState('');
+  const [withdrawAmount, setWithdrawAmount] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [bankName, setBankName] = useState([]);
   const [bankCode, setBankCode] = useState("");
   const [suggestedBanks, setSuggestedBanks] = useState([]);
-  const [otherBanks, setOtherBanks] = useState([]);
   const [accountNumber, setAccountNumber] = useState("");
   const [accountName, setAccountName] = useState("");
   const [withdrawSuccess, setWithdrawSuccess] = useState(false);
@@ -76,9 +75,8 @@ function PaymentAndWithdrawalBody() {
   }
 
   const fetchBanks = (accountNumber) => {
-    const { suggestedBanks = [], otherBanks = [] } = nubanChecker.getAccountBanks(accountNumber, bankName);
+    const suggestedBanks = getAccountBanks(accountNumber, bankName && bankName);
     setSuggestedBanks([...suggestedBanks]);
-    setOtherBanks([...otherBanks]);
   }
 
   const getAccountNumber = (e) => {
@@ -108,7 +106,9 @@ function PaymentAndWithdrawalBody() {
         setShowAccountDetailsModal(false)
       }
     } catch (error) {
-      console.log("error", error);
+      setAccountValidated(false)
+      setFetchPercentage(100)
+      setShowAccountDetailsModal(false)
     }
   };
 
@@ -147,7 +147,13 @@ function PaymentAndWithdrawalBody() {
     if (!accountValidated) {
       return true
     }
-    if (withdrawAmount === null || withdrawAmount === ""){
+    if (withdrawAmount === null || withdrawAmount === "") {
+      return true
+    }
+    if (withdrawAmount === "0") {
+      return true
+    }
+    if (parseFloat(balance) < parseFloat(myWithdrawal)) {
       return true
     }
     return false
@@ -196,9 +202,9 @@ function PaymentAndWithdrawalBody() {
               onChange={(e) => setDepositAmount(e.target.value)}
               placeholder="0"
             />
-            <button 
-            onClick={handleDeposit} 
-            disabled={depositAmount === null || depositAmount === '' || depositAmount < 1000 ? true : false}>Deposit (₦{myDeposit})
+            <button
+              onClick={handleDeposit}
+              disabled={depositAmount === null || depositAmount === '' || depositAmount < 1000 ? true : false}>Deposit (₦{myDeposit})
             </button>
           </div>
         ) : (
@@ -310,7 +316,7 @@ function PaymentAndWithdrawalBody() {
             >
               <div style={{ marginBottom: '24px' }}>
                 <h5 className="">Suggested Banks</h5>
-                <p>Select the bank you're sending to:</p>
+                <p>Select the bank you&apos;re sending to:</p>
                 <p className={styles.accountNumberSection}>Account Number: {accountNumber}</p>
                 {showAllBanks ?
                   <Input

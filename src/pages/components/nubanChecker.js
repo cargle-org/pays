@@ -2,23 +2,24 @@ const seed = "373373373373";
 const nubanLength = 10;
 const serialNumLength = 9;
 
-export default {
-  getAccountBanks: (accountNumber, banks) => {
 
-    let suggestedBanks = [];
-    let otherBanks = []
+const getAccountBanks = (accountNumber, banks) => {
 
-    banks.forEach(({ code, name }) => {
-      if (isBankAccountValid(accountNumber, code)) {
-        suggestedBanks.push({ code, name });
-      } else {
-        otherBanks.push({ code, name })
-      }
-    });
+  let suggestedBanks = [];
+  let otherBanks = [];
 
-    return { suggestedBanks, otherBanks };
-  }
+  banks && banks.map && banks.map(({ code, name }) => {
+    if (isBankAccountValid(accountNumber, code)) {
+      suggestedBanks.push({ code, name });
+    } else {
+      otherBanks.push({ code, name })
+    }
+  });
+
+  return suggestedBanks;
 }
+
+
 
 const isBankAccountValid = (accountNumber, bankCode) => {
   if (!accountNumber || !accountNumber.length == nubanLength) {
@@ -58,3 +59,5 @@ const generateCheckDigit = (serialNumber, bankCode) => {
 
   return checkDigit;
 };
+
+export default getAccountBanks;
