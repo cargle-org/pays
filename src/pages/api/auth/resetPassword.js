@@ -20,7 +20,6 @@ export const resetPassword = async (props) => {
         },
       }
     );
-    console.log("response", response);
     return response.data.success;
   } catch (error) {
     console.log("error", error);

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "../../../styles/header.module.css";
 import { useRouter } from "next/router";
 import { getToken } from "@/pages/api/auth/auth";
+import { removeToken } from "@/pages/api/auth/auth";
 import MenuIcon from "../../../assets/menu.svg";
 import CloseIcon from "../../../assets/close.svg";
 import Logo from "../../../assets/logo.svg";
@@ -112,19 +113,38 @@ function Header() {
               >
                 Contact
               </li>
-              <li>
-                <button
-                  className={styles.btn}
-                  onClick={() => router.push("/login")}
-                >
-                  Login
-                </button>
-              </li>
-              <li>
-                <button onClick={() => router.push("/register")}>
-                  Sign Up
-                </button>
-              </li>
+
+              {token ?
+                <li>
+                  <button
+                    onClick={() => {
+                      removeToken();
+                      router.push("/login");
+                    }}
+                  >
+                    Logout
+                  </button>
+                </li>
+                :
+                <>
+                  <li>
+                    <button
+                      className={styles.btn}
+                      onClick={() => router.push("/login")}
+                    >
+                      Login
+                    </button>
+                  </li>
+                  <li>
+                    <button onClick={() => router.push("/register")}>
+                      Sign Up
+                    </button>
+                  </li>
+
+                </>
+
+              }
+
             </div>
           )}
         </div>

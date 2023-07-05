@@ -19,7 +19,6 @@ export const verifyPayment = async (props) => {
         },
       }
     );
-    console.log("pay", response);
     return response.data.message;
   } catch (error) {
     console.log("error", error);

@@ -16,16 +16,19 @@ function CreateVoucherBody() {
   const [errMSG, setErrMSG] = useState("");
   const [voucherThumbnail, setVoucherThumbnail] = useState("");
   const [cmgThumbnail, setcmgThumbnail] = useState(
-    "https://res.cloudinary.com/dmixz7eur/image/upload/v1681749139/5fcf0eb48684a01b5a30caff0896a2f8_qzi2jp.jpg"
+    "/createVoucher.svg"
   );
   const [noOfVouchers, setNoOfVouchers] = useState(0);
   const [amountPerVoucher, setAmountPerVoucher] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleFileInputChange = (event) => {
+const handleFileInputChange = (event) => {
+  if (event.target.files && event.target.files.length > 0) {
     setVoucherThumbnail(event.target.files[0]);
     setcmgThumbnail(URL.createObjectURL(event.target.files[0]));
-  };
+  }
+};
+
 
   const cmgFee = new Intl.NumberFormat().format(noOfVouchers * 10);
   const subTotalAmount = new Intl.NumberFormat().format(
@@ -48,7 +51,7 @@ function CreateVoucherBody() {
     } else if (noOfVouchers === 0 || amountPerVoucher === 0) {
       setErrMSG("number or vouchers or amount per voucher cannot be empty");
     } else if (voucherKey.length !== 5) {
-      setErrMSG("your voucher key must be five character");
+      setErrMSG("your voucher key must be 5 characters");
     } else {
       setIsLoading(true);
       const res = await createVoucher({ formData });
@@ -108,6 +111,7 @@ function CreateVoucherBody() {
                 placeholder="Enter five unique letter for your voucher key"
                 onChange={(e) => setVoucherKey(e.target.value)}
                 type="text"
+                maxLength={5}
               />
               <div className={styles.sortAmount}>
                 <div className={styles.input}>
@@ -115,7 +119,7 @@ function CreateVoucherBody() {
                   <input
                     value={noOfVouchers}
                     onChange={(e) => setNoOfVouchers(e.target.value)}
-                    type="text"
+                    type="number"
                   />
                 </div>
                 <div className={styles.input}>
@@ -123,7 +127,7 @@ function CreateVoucherBody() {
                   <input
                     value={amountPerVoucher}
                     onChange={(e) => setAmountPerVoucher(e.target.value)}
-                    type="text"
+                    type="number"
                   />
                 </div>
               </div>
@@ -138,7 +142,10 @@ function CreateVoucherBody() {
                   <h6>Total Amount</h6> <h4>₦{totalAmount}</h4>
                 </div>
               </div>
-              <button onClick={handleCreateVoucher}>
+              <button 
+              onClick={handleCreateVoucher} 
+              disabled={totalAmount === '0' || voucherKey === '' || amountPerVoucher === 0 || title === '' ? true : false}
+              >
                 Create Vouchers of (₦{totalAmount})
               </button>
             </div>
@@ -146,9 +153,9 @@ function CreateVoucherBody() {
           <div className={styles.colTwo}>
             <div className={styles.thumbnail}>
               {!voucherThumbnail ? (
-                <img src={cmgThumbnail} alt="" />
+                <img src={cmgThumbnail} alt="voucher-card"/>
               ) : (
-                <img src={cmgThumbnail} alt="" />
+                <img src={cmgThumbnail} alt="voucher-card" />
               )}
               <label className={styles.btn}>
                 <Camera />

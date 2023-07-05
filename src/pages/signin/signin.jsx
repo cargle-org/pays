@@ -41,7 +41,7 @@ function SignIn() {
             <div className={styles.logo} onClick={() => router.push("/")}>
             <Logo />
             </div>
-            <div className={styles.content}>
+            <div className={styles.content} style={{marginTop: '135px'}}>
               <form onSubmit={loginAccount}>
                 <h2>Log In</h2>
                 <h6>Welcome back to cash my gift</h6>

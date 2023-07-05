@@ -17,7 +17,6 @@ export const editProfile = async ({formData}) => {
         "x-access-token": `${token}`,
       },
     });
-    console.log('response :>> ', response.data.success);
     return response.data.success
   } catch (error) {
     console.log("error", error);

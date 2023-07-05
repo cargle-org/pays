@@ -62,8 +62,8 @@
     cursor: pointer;
 }   
 .voucher table img{
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     border-radius: 3px solid #55555599;
 }
@@ -80,13 +80,11 @@
 @media only screen and (max-width: 768px) {
     .voucher #table{
         width: 100%;
-        max-width: 360px;
         overflow-x: scroll;
         margin-bottom: 70px;
     }
     .voucher table{
         width: 100%;
-        max-width: 360px;
         overflow-x: scroll;
     }
     .voucher .search .input{

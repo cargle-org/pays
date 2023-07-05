@@ -21,7 +21,6 @@ export const changePassword = async (props) => {
         },
       }
     );
-    console.log("response", response);
     return response.data.success;
   } catch (error) {
     console.log("error", error);

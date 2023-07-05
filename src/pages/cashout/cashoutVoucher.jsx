@@ -185,7 +185,7 @@ function CashoutVoucher() {
                       placeholder="Enter your voucher code e.g XXX-638-hs8wn"
                     />
                   </div>
-                  <button onClick={handleCheckVoucher}>Check Voucher</button>
+                  <button onClick={handleCheckVoucher} disabled={voucherCode === '' ? true : false}>Check Voucher</button>
                 </div>
               ) : (
                 <div>
@@ -263,7 +263,7 @@ function CashoutVoucher() {
                       placeholder="Enter your email address"
                     />
                   </div>
-                  <button onClick={handleCashoutVoucher}>
+                  <button onClick={handleCashoutVoucher} disabled={!accountValidated || email === '' ? true : false}>
                     Cashout Voucher
                   </button>
                   <Modal
@@ -370,7 +370,7 @@ function CashoutVoucher() {
                 alt=""
               />
             ) : (
-              <img src={voucherDetails?.thumbnail} alt="" />
+              <img src='/createVoucher.svg' alt="" style={{ objectFit: 'cover'}}/>
             )}
           </div>
         </div>

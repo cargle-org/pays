@@ -62,17 +62,17 @@ function VoucherBody() {
   }, []);
 
   const handleGetVouchers = async () => {
-    if (!fromDate && toDate){
+    if (!fromDate && toDate) {
       setErrorMsg("you must select a date range")
-    } else if (fromDate && !toDate){
+    } else if (fromDate && !toDate) {
       setErrorMsg("you must select a date range")
-    } else{
+    } else {
       setErrorMsg("")
       const res = await getAllVouchers({ amount, fromDate, toDate, status })
       closeModal()
     }
   }
-  const handleResetVouchers =  () => {
+  const handleResetVouchers = () => {
     setAmount("")
     setFromDate("")
     setToDate("")
@@ -128,62 +128,61 @@ function VoucherBody() {
         className={styles.modal}
         contentLabel="Example Modal"
       >
-        <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-        <h3 ref={(_subtitle) => (subtitle = _subtitle)}>Filter your vouchers</h3>
-      <GrClose onClick={closeModal} style={{fontSize: 24}} />
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <h5 ref={(_subtitle) => (subtitle = _subtitle)}>Filter your vouchers</h5>
+          <GrClose onClick={closeModal} style={{ fontSize: 24, cursor: 'pointer' }} />
         </div>
         <br />
         {errorMsg ? (
-                <div className={styles.error}>{errorMsg}</div>
-              ) : (
-                <div></div>
-              )}
-          <label>Amount</label>
-          <input
-            type="number"
-            value={amount}
-            placeholder="Enter amount"
-            onChange={(e) => setAmount(e.target.value)}
-          />
-          <br /><br />
-          <label>From</label>
-          <input
-            type="date"
-            value={fromDate}
-            onChange={(e) => setFromDate(e.target.value)}
-          />
-          <br />
-          <br />
-          <label>To</label>
-          <br />
-          <input
-            type="date"
-            value={toDate}
-            onChange={(e) => setToDate(e.target.value)}
-          />
-          <br />
-          <br />
-          <label>Status</label>
-          <br />
-          <select name="" value={status} id="">
+          <div className={styles.error}>{errorMsg}</div>
+        ) : (
+          <div></div>
+        )}
+        <label>Amount</label>
+        <input
+          type="number"
+          value={amount}
+          placeholder="Enter amount"
+          onChange={(e) => setAmount(e.target.value)}
+        />
+        <br /><br />
+        <label>From</label>
+        <input
+          type="date"
+          value={fromDate}
+          onChange={(e) => setFromDate(e.target.value)}
+        />
+        <br />
+        <br />
+        <label>To</label>
+        <br />
+        <input
+          type="date"
+          value={toDate}
+          onChange={(e) => setToDate(e.target.value)}
+        />
+        <br />
+        <br />
+        <label>Status</label>
+        <br />
+        <select name="" value={status} id="">
           <option value="">Select an option</option>
           <option value="cashed">Cashed</option>
           <option value="pending">Pending</option>
-          </select>
-          <div className={styles.buttons}>
-            <br />
-            <button style={{opacity: 0}}>close</button>
-            <button onClick={handleResetVouchers} style={{ background: "#008000", marginRight: 16 }}>Reset</button>
-            <button onClick={handleGetVouchers}>Apply</button>
-          </div>
+        </select>
+        <div>
+          <br />
+          <button onClick={handleResetVouchers} style={{ background: "#008000", marginRight: '16px' }}>Reset</button>
+          <button onClick={handleGetVouchers}>Apply</button>
+        </div>
       </Modal>
       <div id={styles.table}>
         <table>
           <thead>
             <tr>
-              <th>Img</th>
+              <th>Image</th>
               <th>Title</th>
-              <th style={{ minWidth: 300 }}>Description</th>
+              <th>Description</th>
               <th>Total Amount</th>
               <th>Total Vouchers</th>
               <th>Voucher Cashed</th>
@@ -203,13 +202,17 @@ function VoucherBody() {
                 }
               >
                 <td>
-                  <img src={voucher.thumbnail} alt="" />
+                  {voucher.thumbnail === "" ?
+                    <img src="/createVoucher.svg" alt="voucher" /> : <img src={voucher.thumbnail} alt="" />
+                  }
+
+
                 </td>
                 <td>{voucher.title}</td>
                 <td>{voucher.description}</td>
-                <td>N{voucher.totalAmount}</td>
+                <td>₦{voucher.totalAmount}</td>
                 <td>{voucher.totalNumberOfVouchers}</td>
-                <td>N{voucher.totalCashedAmount}</td>
+                <td>₦{voucher.totalCashedAmount}</td>
                 <td>
                   <progress
                     id="file"

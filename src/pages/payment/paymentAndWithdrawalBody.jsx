@@ -34,6 +34,7 @@ function PaymentAndWithdrawalBody() {
   const [accountValidated, setAccountValidated] = useState(false)
   const [showProgressBar, setShowProgressBar] = useState(false)
   const [fetchPercentage, setFetchPercentage] = useState(70)
+  const [depositLoading, setDepositLoading] = useState(false)
 
   const handleOperation = (e) => {
     setOperation(e.target.value);
@@ -56,7 +57,8 @@ function PaymentAndWithdrawalBody() {
   }, []);
 
   const handleDeposit = async () => {
-    const res = await fundWallet({ depositAmount });
+    setDepositLoading(true)
+    const res = await fundWallet({ depositAmount }, ()=>{  setDepositLoading(false)});
     const newWindow = window.open(res, "_blank", "noopener,noreferrer");
     if (newWindow) newWindow.opener = null;
   };
@@ -147,9 +149,9 @@ function PaymentAndWithdrawalBody() {
     if (!accountValidated) {
       return true
     }
-    // if (parseInt(myWithdrawal) > parseInt(balance)) {
-    //   return true
-    // }
+    if (withdrawAmount === null || myWithdrawal > balance || withdrawAmount === ""){
+      return true
+    }
     return false
   }
 
@@ -189,14 +191,17 @@ function PaymentAndWithdrawalBody() {
         </div>
         {operation === "deposit" ? (
           <div className={styles.deposit}>
-            <label>Amount</label>
+            <label>Amount (Minimum of ₦1,000)</label>
             <input
               type="number"
               value={depositAmount}
               onChange={(e) => setDepositAmount(e.target.value)}
               placeholder="0"
             />
-            <button onClick={handleDeposit}>Deposit (₦{myDeposit})</button>
+            <button 
+            onClick={handleDeposit} 
+            disabled={depositAmount === null || depositAmount === '' || depositAmount < 1000 ? true : false}>Deposit (₦{myDeposit})
+            </button>
           </div>
         ) : (
           <div className={styles.withdraw}>
@@ -235,13 +240,13 @@ function PaymentAndWithdrawalBody() {
                       ''
                   }
                 </div>
-                <Button
+                <button
                   onClick={handleWithdraw}
                   disabled={disableWithdrawalBTN()}
                   className={styles.withdrawBtn}
                 >
                   Withdraw (₦{myWithdrawal})
-                </Button>
+                </button>
               </div>
             ) : (
               <div className={styles.message}>

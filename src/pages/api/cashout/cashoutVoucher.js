@@ -11,7 +11,6 @@ export const cashoutVoucher = async (props) => {
       accountNumber: props.accountNumber,
       email: props.email,
     },);
-    console.log('res', response)
     return response.data;
   } catch (error) {
     console.log("error", error);

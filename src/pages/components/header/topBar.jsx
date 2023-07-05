@@ -1,6 +1,5 @@
 import { getProfile } from "@/pages/api/profile/getProfile";
 import React, { useEffect, useState } from "react";
-import Naira from "../../../assets/naira.svg"
 import styles from '../../../styles/components/topbar.module.css'
 
 function TopBar() {
@@ -11,7 +10,7 @@ function TopBar() {
   useEffect(() => {
     (async () => {
       const res = await getProfile();
-      setBalance(new Intl.NumberFormat().format(res.walletBalance));
+      setBalance(new Intl.NumberFormat().format(res.walletBalance && res.walletBalance));
       setName(res.name)
     })();
   }, []);

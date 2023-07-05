@@ -17,7 +17,6 @@ export const withdraw = async (props) => {
         //   Authorization: `Bearer ${token}`,
       },
     });
-    console.log('response :>> ', response);
     return response.data.success;
   } catch (error) {
     console.log("error", error);

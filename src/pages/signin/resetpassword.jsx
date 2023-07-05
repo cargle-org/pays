@@ -30,7 +30,6 @@ function ResetPassword() {
         resetToken,
         passwordTwo,
       });
-      console.log("res :>> ", res);
       if (res) {
         setResponseMessage(
           "Your Password have been changed successfully, please login to continue"

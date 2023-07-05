@@ -117,6 +117,16 @@ label{
   margin-top: 20px;
 }
 
+button[disabled]{
+  background-color: grey;
+  pointer-events: auto! important;
+  cursor: not-allowed! important;
+}
+
+button[disabled]:hover{
+  background-color: grey;
+}
+
 button{
   height: 50px;
   color: #fff;

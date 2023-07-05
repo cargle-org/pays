@@ -6,6 +6,7 @@
   overflow-y: scroll;
   background: #f6f8fa;
 }
+
 .aboutUs .container {
   width: 100%;
   max-width: 1200px;
@@ -15,6 +16,7 @@
   align-items: center;
   margin: auto;
 }
+
 .aboutUs .container .row {
   display: flex;
   flex-wrap: wrap;
@@ -22,16 +24,19 @@
   padding: 0%;
   margin: 0%;
 }
+
 .aboutUs .container .row .colOne {
   max-width: 48%;
   z-index: 100;
 }
+
 .aboutUs .colOne .buttons {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   margin-bottom: 20px;
 }
+
 .aboutUs .colOne .btn {
   height: 50px;
   color: var(--primary-color);
@@ -49,6 +54,7 @@
   margin-right: 16px;
   cursor: pointer;
 }
+
 .aboutUs .colOne .btn .icon {
   background-color: var(--primary-color);
   color: #fff;
@@ -58,6 +64,7 @@
   padding: 12px;
   margin-left: 20px;
 }
+
 .aboutUs .colOne .btnTwo {
   height: 50px;
   color: var(--background);
@@ -73,6 +80,7 @@
   font-weight: 400;
   cursor: pointer;
 }
+
 .aboutUs .colOne .btnTwo .icon {
   background-color: var(--background);
   color: var(--primary-color);
@@ -82,18 +90,22 @@
   padding: 12px;
   margin-left: 28px;
 }
+
 .aboutUs .container h1 {
   color: var(--primary-color);
   line-height: 68px;
 }
+
 .aboutUs .container h1 span {
   color: #555;
 }
+
 .aboutUs .container h5 {
   margin: 30px 0px;
   font-weight: 400;
   max-width: 600px;
 }
+
 .aboutUs .container .row .colTwo {
   width: 52%;
   z-index: 10;
@@ -103,6 +115,13 @@
   display: flex;
   align-items: center;
 }
+
+@media only screen and (max-width: 768px) {
+  .aboutUs .container .row .colTwo {
+    min-height: 100px;
+  }
+}
+
 .aboutUs .container .row .colTwo img {
   /* height: 100%; */
   margin: 0;
@@ -123,11 +142,13 @@
   z-index: 100;
   margin-top: -18px;
 }
+
 .mission .container {
   height: auto;
   max-width: 1200px;
   margin: auto;
 }
+
 .mission .container .row {
   display: flex;
   flex-wrap: wrap;
@@ -137,33 +158,40 @@
   padding: 0%;
   align-items: center;
 }
-.mission .container .row .col{
+
+.mission .container .row .col {
   margin: 0;
   padding: 0%;
   text-align: left;
 }
-.mission .container .row .image img{
+
+.mission .container .row .image img {
   width: 100%;
   height: auto;
 }
+
 .mission .container .row .flex {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   font-size: 18px;
 }
-.mission .container .row .flex h5{
+
+.mission .container .row .flex h5 {
   margin-left: 16px;
 }
-.mission .container .row .col{
+
+.mission .container .row .col {
   margin: 0;
   padding: 0%;
   width: 48%;
-} 
-.mission .container .row h2{
+}
+
+.mission .container .row h2 {
   margin-bottom: 32px;
 }
-.mission .container .row  p{
+
+.mission .container .row p {
   width: auto;
   color: #ddd;
   font-weight: 300;
@@ -177,6 +205,7 @@
   margin: 0%;
   padding: 0%;
 }
+
 .subscribe .container {
   max-width: 1200px;
   margin: auto;
@@ -185,6 +214,7 @@
   display: flex;
   justify-content: center;
 }
+
 .subscribe .container .content {
   max-width: 600px;
   padding: 32px;
@@ -193,39 +223,49 @@
   border-radius: 32px;
   box-shadow: 0px 10px 50px -12px #1919251a;
 }
+
 .subscribe .container .content h2 {
   margin-top: 10px;
   color: var(--primary-color);
 }
+
 .subscribe .container .content h6 {
   margin: 20px;
 }
+
 .subscribe .container .content button {
   margin: 20px;
 }
+
 @media only screen and (max-width: 768px) {
   .aboutUs .container {
     margin: 20px;
     width: calc(100% - 40px);
   }
+
   .aboutUs .container h1 {
     font-size: 40px;
     line-height: 48px;
   }
+
   .aboutUs .container h5 {
     font-size: 14px;
   }
+
   .aboutUs .container .row .colOne {
     max-width: 100%;
   }
+
   .aboutUs .container .row .colTwo {
     width: 100%;
     margin: 0;
   }
+
   .aboutUs .container .row .colTwo img {
     width: 100%;
     margin: 24px 0;
   }
+
   .aboutUs .colOne .btnTwo {
     margin-top: 20px;
   }

@@ -7,7 +7,6 @@ export const getAVoucherDetails = async (props) => {
     const response = await axios.post(URI_MAP.cmg.fetch_a_voucher_details, {
       voucherCode: props.voucherCode,
     },);
-    console.log('res', response)
     return response.data;
   } catch (error) {
     console.log("error", error);
