@@ -1,10 +1,10 @@
-const BASE_URL = "https://usepays-api.herokuapp.com/api/";
+ export const BASE_URL = "https://cashmygift-api-production.up.railway.app/api/";
 
-
+ 
 const URI_MAP = {
   cmg: {
     register: `${BASE_URL}auth/register`,
-    login: `${BASE_URL}auth/login/`,
+    login: `${BASE_URL}auth/login`,
     create_voucher: `${BASE_URL}utils/voucher/create`,
     fund_wallet: `${BASE_URL}utils/wallet/fund`,
     withdraw_from_wallet: `${BASE_URL}utils/wallet/withdraw`,
@@ -22,6 +22,10 @@ const URI_MAP = {
     fetch_a_voucher_details: `${BASE_URL}utils/voucher/one`,
     edit_profile: `${BASE_URL}user/edit`,
     contact_us: `${BASE_URL}utils/contact-us`,
+    create_link: `${BASE_URL}utils/links/create`,
+    pay_to_link: `${BASE_URL}utils/links/pay`,
+    get_all_links: `${BASE_URL}utils/user/links`,
+    get_categories:  `${BASE_URL}utils/links/categories`,
   },
 };
 

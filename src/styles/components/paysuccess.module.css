@@ -1,0 +1,222 @@
+.paymentSuccessPage {
+    width: 100%;
+    display: flex;
+    gap: 2px;
+    height: 100vh;
+}
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    flex: 1;
+}
+.back{
+    position: absolute;
+    left: 20px;
+    top: 50px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.successBanner {
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+    position: relative;
+}
+.banner{
+    background-color: white;
+    width: fit-content;
+    min-width: 300px;
+    border-radius: 25px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.banner .sharebuttons {
+    margin: 1rem 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.banner .sharebuttons button{
+    background-color: transparent;
+    color: #333;
+    min-width: 70px !important;
+}
+.banner img{
+    margin: 1rem auto;
+}
+.bannerDesc{
+    background-color: #F0F7FD;
+    width: 100%;
+    border-radius: 25px;
+    padding: 1.5rem 1rem;
+}
+.bannerDesc p{
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+.bannerDesc h3{
+    color: #1F0047;
+}
+.link{
+    border: 1px solid  #7b88ab60;
+    width: 100%;
+    padding: .5rem 1rem;
+    margin: 2rem 0;
+    border-radius: 8px;
+    color: #1F0047;
+    font-weight: 600;
+    overflow-x: auto;
+}
+.buttons{
+    margin: 1rem auto 2rem;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+.copybtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    border-radius: 8px;
+    flex: 1;
+    white-space: nowrap;
+}
+
+.copyMsg{
+    font-weight: 500;
+    color: #1F0047;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 7px;
+}
+
+.sharebtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #1F0047;
+    border: 1px solid  #7b88ab60;
+    flex: 1;
+}
+.sharebtn:hover{
+    color: #fff;
+}
+
+.payForm{
+    max-width: 400px;
+    width: 100%;
+    margin: 0 1rem;
+    background-color: #fff;
+    padding:1.5rem 2rem;
+    border-radius: 25px;
+}
+.payForm h4{
+    text-align: center;
+    color: #1F0047;
+}
+.payForm p{
+    margin: 2rem 0;
+    font-size: 10px;
+    color: #7B88AB;
+    text-align: justify;
+}
+.payForm label{
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 1rem;
+}
+.payForm input, .payForm textarea {
+    margin-top: .5rem;
+    width: 100%;
+}
+.payForm input::placeholder{
+    color: #7B88AB;
+    font-weight: 300;
+}
+.payForm small{
+    font-size: 10px;
+    color: #7B88AB;
+    font-weight: 500;
+}
+.payForm small span{
+    font-weight: 600;
+}
+.messageLabel span {
+   background-color: #DDDDDD;
+  color: #93959D;
+  font-weight: 400;
+  font-size: 8px;
+  padding: .2rem 1rem;
+  border-radius: 5px;
+}
+.payBtn{
+    margin: 2rem auto;
+    width: 100%;
+    border-radius: 8px;
+}
+.thumbnailContainer{
+    flex: 1;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border-radius: 25px;
+}
+.thumbnailwrap{
+    width: 100%;
+}
+.thumbnail {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    padding: .5rem 1.5rem;
+    border: 1px solid  #7b88ab60;
+    margin: 1rem auto;
+    border-radius: 8px;
+}
+.thumbnail img {
+    width: 100%;
+    height: auto;
+}
+.error {
+    background-color: #ff000030;
+    color: #ff0000;
+    padding: 16px 12px;
+    text-align: center;
+    margin-bottom: 16px;
+    border-radius: 8px;
+  }
+
+@media (max-width: 990.98px) {
+    .paymentSuccessPage  .thumbnailContainer{
+        display: none;
+    }
+}
+@media (max-width: 768.98px) {
+    .thumbnailContainer{
+        display: none;
+    }
+}
+
+@media (max-width: 480.98px) {
+    .payForm{
+        padding: 1.5rem 1rem;
+    }
+}

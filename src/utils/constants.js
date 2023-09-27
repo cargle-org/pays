@@ -1,0 +1,1 @@
+export const linkURL = "https://www.usepays.co/";

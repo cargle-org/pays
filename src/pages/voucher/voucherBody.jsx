@@ -3,6 +3,7 @@ import CreateIcon from "../../assets/create.svg";
 import SearchIcon from "../../assets/search.svg";
 import FilterIcon from "../../assets/filter.svg";
 import EditIcon from "../../assets/edit.svg";
+import LinkIcon from "../../assets/chain.svg";
 import styles from "../../styles/components/voucherpage.module.css";
 import { useRouter } from "next/router";
 import { getAllVouchers } from "../api/vouchers/getAllVouchers";
@@ -87,6 +88,9 @@ function VoucherBody() {
       <div className={styles.title}>
         <h3>Vouchers</h3>
         <div className={styles.action}>
+          <button className={styles.linkButton} onClick={() => router.push("/paymentlink")}>
+            <LinkIcon /> Create Payment Link
+          </button>
           <button onClick={() => router.push("/createvouchers")}>
             <CreateIcon /> Create Voucher
           </button>
@@ -191,7 +195,7 @@ function VoucherBody() {
             </tr>
           </thead>
           <tbody>
-            {vouchers.map((voucher) => (
+            {vouchers?.map((voucher) => (
               <tr
                 key={voucher._id}
                 onClick={() =>

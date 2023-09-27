@@ -10,6 +10,7 @@ import { editProfile } from "../api/profile/editProfile";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { changePassword } from "../api/auth/changePassword";
+import PaymentLinks from "./paymentLinks";
 
 function ProfileBody() {
   const router = useRouter();
@@ -118,6 +119,14 @@ function ProfileBody() {
             className={tab === 2 ? styles.activeTab : styles.tab}
           >
             Change Password
+          </div>
+          <div
+            onClick={() => {
+              setTab(3);
+            }}
+            className={tab === 3 ? styles.activeTab : styles.tab}
+          >
+            View Payment Links
           </div>
         </div>
         {tab === 1 && (
@@ -285,6 +294,12 @@ function ProfileBody() {
             </div>
           </div>
         )}
+
+          {/* Get all payment links */}
+          {tab === 3 && (
+            <PaymentLinks />
+          )}
+        
       </div>
     </div>
   );
