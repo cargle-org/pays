@@ -54,8 +54,8 @@ const AuthProvider = (props) => {
         }
       );
       router.push("/dashboard");
-      const accessToken = response.data.data.token;
-      const user_id = response.data.data.user._id;
+      const accessToken = response?.data?.data?.token;
+      const user_id = response?.data?.data?.user._id;
       userauthstorage({ email, accessToken, user_id });
 
       setIsLoading(false);
