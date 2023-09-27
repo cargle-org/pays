@@ -30,7 +30,7 @@ const Makepayment = () => {
             if (res.success){
                 setLinkDetails(res.link)
             }
-            console.log(res, "hello");
+            // console.log(res, "hello");
            })();
        }
         },[slug])
@@ -70,7 +70,7 @@ const Makepayment = () => {
             }, 7000)
             setIsLoading(false);
           }
-        console.log (data);
+        // console.log (data);
       }
 
       if (isLoading || !linkDetails) {

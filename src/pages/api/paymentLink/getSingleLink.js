@@ -4,7 +4,7 @@ import { BASE_URL } from "../URI/URI_MAP";
 
 export const getSingleLink = async (id) => {
     const token = getToken();
-    console.log(id, 'hi');
+    // console.log(id, 'hi');
   try {
     const response = await axios.get(`${BASE_URL}utils/links/${id}`, {
         headers: {
