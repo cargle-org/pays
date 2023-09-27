@@ -60,7 +60,7 @@ function VoucherBody() {
       setVouchers(res);
       setIsLoading(false);
     })();
-  }, []);
+  }, [amount, fromDate, status, toDate]);
 
   const handleGetVouchers = async () => {
     if (!fromDate && toDate) {

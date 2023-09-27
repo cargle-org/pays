@@ -84,10 +84,7 @@ function IndividualVoucherPage() {
     setActiveTab(
       2
     );
-  }, [
-    id,
-    status,
-  ]);
+  }, [id, setActiveTab, status]);
 
   const handleStatusFilter =
     async (
