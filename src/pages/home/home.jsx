@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../components/header/header";
+const Header = dynamic(() => import('../components/header/header'), { ssr: false });
 import styles from "../../styles/Home.module.css";
 import { HiArrowUpRight } from "react-icons/hi2";
 import { useRouter } from "next/router";
@@ -7,6 +7,7 @@ import { getToken } from "../api/auth/auth";
 import Metrics from "./metrics";
 import Subscribe from "./subscribe";
 import Footer from "../components/footer/footer";
+import dynamic from "next/dynamic";
 
 function HomePage() {
   const router = useRouter();

@@ -7,11 +7,13 @@ export const checkDomWindow = () => {
 export function userauthstorage({
   email,
   accessToken,
-  user_id
+  user_id,
+  user
 }) {
   localStorage.setItem("email", email);
   localStorage.setItem("token", accessToken);
   localStorage.setItem('id', user_id);
+  localStorage.setItem('user', JSON.stringify(user));
 }
 
 export const getEmail = () => {
@@ -32,8 +34,13 @@ export const getUserId =() => {
     {return localStorage.getItem('id')}
     return null
 }
+export const getUserDetails = () => {
+  if (checkDomWindow())
+  {return JSON.parse(localStorage.getItem('user'))}
+  return null
+}
 
 export const removeToken = () => {
-  if (checkDomWindow()) localStorage.removeItem("token");
+  if (checkDomWindow()) localStorage.clear();
   return null;
 };

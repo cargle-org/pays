@@ -53,6 +53,7 @@ function SignIn() {
                 <label>Email</label>
                 <br />
                 <input
+                  style={{marginTop: '0.75rem'}}
                   autoComplete="on"
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}

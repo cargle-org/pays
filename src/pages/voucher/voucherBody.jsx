@@ -79,9 +79,9 @@ function VoucherBody() {
     setToDate("")
     setStatus("")
   }
-  if (isLoading) {
-    return <Loading />;
-  }
+  // if (isLoading) {
+  //   return <Loading />;
+  // }
 
   return (
     <div className={styles.voucher}>
@@ -180,7 +180,7 @@ function VoucherBody() {
           <button onClick={handleGetVouchers}>Apply</button>
         </div>
       </Modal>
-      <div id={styles.table}>
+     {isLoading ? <Loading /> :  <div id={styles.table}>
         <table>
           <thead>
             <tr>
@@ -234,7 +234,7 @@ function VoucherBody() {
             ))}
           </tbody>
         </table>
-      </div>
+      </div>}
     </div>
   );
 }

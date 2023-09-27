@@ -22,7 +22,9 @@ export const getProfile = async () => {
       }
     );
     // console.log("response", response);
-    return response.data.data.user;
+    if(response.data.success) {
+      return response.data.data.user;
+    }
   } catch (error) {
     console.log("error", error);
     // setErrorMsg(error);

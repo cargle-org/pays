@@ -226,7 +226,7 @@ function SignUp() {
                   />
                   <label>Password</label>
                   <br />
-                  <div className={styles.input}>
+                  <div className={styles.compInput}>
                     <input
                       autoComplete="on"
                       onChange={(e) => setPassword(e.target.value)}
