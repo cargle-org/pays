@@ -1,18 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styles from "../../styles/components/maindashboardpage.module.css"
 import { getProfile } from '../api/profile/getProfile';
-import { UserContext } from '../context/userContext';
+import { getUserDetails } from '../api/auth/auth';
 
 function Metrics() {
 
-    const [data, setData] = useState("")
-    const {userData} = useContext(UserContext);
+    const [userData, setData] = useState("")
 
     useEffect(() => {
-        (async () => {
-        const res = await getProfile();
-          setData(res)
-          })();
+        const data = getUserDetails();
+        setData(data);
       }, []);
 
   return (

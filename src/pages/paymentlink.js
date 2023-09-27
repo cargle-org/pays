@@ -12,7 +12,7 @@ function PaymentLink() {
   if (!token) {
     router.push("/login");
   }
-  }, []);
+  }, [router]);
   return (
     <div>
         <RenderCreatePaymentLink  />

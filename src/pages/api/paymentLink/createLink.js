@@ -4,7 +4,7 @@ import { getToken } from "../auth/auth";
 
 export const createLink = async (props) => {
 const token = getToken();
-console.log(props);
+// console.log(props);
   try {
     const response = await axios.post(URI_MAP.cmg.create_link, {...props}, {
       headers: {

@@ -7,13 +7,13 @@ import useAmountFormatter from '@/hooks/useAmountFormatter';
 import Loading from '../components/loading';
 import { payToLink } from '../api/paymentLink/payToLink';
 import { getSingleLink } from '../api/paymentLink/getSingleLink';
-import { UserContext } from '../context/userContext';
+import { getUserDetails } from '../api/auth/auth';
 
 const Makepayment = () => {
     const {formatAmount} = useAmountFormatter();
     const [amount, setAmount] = useState('');
     const [displayAmount, setDisplayAmount] = useState("");
-    const {userData} = useContext(UserContext);
+    const userData = getUserDetails();
     const [email, setEmail] = useState('');
     const [fullName, setFullName] = useState('');
     const router = useRouter();
@@ -30,7 +30,7 @@ const Makepayment = () => {
             if (res.success){
                 setLinkDetails(res.link)
             }
-            console.log(res, "hello");
+            // console.log(res, "hello");
            })();
        }
         },[slug])
@@ -70,7 +70,7 @@ const Makepayment = () => {
             }, 7000)
             setIsLoading(false);
           }
-        console.log (data);
+        // console.log (data);
       }
 
       if (isLoading || !linkDetails) {

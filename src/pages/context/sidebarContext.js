@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useContext } from "react";
 import { useState } from "react";
 import { createContext } from "react";
@@ -7,6 +7,7 @@ export const SidebarContext = createContext({});
 const SidebarProvider = (props) => {
   const [activeTab, setActiveTab] = useState(1);
   const [activePage, setActivePage] = useState(1)
+
 
 
   return (

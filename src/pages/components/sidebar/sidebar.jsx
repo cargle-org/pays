@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "../../../styles/components/sidebar.module.css";
 import { useRouter } from "next/router";
-import { removeToken } from "@/pages/api/auth/auth";
+import { getUserDetails, removeToken } from "@/pages/api/auth/auth";
 import Dashboardicon from "../../../assets/dashboard.svg";
 import Payment from "../../../assets/payment.svg";
 import Voucher from "../../../assets/voucher.svg";
@@ -14,6 +14,12 @@ import { getProfile } from "@/pages/api/profile/getProfile";
 function Sidebar() {
   const router = useRouter();
   const {activeTab, setActiveTab} = useSidebarContext()
+  const userData = getUserDetails();
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true)
+  },[])
 
   const [name, setName] = useState("");
   const [companyName, setCompanyName] = useState("");
@@ -54,8 +60,8 @@ function Sidebar() {
             <div className={styles.profile}>
               <img src="https://res.cloudinary.com/dmixz7eur/image/upload/v1678013020/chike/3d-avatar-teacher-png_l8hyf7.webp" alt="" />
               <div className={styles.info}>
-                <h6 >{name}</h6>
-                <p>{companyName}</p>
+                <h6 >{isClient ? userData?.name : name }</h6>
+                <p>{isClient ? userData?.companyName : companyName }</p>
               </div>
             </div>
           <li

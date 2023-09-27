@@ -14,6 +14,7 @@ function Header() {
 
   const [openMenu, setOpenMenu] = useState(false);
   const { activePage, setActivePage } = useSidebarContext();
+  
 
   return (
     <div className={styles.header}>

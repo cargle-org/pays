@@ -4,16 +4,16 @@ import styles from "../../../styles/components/createvoucherpage.module.css";
 import Back from "../../../assets/back.svg";
 import Loading from '../loading';
 import { useRouter } from 'next/router';
-import { UserContext } from '@/pages/context/userContext';
 import { createLink } from '@/pages/api/paymentLink/createLink';
 import useAmountFormatter from '@/hooks/useAmountFormatter';
 import { LinkContext } from '@/pages/context/linkContext';
 import {linkURL} from '../../../utils/constants'
+import { getUserDetails } from '@/pages/api/auth/auth';
 
 const CreatePaymentLinkBody = () => {
   const router = useRouter();
   const {formatAmount} = useAmountFormatter();
-  const { userData } = useContext(UserContext);
+  const userData = getUserDetails();
   const username = userData && userData?.name?.replace(/\s/g, '');
   const [title, setTitle] = useState("");
   const [formatTitle, setFormatTitle] = useState("")
@@ -25,6 +25,7 @@ const CreatePaymentLinkBody = () => {
   const [expiry, setExpiry] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const {categories} = useContext(LinkContext);
+
 
 // const handleFileInputChange = (event) => {
 //   if (event.target.files && event.target.files.length > 0) {

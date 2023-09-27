@@ -110,23 +110,34 @@
 }
 .signup .row .content button {
   width: 100%;
-  margin-top: 16px;
+  margin-top: 18px;
 }
-.signup .input{
+.signup .input, .signup .compInput{
   display: flex;
   align-items: center;
-  height: 40px;
+  height: 40px !important;
   padding: 0;
   padding-right: 12px;
   border-radius: 8px;
   font-size: 14px;
   border: 1px solid var(--stroke);
   font-family: var(--font-family);
+  margin: 10px 0 1rem 0;
+  z-index: 1;
 }
 .signup .input input{
   margin: 0;
   border: none;
   outline: none;
+  height: 30px !important;
+}
+
+.signup .compInput input {
+  margin: 0 0 -2px 0 !important;
+  border: none;
+  outline: none;
+  padding: 0 12px;
+  height: 30px !important;
 }
 .error {
   width: 100%;

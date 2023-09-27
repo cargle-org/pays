@@ -1,19 +1,29 @@
 import React, { useContext, useEffect, useState } from "react";
 import styles from '../../../styles/components/topbar.module.css'
-import { UserContext } from "@/pages/context/userContext";
+import Loading from "../loading";
+import { getUserDetails } from "@/pages/api/auth/auth";
+import { getProfile } from "@/pages/api/profile/getProfile";
 
 function TopBar() {
+  
+  const [userData, setUserData] = useState(null)
+  useEffect(() => {
+    const user = getUserDetails();
+    setUserData(user)
+  }, [])
 
   // const [balance, setBalance] = useState("");
   // const [name, setName] = useState("");
-  const {userData} = useContext(UserContext);
-  const balance = new Intl.NumberFormat().format(userData?.walletBalance)
+  const userBalance = new Intl.NumberFormat().format(userData?.walletBalance)
+  // const [isClient, setIsClient] = useState(false);
+ 
+
 
   // useEffect(() => {
   //   (async () => {
   //     const res = await getProfile();
   //     setBalance(new Intl.NumberFormat().format(res.walletBalance && res.walletBalance));
-  //     // setName(res.name)
+  //     setName(res.name)
   //   })();
   // }, []);
 
@@ -25,13 +35,19 @@ function TopBar() {
   //       console.warn('localStorage is not available.');
   //     }
   //  },[])
+  if (!userData) {
+    return <Loading />
+  }
   return (
     <div className={styles.topbar}>
-      <div className={styles.message}>
-        <h3>Hello {userData?.name}✋</h3>
-        <h6>Your dashboard today</h6>
-      </div>
-      <div className={styles.balance}><h5>₦{balance}</h5></div>
+     {userData && (
+      <><>
+          <div className={styles.message}>
+            <h3>Hello {userData?.name}✋</h3>
+            <h6>Your dashboard today</h6>
+          </div>
+        </><div className={styles.balance}><h5>₦{userBalance}</h5></div></>
+     )}
     </div>
   );
 }

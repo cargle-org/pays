@@ -53,12 +53,18 @@ const AuthProvider = (props) => {
           },
         }
       );
-      router.push("/dashboard");
+      if (response.data.success) {
+        router.push("/dashboard");
       const accessToken = response?.data?.data?.token;
       const user_id = response?.data?.data?.user._id;
-      userauthstorage({ email, accessToken, user_id });
-
+      const user = response?.data?.data?.user;
+      userauthstorage({ email, accessToken, user_id, user });
       setIsLoading(false);
+      }
+      else{
+        setIsLoading(false);
+        setLoginErrorMsg("There was an error logging you in, please try again.");
+      }
     } catch (error) {
       console.log("error", error);
       setIsLoading(false);
