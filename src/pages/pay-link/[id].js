@@ -15,6 +15,8 @@ const PayLink = () => {
     const [openShare, setOpenShare] = useState(false);
     const [copied, setCopied] = useState(false);
     const {id} = router.query;
+    const date = new Date(linkDetails?.linkExpiry);
+    console.log(date);
 
     useEffect(() => {
         if (id) {
@@ -59,7 +61,7 @@ const PayLink = () => {
         const emailBody =  <div>
         <h4>Hey there,</h4><br />
         <p> Here is the link to send funds to my personal usepays account for {linkDetails.title}: {window.location.href}.</p><br />
-        <p>This link is only valid until {new Date (linkDetails.linkExpiry)}</p>
+        <p>This link is only valid until {date} </p>
     </div>;
         window.location.href = `mailto:?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
       };
