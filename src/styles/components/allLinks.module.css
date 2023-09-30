@@ -29,3 +29,30 @@
     border-radius: 5px;
 }
 
+.tableLink {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-style: italic;
+    color: #1F0047;
+    font-weight: 700;
+}
+
+.copyMsg, .errCopyMsg{
+    font-weight: 500;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 7px;
+}
+
+.copyMsg{
+    color: #1F0047;
+}
+
+.errCopyMsg {
+    color: red;
+}

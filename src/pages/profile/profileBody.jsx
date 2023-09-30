@@ -4,7 +4,7 @@ import styles from "../../styles/components/profilepage.module.css";
 import { getProfile } from "../api/profile/getProfile";
 import Loading from "../components/loading";
 import Logout from "../../assets/logout.svg";
-import { removeToken } from "../api/auth/auth";
+import { removeToken, userauthstorage } from "../api/auth/auth";
 import { useRouter } from "next/router";
 import { editProfile } from "../api/profile/editProfile";
 import { ToastContainer, toast } from "react-toastify";
@@ -64,6 +64,8 @@ function ProfileBody() {
     } 
     const result = await editProfile({ formData });
     if (result) {
+      const res = await getProfile();
+      localStorage.setItem('user', JSON.stringify(res));
       const message = "Changes saved successfully";
       notify(message);
     } else {
