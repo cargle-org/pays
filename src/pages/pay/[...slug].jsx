@@ -60,11 +60,12 @@ const Makepayment = () => {
         }
         const res = await payToLink(data);
         if ( res && res?.success){
-            router.push(res.data);
+            router.push(res.data.response);
             clearFields();
           } else {
             clearFields();
             setErrMSG("Unable to complete your request at the moment.");
+            setIsLoading(false);
             setTimeout(() => {
                 setErrMSG('')
             }, 7000)
@@ -91,7 +92,7 @@ const Makepayment = () => {
                 <div></div>
               )}
               <h4>{linkDetails.title}</h4>
-            {linkDetails.description &&  <p>This link was created by {userData?.name} to fund {linkDetails.description} {linkDetails?.linkExpiry && <p>and it expires on {linkDetails.linkExpiry?.toLocaleString()}</p>}</p>}
+            {linkDetails.description &&  <p>This link was created by {userData?.name} to fund {linkDetails.description} {linkDetails?.linkExpiry && <span>and it expires on {linkDetails.linkExpiry?.toLocaleString()}</span>}</p>}
 
              <label htmlFor="name">Name</label>
              <input type="text" id="name" name="name" placeholder='Enter Your Name' value={fullName} onChange={(event) => setFullName(event.target.value)} required/>
