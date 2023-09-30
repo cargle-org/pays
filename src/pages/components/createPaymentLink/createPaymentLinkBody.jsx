@@ -66,7 +66,7 @@ const handleLinkCreation = async(e) => {
     amount: Number(amount),
     category,
     description,
-    linkExpiry: expiry,
+    linkExpiry: expiry || "2050-09-24T00:00",
     link: `${linkURL}pay/${username}/${formatTitle}`
   }
   const res = await createLink(data);

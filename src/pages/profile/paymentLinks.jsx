@@ -8,6 +8,8 @@ const PaymentLinks = () => {
     const [allLinks, setAllLinks] = useState([]);
     const [page, setPage] = useState(1);
     const [loading, setIsLoading] = useState(false);
+    const [copied,setCopied] = useState('')
+    const [errcopied, setErrcopied] = useState('')
 
     const handleNextClick = useCallback(() => {
         if (allLinks.length === 7){
@@ -38,6 +40,25 @@ const PaymentLinks = () => {
         return new Date(dateString).toLocaleDateString(undefined, options);
       };
 
+
+    const handleCopy = (link, id, title, expiry) => {
+        const givenDate = new Date(expiry);
+        const now = new Date();
+      
+        if (givenDate < now) {
+            setErrcopied(`Failed to copy, link has expired`)
+            setTimeout(() => {
+                setErrcopied('');
+            }, 3000)
+        } else if (givenDate > now) {
+            navigator.clipboard.writeText(link+`/${id}`);
+            setCopied(`${title}'s payment link copied to your clipboard`)
+            setTimeout(() => {
+                setCopied('');
+            }, 3000)
+        } 
+      };
+
       if(!allLinks.length || loading){
         return <Loading />
       };
@@ -45,6 +66,8 @@ const PaymentLinks = () => {
   return (
     <div className={styles.container}>
         <h3>All Payment Links</h3>
+        <p className={styles.copyMsg}>{copied}</p>
+        <p className={styles.errCopyMsg}>{errcopied}</p>
        <div className={styles.table}> 
        <table id={styles.table}>
             <thead>
@@ -59,11 +82,11 @@ const PaymentLinks = () => {
             </thead>
             <tbody>
              {allLinks.length && allLinks.map((link, i) => (
-                <tr key={i}>
+                <tr key={i} onClick={() => handleCopy(link.link,link._id,link.title, link.linkExpiry)}>
                     <td>{link.title}</td>
                     <td>{link.category}</td>
                     <td>{link.amount}</td>
-                    <td>{link.link}</td>
+                    <td className={styles.tableLink}>{link.link}/{link._id}</td>
                     <td>{formatDate(link.linkExpiry)}</td>
                     </tr>
              ))}
