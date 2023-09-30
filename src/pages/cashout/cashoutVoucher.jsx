@@ -97,24 +97,31 @@ function CashoutVoucher() {
     setShowProgressBar(true);
     setBankCode(code);
 
-    try {
-      const response = await axios.get(`https://maylancer.org/api/nuban/api.php?account_number=${accountNumber}&bank_code=${code}`);
-      if (response?.status === 200 && response?.data.account_name) {
-        setFetchPercentage(100)
-        setAccountValidated(true)
-        setAccountName(response.data.account_name)
-        setShowAccountDetailsModal(false)
-      } else {
-        setAccountValidated(false)
-        setFetchPercentage(100)
-        setShowAccountDetailsModal(false)
-      }
-    } catch (error) {
-      setAccountValidated(false)
-      setFetchPercentage(100)
-      setShowAccountDetailsModal(false)
-    }
-  };
+    axios.get(`https://api.monnify.com/api/v1/disbursements/account/validate?accountNumber=${accountNumber}&bankCode=${code}`,
+    {
+        headers: {
+            'Authorization': 'NX7HYMZPLZ8FGN990T84WW1S39ERQLRR',
+            'Content-Type': 'application/json'
+        }
+    })
+    .then((response) => {
+     if (response?.request.status === 200 && response?.data.responseBody.accountName) {
+       setFetchPercentage(100)
+       setAccountValidated(true)
+       setAccountName(response.data.responseBody.accountName)
+       setShowAccountDetailsModal(false)
+     }else {
+       setAccountValidated(false)
+       setFetchPercentage(100)
+       setShowAccountDetailsModal(false)
+     }
+    })
+    .catch((error) => {
+     setAccountValidated(false)
+     setFetchPercentage(100)
+     setShowAccountDetailsModal(false)
+ });
+};
 
   const openAccountDetailsModal = () => {
     setShowAccountDetailsModal(true);
