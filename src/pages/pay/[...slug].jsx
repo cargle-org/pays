@@ -13,7 +13,6 @@ const Makepayment = () => {
     const {formatAmount} = useAmountFormatter();
     const [amount, setAmount] = useState('');
     const [displayAmount, setDisplayAmount] = useState("");
-    const userData = getUserDetails();
     const [email, setEmail] = useState('');
     const [fullName, setFullName] = useState('');
     const router = useRouter();
@@ -22,8 +21,11 @@ const Makepayment = () => {
     const [errMSG, setErrMSG] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [linkDetails, setLinkDetails] = useState(null)
+    const [userData, setUserData] = useState({});
 
     useEffect(() => {
+      const data = getUserDetails();
+      setUserData(data);
        if (slug) {
         (async() => {
             const res = await getSingleLink(slug[2]);
