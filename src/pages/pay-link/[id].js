@@ -8,6 +8,7 @@ import {MdOutlineMailOutline, MdWhatsapp} from "react-icons/md"
 import { getSingleLink } from '../api/paymentLink/getSingleLink';
 import Loading from '../components/loading';
 import {BsFillInfoCircleFill} from 'react-icons/bs'
+import ReactDOMServer from 'react-dom/server';
 
 const PayLink = () => {
     const router = useRouter();
@@ -16,7 +17,6 @@ const PayLink = () => {
     const [copied, setCopied] = useState(false);
     const {id} = router.query;
     const date = new Date(linkDetails?.linkExpiry);
-    console.log(date);
 
     useEffect(() => {
         if (id) {
@@ -27,7 +27,6 @@ const PayLink = () => {
                 setLinkDetails(res.link);
               }
             } catch (error) {
-              // Handle errors (e.g., set an error state)
               console.error(error);
             }
           })();
@@ -51,20 +50,19 @@ const PayLink = () => {
       };
 
       const handleWhatsAppShare = () => {
-        const shareText= `Hey there, this is the link to fund my personal usepays account for ${linkDetails.title}: ${linkDetails.link}. Thank you for supporting me. This link is only valid until ${new Date (linkDetails.linkExpiry)}`
+        const shareText= `Hey there, this is the link to fund my personal usepays account for ${linkDetails.title}: ${linkDetails.link}. Thank you for supporting me. This link is only valid until ${date.toLocaleDateString()}`
         const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
         window.open(whatsappUrl);
       };
-    
+
       const handleEmailShare = () => {
         const emailSubject = 'My Personalized Payment link';
-        const emailBody =  <div>
-        <h4>Hey there,</h4><br />
-        <p> Here is the link to send funds to my personal usepays account for {linkDetails.title}: {window.location.href}.</p><br />
-        <p>This link is only valid until {date} </p>
-    </div>;
+        const emailBody = ReactDOMServer.renderToString(`Hey there! Here is the link to send funds to my personal usepays account for ${linkDetails.title}: ${window.location.href}. This link is only valid until ${date.toLocaleDateString()} 
+        `);
+      
         window.location.href = `mailto:?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
       };
+      
   return (
     <div className={styles.paymentSuccessPage}>
       <div className={styles.container}>
