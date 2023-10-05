@@ -50,14 +50,14 @@ const PayLink = () => {
       };
 
       const handleWhatsAppShare = () => {
-        const shareText= `Hey there, this is the link to fund my personal usepays account for ${linkDetails.title}: ${linkDetails.link}. Thank you for supporting me. This link is only valid until ${date.toLocaleDateString()}`
+        const shareText= `Hey there, this is the link to fund my personal usepays account for ${linkDetails.title}: ${linkDetails.link + `/${id}`}. Thank you for supporting me. This link is only valid until ${date.toLocaleDateString()}`
         const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText)}`;
         window.open(whatsappUrl);
       };
 
       const handleEmailShare = () => {
         const emailSubject = 'My Personalized Payment link';
-        const emailBody = ReactDOMServer.renderToString(`Hey there! Here is the link to send funds to my personal usepays account for ${linkDetails.title}: ${window.location.href}. This link is only valid until ${date.toLocaleDateString()} 
+        const emailBody = ReactDOMServer.renderToString(`Hey there! Here is the link to send funds to my personal usepays account for ${linkDetails.title}: ${linkDetails.link + `/${id}`}. This link is only valid until ${date.toLocaleDateString()} 
         `);
       
         window.location.href = `mailto:?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
