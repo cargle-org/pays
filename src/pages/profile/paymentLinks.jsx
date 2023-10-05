@@ -3,13 +3,15 @@ import { getAllLinks } from '../api/paymentLink/getAllLinks';
 import Loading from '../components/loading';
 import styles from '../../styles/components/allLinks.module.css'
 import {FaAngleLeft, FaAngleRight} from 'react-icons/fa6'
+import { useRouter } from 'next/router';
 
 const PaymentLinks = () => {
     const [allLinks, setAllLinks] = useState([]);
     const [page, setPage] = useState(1);
     const [loading, setIsLoading] = useState(false);
     const [copied,setCopied] = useState('')
-    const [errcopied, setErrcopied] = useState('')
+    const [errcopied, setErrcopied] = useState('');
+    const router = useRouter();
 
     const handleNextClick = useCallback(() => {
         if (allLinks.length === 7){
@@ -41,21 +43,22 @@ const PaymentLinks = () => {
       };
 
 
-    const handleCopy = (link, id, title, expiry) => {
+    const handleCopy = ( id, expiry) => {
         const givenDate = new Date(expiry);
         const now = new Date();
       
         if (givenDate < now) {
-            setErrcopied(`Failed to copy, link has expired`)
+            setErrcopied(`Can't share, link has expired`)
             setTimeout(() => {
                 setErrcopied('');
             }, 3000)
         } else if (givenDate > now) {
-            navigator.clipboard.writeText(link+`/${id}`);
-            setCopied(`${title}'s payment link copied to your clipboard`)
-            setTimeout(() => {
-                setCopied('');
-            }, 3000)
+            router.push(`/pay-link/${id}`)
+            // navigator.clipboard.writeText(link+`/${id}`);
+            // setCopied(`${title}'s payment link copied to your clipboard`)
+            // setTimeout(() => {
+            //     setCopied('');
+            // }, 3000)
         } 
       };
 
@@ -82,7 +85,7 @@ const PaymentLinks = () => {
             </thead>
             <tbody>
              {allLinks.length && allLinks.map((link, i) => (
-                <tr key={i} onClick={() => handleCopy(link.link,link._id,link.title, link.linkExpiry)}>
+                <tr key={i} onClick={() => handleCopy(link._id, link.linkExpiry)}>
                     <td>{link.title}</td>
                     <td>{link.category}</td>
                     <td>{link.amount}</td>
