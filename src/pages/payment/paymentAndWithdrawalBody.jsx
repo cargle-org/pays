@@ -55,9 +55,11 @@ function PaymentAndWithdrawalBody() {
   }, []);
 
   const handleDeposit = async () => {
+    setIsLoading(true);
     const res = await fundWallet({ depositAmount });
     const newWindow = window.open(res, "_blank", "noopener,noreferrer");
     if (newWindow) newWindow.opener = null;
+    setIsLoading(false);
   };
   const handleWithdraw = async () => {
     setErrMsg("");

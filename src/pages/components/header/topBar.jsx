@@ -43,7 +43,7 @@ function TopBar() {
      {userData && (
       <><>
           <div className={styles.message}>
-            <h3>Hello {userData?.name}✋</h3>
+            <h3>Hello {userData?.companyName ? userData?.firstName + ' ' + userData?.lastName : userData?.name }✋</h3>
             <h6>Your dashboard today</h6>
           </div>
         </><div className={styles.balance}><h5>₦{userBalance}</h5></div></>
