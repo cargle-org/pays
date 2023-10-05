@@ -1,1 +1,1 @@
-export const linkURL = "https://www.usepays.co/";
+export const linkURL = "http://localhost:3000/";
