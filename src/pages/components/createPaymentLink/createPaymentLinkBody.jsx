@@ -75,7 +75,7 @@ const handleLinkCreation = async(e) => {
     clearFields();
   } else {
     clearFields();
-    setErrMSG("Unable to generate your link. Please try again later");
+    setErrMSG("Unable to generate your link. Please check that you are using a unique title and try again");
     setTimeout(() => {
         setErrMSG('')
     }, 7000)

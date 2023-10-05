@@ -59,10 +59,12 @@ function Sidebar() {
         <div className={styles.bottom}>
             <div className={styles.profile}>
               <img src="https://res.cloudinary.com/dmixz7eur/image/upload/v1678013020/chike/3d-avatar-teacher-png_l8hyf7.webp" alt="" />
-              <div className={styles.info}>
-                <h6 >{isClient ? userData?.name : name }</h6>
-                <p>{isClient ? userData?.companyName : companyName }</p>
-              </div>
+             {isClient && (
+               <div className={styles.info}>
+               <h6 >{(userData?.companyName  ) ? userData?.firstName + ' ' + userData?.lastName  :  userData?.name}</h6>
+               <p>{(userData?.isCompany || userData?.companyName ) && userData?.companyName }</p>
+             </div>
+             )}
             </div>
           <li
             onClick={() => {

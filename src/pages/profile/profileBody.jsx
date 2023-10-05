@@ -42,7 +42,11 @@ function ProfileBody() {
     (async () => {
       setIsLoading(true);
       const res = await getProfile();
+      const fullName = res.firstName + ' ' + res.lastName;
       setName(res.name);
+      if (res.companyName && !isCompany) {
+        setCompanyName(res.companyName)
+      }
       setEmail(res.email);
       setPhoneNum(res.phone);
       setCompanyName(res.companyName);
@@ -56,10 +60,14 @@ function ProfileBody() {
     e.preventDefault();
     const formData = new FormData();
 
+   if (!isCompany) {
     formData.append("name", name);
+   } else {
+    formData.append("companyName", companyName);
+   }
     formData.append("phone", phoneNum);
     formData.append("email", email);
-    if (companyLogo) {
+    if (companyLogo && isCompany) {
       formData.append("companyLogo", companyLogo);
     } 
     const result = await editProfile({ formData });
@@ -68,6 +76,7 @@ function ProfileBody() {
       localStorage.setItem('user', JSON.stringify(res));
       const message = "Changes saved successfully";
       notify(message);
+      router.reload();
     } else {
       const message = "An error ocurred please try again";
       notify(message);
@@ -143,14 +152,14 @@ function ProfileBody() {
             <div />}
             </div>
             <div className={styles.details}>
-              {isCompany ? (
-                <div className={styles.input}>
-                  <label>Company’s name</label>
+              {(isCompany || companyName) ? (
+                <div>
+                  {/* <label>Company’s name</label>
                   <input
                     onChange={(e) => setName(e.target.value)}
                     type="text"
                     value={companyName}
-                  />
+                  /> */}
                 </div>
               ) : (
                 <div className={styles.input}>
