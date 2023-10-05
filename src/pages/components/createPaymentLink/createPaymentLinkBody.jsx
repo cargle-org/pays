@@ -14,7 +14,7 @@ const CreatePaymentLinkBody = () => {
   const router = useRouter();
   const {formatAmount} = useAmountFormatter();
   const userData = getUserDetails();
-  const username = userData && userData?.name?.replace(/\s/g, '');
+  const username = userData?.companyName ? userData?.companyName?.replace(/\s/g, '') : userData?.name?.replace(/\s/g, '');
   const [title, setTitle] = useState("");
   const [formatTitle, setFormatTitle] = useState("")
   const [description, setDescription] = useState("");
