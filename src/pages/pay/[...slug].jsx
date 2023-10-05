@@ -99,7 +99,7 @@ const Makepayment = () => {
                 <div></div>
               )}
               <h4>{linkDetails.title}</h4>
-            {linkDetails.description &&  <p>This link was created by {userData?.name} to fund {linkDetails.description} {linkDetails?.linkExpiry && <span>and it expires on {formatDate(linkDetails.linkExpiry)}</span>}</p>}
+            {linkDetails.description &&  <p>This link was created by {userData?.companyName ? userData?.companyName : userData?.name} to fund {linkDetails.description} {linkDetails?.linkExpiry && <span>and it expires on {formatDate(linkDetails.linkExpiry)}</span>}</p>}
 
              <label htmlFor="name">Name</label>
              <input type="text" id="name" name="name" placeholder='Enter Your Name' value={fullName} onChange={(event) => setFullName(event.target.value)} required/>
