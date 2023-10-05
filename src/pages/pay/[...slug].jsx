@@ -8,6 +8,7 @@ import Loading from '../components/loading';
 import { payToLink } from '../api/paymentLink/payToLink';
 import { getSingleLink } from '../api/paymentLink/getSingleLink';
 import { getUserDetails } from '../api/auth/auth';
+import { getProfile } from '../api/profile/getProfile';
 
 const Makepayment = () => {
     const {formatAmount} = useAmountFormatter();
@@ -24,11 +25,11 @@ const Makepayment = () => {
     const [userData, setUserData] = useState({});
 
     useEffect(() => {
-      const data = getUserDetails();
-      setUserData(data);
        if (slug) {
         (async() => {
             const res = await getSingleLink(slug[2]);
+            const data = await getProfile();
+             setUserData(data);
             if (res.success){
                 setLinkDetails(res.link)
             }
@@ -36,6 +37,7 @@ const Makepayment = () => {
            })();
        }
         },[slug])
+
 
     const handleAmountChange = (event) => {
         const newValue = event.target.value;
