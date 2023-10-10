@@ -48,7 +48,7 @@ const PaymentLinks = () => {
         const now = new Date();
       
         if (givenDate < now) {
-            setErrcopied(`Can't share, link has expired`)
+            setErrcopied(`Unable to share, link has expired`)
             setTimeout(() => {
                 setErrcopied('');
             }, 3000)
