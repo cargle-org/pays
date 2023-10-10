@@ -1,13 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styles from "../../styles/components/voucherpage.module.css";
 import { getTransactions } from "../api/payment/getTransactions";
 import { handleSlice } from "../components/timeFormat";
 import { verifyPayment } from "../api/payment/verifyPayment";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/router";
 
 function TransactionHistory() {
   const [data, setData] = useState([]);
+  const router = useRouter();
+
+  const sortedData = useMemo(() => {
+    let newData = [...data];
+    return newData.sort(
+      (a, b) => new Date(b?.createdAt)
+       - new Date(a?.createdAt),
+    )
+  }, [data])
 
   const notify = ({ message }) => toast(message);
 
@@ -25,7 +35,10 @@ function TransactionHistory() {
     const res = await verifyPayment({paymentReference})
     if (res) {
         const message = res;
-      notify({ message });
+        notify({ message });
+      setTimeout(() => {
+        router.reload();
+      }, 2000)
     } else {
         const message = "Your payment verification failed";
       notify({ message });
@@ -50,7 +63,7 @@ function TransactionHistory() {
           </tr>
         </thead>
         <tbody>
-          {data?.map((transaction, index) => (
+          {sortedData?.map((transaction, index) => (
             <tr
               key={transaction?._id}
             >
