@@ -44,7 +44,8 @@ function IndividualVoucherPage() {
   const id =
     router
       .query
-      .VoucherPage;
+      .individualVoucherPage;
+      console.log(router.query);
 
   const [
     data,

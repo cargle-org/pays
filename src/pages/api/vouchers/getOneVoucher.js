@@ -10,6 +10,7 @@ const handleParams = (paramsPayload) => {
 };
 
 export const getOneVoucher = async ({id, status}) => {
+  console.log(id, "yo");
   const token = getToken();
   const params = {
     voucherId: id,
@@ -17,7 +18,7 @@ export const getOneVoucher = async ({id, status}) => {
   };
   try {
     const response = await axios.get(
-      `${URI_MAP.cmg.get_one_voucher}?${new URLSearchParams( handleParams(params)).toString()}`,
+      `${URI_MAP.cmg.get_one_voucher}?${new URLSearchParams(handleParams(params)).toString()}`,
       // null,
       {
         headers: {
