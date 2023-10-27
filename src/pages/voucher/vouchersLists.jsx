@@ -22,7 +22,7 @@ function VouchersLists({ data, notify }) {
 
   const copyToClipBoard = async (copyMe) => {
     try {
-      await navigator.clipboard.writeText(copyMe);
+      await navigator.clipboard.writeText(`Visit https://www.usepays.co/cashout to claim the voucher: ${copyMe}`);
       setCopySuccess("Copied!");
     } catch (err) {
       setCopySuccess("Failed to copy!");
