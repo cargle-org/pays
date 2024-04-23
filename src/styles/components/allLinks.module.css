@@ -1,0 +1,58 @@
+.container{
+    width: 100%;
+   
+}
+
+.container h3{
+    margin: 1rem 0;
+}
+
+.container .table {
+    width: 100%;
+    overflow-x: auto;
+}
+.btn {
+    width: 100%;
+    text-align: center;
+    margin: 3rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn button {
+    max-width: 50px;
+    min-width: 20px;
+    padding: .5rem 1rem;
+    width: fit-content;
+    border-radius: 5px;
+}
+
+.tableLink {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-style: italic;
+    color: #1F0047;
+    font-weight: 700;
+}
+
+.copyMsg, .errCopyMsg{
+    font-weight: 500;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 7px;
+}
+
+.copyMsg{
+    color: #1F0047;
+}
+
+.errCopyMsg {
+    color: red;
+}

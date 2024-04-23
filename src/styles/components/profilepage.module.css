@@ -1,0 +1,103 @@
+.profilePage{
+    padding: 32px;
+    background: var(--background);
+    min-height: 75vh;
+}
+.profilePage .container{
+    min-height: 80vh;
+}
+.profilePage .container .details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1200px;
+    margin: auto;
+}
+.profilePage .details .input{
+    width: 50%;
+    max-width: 480px;
+    margin: 16px 12px ;
+}
+.profilePage .details .input input{
+    margin-top: 8px;
+}
+.profilePage .button{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 40px;
+}
+.profilePage .container .avatar{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+.profilePage .container .avatar img{
+    width: 120px;
+    border-radius: 50%;
+    height: 120px;
+    object-fit: cover;
+    border: 3px solid #99999999;
+}
+.profilePage .exit{
+    display: none;
+}
+.profilePage     .tabs{
+    display: flex;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #93959D60;
+}
+.profilePage     .tabs .tab{
+    padding: 6px 20px;
+    border-bottom: 3px solid #fff;
+    color: #93959D;
+    font-weight: 500;
+    cursor: pointer;
+}
+.profilePage     .tabs .activeTab{
+    padding: 6px 20px;
+    border-bottom: 3px solid var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 500;
+}
+.error {
+    width: 100%;
+    color: #ff0000;
+    text-align: center;
+    padding: 10px;
+    background-color: #ff000020;
+  }
+  .message {
+    width: 100%;
+    color: #008000;
+    text-align: center;
+    padding: 20px;
+    background-color: #00800020;
+  }
+@media only screen and (max-width: 768px){
+    .profilePage .details .input {
+        width: 100%;
+    }
+    .profilePage .details .input input {
+        margin: 0;
+        width: 100%;
+    }
+    .profilePage{
+        padding-bottom: 100px;
+    }
+    .profilePage .exit{
+        color: #ff0000;
+        display: flex;
+        padding: 16px 8px;
+        cursor: pointer;
+        margin-top: 16px;
+    }
+    .profilePage .exit .icon{
+        color: #ff0000;
+        margin-right: 12px;
+    }
+    .profilePage button{
+        width: 100%;
+    }
+}

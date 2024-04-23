@@ -1,0 +1,97 @@
+.faqs {
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    min-height: 84vh;
+    display: flex;
+    align-items: center;
+}
+.faqs .container{
+    text-align: center;
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px;
+}
+
+@media only screen and (max-height: 768px) {
+    .faqs .container{
+        padding: 0px;
+    }
+}
+
+.faqs .container .content{
+    max-width: 800px;
+    background-color: var(--background);
+    margin: auto;
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 0px 10px 50px -12px #1919251a;
+}
+.faqs .content h2{
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.faqs .content .flex{
+    display: flex;
+}
+
+@media only screen and (max-height: 768px) {
+    .faqs .content .flex{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
+.faqs .content .flex .questions{
+    width: 45%;
+}
+
+@media only screen and (max-height: 768px) {
+    .faqs .content .flex .questions{
+        width: 100%;
+    }
+}
+
+.faqs .content .flex .questions .one{
+    height: 80px;
+    border-radius: 40px;
+    border: 1px solid #ddd;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 30px;
+    font-size: 16px;
+    line-height: 18px;
+    margin: 10px;
+    cursor: pointer;
+}
+.faqs .content .flex .questions .active{
+    height: 80px;
+    border-radius: 40px;
+    color: var(--background);
+    background-color: var(--primary-color);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 30px;
+    font-size: 16px;
+    line-height: 18px;
+    margin: 10px;
+    cursor: pointer;
+}
+.faqs .content .flex .answers{
+    width: 53%;
+    text-align: left;
+    padding: 30px;
+    border-radius: 30px;
+    border: 1px solid #ddd;
+    margin: 10px;
+}
+
+@media only screen and (max-height: 768px) {
+    .faqs .content .flex .answers{
+        width: 100%
+    }
+}

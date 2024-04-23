@@ -1,0 +1,166 @@
+.signup {
+  height: 100vh;
+  margin: 0%;
+  padding: 0;
+  width: 100%;
+  overflow-y: scroll;
+}
+.signup .container {
+  display: flex;
+  margin: 0%;
+  padding: 0;
+  width: 100%;
+}
+.signup .row {
+  display: flex;
+  padding: 0%;
+  align-items: center;
+  margin: 0%;
+  width: 100%;
+}
+.select {
+  /* width: 48%; */
+}
+.signup .row .colOne {
+  /* width: 100%; */
+  object-fit: cover;
+  height: 100%;
+  width: 57%;
+}
+.signup .row .colOne img {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.signup .row .colTwo {
+  width: 43%;
+  display: flex;
+  justify-content: center;
+  background-color: var(--background-two);
+  height: 100vh;
+  align-items: center;
+  overflow-y: scroll;
+}
+.signup .row .colTwo .tabs{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.signup .row .colTwo .tabs .tab{
+  width: 48%;
+  border: 3px solid #ddd;
+  border-radius: 16px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #999;
+  background-color: var(--background-two);
+  cursor: pointer;
+}
+.signup .row .colTwo .tabs .activeTab{
+  width: 48%;
+  /* border: 3px solid #ddd; */
+  border-radius: 16px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--primary-color);
+}
+  .signup .row .colTwo .logo {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  cursor: pointer;
+  z-index: 1;
+}
+.signup .row .colTwo .content {
+  margin: 20px;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  background: var(--background);
+  padding: 30px;
+  border-radius: 30px;
+  box-shadow: 0px 10px 50px -20px #25252531;
+  z-index: 2;
+  margin-top: 28px;
+}
+.signup .row .colTwo h6 {
+  margin-bottom: 32px;
+}
+.signup .row .colTwo h2 {
+  margin-bottom: 24px;
+  color: var(--primary-color);  
+}
+.signup .row label {
+  margin-top: 20px;
+}
+.signup .row input {
+  margin-bottom: 12px;
+  width: 100%;
+}
+.signup .row .content .location {
+  display: flex;
+}
+.signup .row .content button {
+  width: 100%;
+  margin-top: 18px;
+}
+.signup .input, .signup .compInput{
+  display: flex;
+  align-items: center;
+  height: 40px !important;
+  padding: 0;
+  padding-right: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  border: 1px solid var(--stroke);
+  font-family: var(--font-family);
+  margin: 10px 0 1rem 0;
+  z-index: 1;
+}
+.signup .input input{
+  margin: 0;
+  border: none;
+  outline: none;
+  height: 30px !important;
+}
+
+.signup .compInput input {
+  margin: 0 0 -2px 0 !important;
+  border: none;
+  outline: none;
+  padding: 0 12px;
+  height: 30px !important;
+}
+.error {
+  width: 100%;
+  color: #ff0000;
+  text-align: center;
+  padding: 10px;
+  background-color: #ff000020;
+}
+.message {
+  width: 100%;
+  color: #008000;
+  text-align: center;
+  padding: 20px;
+  background-color: #00800020;
+}
+@media only screen and (max-width: 768px) {
+  .signup .row .colOne {
+    display: none;
+  }
+  .signup .row .colTwo {
+    width: 100%;
+  }
+  .signup .row .colTwo .content {
+    max-width: 88%;
+  }
+}

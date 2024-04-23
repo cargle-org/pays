@@ -1,0 +1,26 @@
+.footer{
+    width: 100%;
+    padding: 16px;
+    background-color: var(--primary-color);
+    color: var(--background);
+}
+.footer .container{
+    max-width: 1200px;
+    margin: auto;
+}
+.footer .container .content{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 12px;
+    align-items: center;
+}
+.footer .container .content p{
+    width: auto;
+    color: var(--background);
+}
+.footer .container .content .icon{
+    font-size: 28px;
+    margin: 12px;
+}

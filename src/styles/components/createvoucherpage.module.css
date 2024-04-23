@@ -1,0 +1,678 @@
+.createVoucherPage {
+  /* padding: 20px; */
+  /* background-color: var(--background);     */
+}
+
+.createVoucherPage h2 {
+  margin: 16px 0;
+  color: var(--primary-color);
+}
+.createVoucherPage small{
+  background-color: #DDDDDD;
+  color: #93959D;
+  font-weight: 400;
+  font-size: 8px;
+  padding: .2rem 1rem;
+  border-radius: 5px;
+}
+
+.createVoucherPage .colOne {
+  width: 40%;
+  padding: 24px;
+  border-radius: 24px;
+  background-color: var(--background);
+  height: fit-content;
+}
+
+@media only screen and (max-width: 1200px) {
+  .createVoucherPage .colOne {
+    width: 100%;
+    margin-top: 16px;
+  }
+}
+
+.createVoucherPage .colOne .back {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+}
+
+.createVoucherPage .colOne .paymentTitle h3{
+ font-size: 24px;
+ font-weight: 500;
+ text-align: center;
+ margin: 1rem auto;
+}
+
+.createVoucherPage .container form {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.createVoucherPage .container form label{
+  font-weight: 400;
+  color: #333333;
+}
+
+@media only screen and (max-width: 1200px) {
+  .createVoucherPage .container form {
+    flex-direction: column-reverse;
+  }
+}
+
+.createVoucherPage .content {
+  width: 100%;
+  margin: auto;
+}
+
+.createVoucherPage .content .amountBandwidth {
+  font-size: 12px;
+  font-weight: 400;
+  color: #7B88AB;
+  margin-top: -13px;
+}
+.createVoucherPage .content .expiryLabel {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.createVoucherPage .content .expiryLabel {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.createVoucherPage .content .expiryInput {
+  width: 150px;
+}
+
+.createVoucherPage .content input,
+.createVoucherPage .content textarea {
+  margin-top: 8px;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.createVoucherPage .content .sortAmount {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline !important;
+}
+
+.createVoucherPage .content .sortAmount .input {
+  width: 48%;
+  align-items: baseline;
+}
+
+/* .createVoucherPage .content .amounts{
+    margin-right: 24px;
+} */
+.createVoucherPage .content .amounts .one {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.createVoucherPage .content .amounts .two {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.createVoucherPage .content select {
+  width: 100%;
+  padding:0 .5rem;
+  margin: 8px 0 16px;
+}
+
+
+.createVoucherPage .content button {
+  width: 100%;
+  margin-top: 12px;
+}
+.createVoucherPage .content .paymentButton {
+  border-radius: 8px;
+  margin-top: 5rem;
+}
+
+.createVoucherPage .content .thumbnail {
+  width: 100%;
+  /* height: 189px; */
+  margin-right: 24px;
+  background-color: #7b88ab60;
+  border-radius: 24px;
+  position: relative;
+  margin-bottom: 20px;
+  margin-top: 8px;
+}
+
+.createVoucherPage .content .error {
+  background-color: #ff000030;
+  color: #ff0000;
+  padding: 16px 12px;
+  text-align: center;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.createVoucherPage .colTwo .thumbnail img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: contain;
+  border-radius: 24px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .createVoucherPage .colTwo .thumbnail img {
+    width: 100%;
+    aspect-ratio: 6 / 4;
+  }
+}
+
+.createVoucherPage .colTwo .thumbnail .btn {
+  position: absolute;
+  margin-right: 0;
+  height: 48px;
+  border-radius: 8px;
+  border: 3px solid #7b88ab60;
+  max-width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--background);
+  margin-top: -50%;
+  margin-left: 35%;
+  cursor: pointer;
+}
+
+.createVoucherPage .paymentColTwo .thumbnail {
+  width: 100%;
+  height: auto;
+  padding:1rem;
+}
+
+.createVoucherPage .paymentColTwo .thumbnail img {
+  width: 100%;
+  height: auto;
+}
+
+.createVoucherPage .paymentColTwo .thumbnail .btn {
+  width:100%;
+}
+
+.createVoucherPage .paymentColTwo .thumbnail .btn .chooseImg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: fit-content;
+  cursor: pointer;
+  border: 1px solid #7b88ab60;
+  padding: .5rem 1rem;
+  border-radius: 5px;
+  margin: .5rem auto;
+}
+
+@media only screen and (max-width: 768px) {
+  .createVoucherPage .colTwo .thumbnail .btn {
+    margin-top: -20%;
+    margin-left: 22%;
+  }
+}
+
+.createVoucherPage .colTwo .thumbnail .btn p, .createVoucherPage .paymentColTwo .thumbnail .btn p {
+  width: auto;
+  font-weight: 500;
+  color: #333;
+}
+
+.createVoucherPage .colTwo .thumbnail .btn input,  .createVoucherPage .paymentColTwo .thumbnail .btn input{
+  display: none;
+}
+
+.createVoucherPage form .colTwo {
+  max-width: 58%;
+  border-radius: 24px;
+  position: relative;
+}
+
+.createVoucherPage form .paymentColTwo {
+  background-color: #ffffff;
+  width:100%;
+  max-width: 58%;
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+}
+
+.createVoucherPage .buttons {
+  display: flex;
+  gap: 14px;
+}
+
+.createVoucherPage .buttons button {
+  width: calc(50% - 5px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+
+@media only screen and (max-width: 1200px) {
+  .createVoucherPage form .colTwo {
+    max-width: 100%;
+    margin: 24px;
+  }
+  .createVoucherPage form .paymentColTwo {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
+  .createVoucherPage input,
+  .createVoucherPage textarea {
+    width: 100%;
+  }
+
+  .createVoucherPage button {
+    width: 100% !important;
+    margin-right: 0%;
+  }
+
+  .createVoucherPage .content .sortAmount {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .createVoucherPage .content .sortAmount .input {
+    width: 100%;
+  }
+
+  .createVoucherPage .content .thumbnail {
+    width: 100%;
+  }
+
+  .createVoucherPage .content .thumbnail .btn {
+    margin-left: 150px;
+  }
+
+  .createVoucherPage .content .amounts {
+    margin-right: 0px;
+  }
+
+  .createVoucherPage .content .error {
+    width: 100%;
+  }
+}
+
+.addRecipientPage h2 {
+  margin: 16px 0;
+  color: var(--primary-color);
+}
+.addRecipientPage small{
+  background-color: #DDDDDD;
+  color: #93959D;
+  font-weight: 400;
+  font-size: 8px;
+  padding: .2rem 1rem;
+  border-radius: 5px;
+}
+
+.addRecipientPage .colOne {
+  width: 40%;
+  padding: 24px;
+  border-radius: 24px;
+  background-color: var(--background);
+  height: fit-content;
+}
+
+@media only screen and (max-width: 1200px) {
+  .addRecipientPage .colOne {
+    width: 100%;
+    margin-top: 16px;
+  }
+}
+
+.addRecipientPage .colOne .back {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+}
+
+.addRecipientPage .colOne .paymentTitle h3{
+ font-size: 24px;
+ font-weight: 500;
+ text-align: center;
+ margin: 1rem auto;
+}
+
+.addRecipientPage .container form {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.addRecipientPage .container form label{
+  font-weight: 400;
+  color: #333333;
+}
+
+@media only screen and (max-width: 1200px) {
+  .addRecipientPage .container form {
+    flex-direction: column-reverse;
+  }
+}
+
+.addRecipientPage .content {
+  width: 100%;
+  margin: auto;
+}
+
+.addRecipientPage .content .amountBandwidth {
+  font-size: 12px;
+  font-weight: 400;
+  color: #7B88AB;
+  margin-top: -13px;
+}
+.addRecipientPage .content .expiryLabel {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.addRecipientPage .content .expiryLabel {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.addRecipientPage .content .expiryInput {
+  width: 150px;
+}
+
+.addRecipientPage .content input,
+.addRecipientPage .content textarea {
+  margin-top: 8px;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.addRecipientPage .content .sortAmount {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline !important;
+}
+
+.addRecipientPage .content .sortAmount .input {
+  width: 48%;
+  align-items: baseline;
+}
+
+/* .addRecipientPage .content .amounts{
+    margin-right: 24px;
+} */
+.addRecipientPage .content .amounts .one {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.addRecipientPage .content .amounts .two {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.addRecipientPage .content select {
+  width: 100%;
+  padding:0 .5rem;
+  margin: 8px 0 16px;
+}
+
+
+.addRecipientPage .content button {
+  width: 100%;
+  margin-top: 12px;
+}
+.addRecipientPage .content .paymentButton {
+  border-radius: 8px;
+  margin-top: 5rem;
+}
+
+.addRecipientPage .content .thumbnail {
+  width: 100%;
+  /* height: 189px; */
+  margin-right: 24px;
+  background-color: #7b88ab60;
+  border-radius: 24px;
+  position: relative;
+  margin-bottom: 20px;
+  margin-top: 8px;
+}
+
+.addRecipientPage .content .error {
+  background-color: #ff000030;
+  color: #ff0000;
+  padding: 16px 12px;
+  text-align: center;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.addRecipientPage .colTwo .thumbnail img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: contain;
+  border-radius: 24px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .addRecipientPage .colTwo .thumbnail img {
+    width: 100%;
+    aspect-ratio: 6 / 4;
+  }
+}
+
+.addRecipientPage .colTwo .thumbnail .btn {
+  position: absolute;
+  margin-right: 0;
+  height: 48px;
+  border-radius: 8px;
+  border: 3px solid #7b88ab60;
+  max-width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--background);
+  margin-top: -50%;
+  margin-left: 35%;
+  cursor: pointer;
+}
+
+.addRecipientPage .paymentColTwo .thumbnail {
+  width: 100%;
+  height: auto;
+  padding:1rem;
+}
+
+.addRecipientPage .paymentColTwo .thumbnail img {
+  width: 100%;
+  height: auto;
+}
+
+.addRecipientPage .paymentColTwo .thumbnail .btn {
+  width:100%;
+}
+
+.addRecipientPage .paymentColTwo .thumbnail .btn .chooseImg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: fit-content;
+  cursor: pointer;
+  border: 1px solid #7b88ab60;
+  padding: .5rem 1rem;
+  border-radius: 5px;
+  margin: .5rem auto;
+}
+
+.addRecipientPage .type {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.addRecipientPage .type .one {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 12px;
+  border: 1px solid #7b88ab50;
+  font-family: var(--font-family);
+  padding: 16px;
+}
+
+.addRecipientPage .type .one input {
+  margin: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.addRecipientPage .excelUpload {
+  display: flex;
+  align-items: center;
+  flex: auto 1 auto;
+  gap: 20px;
+}
+
+.addRecipientPage .excelUpload p {
+  margin-bottom: 4px;
+}
+
+.addRecipientPage .excelUpload span {
+  font-size: 12px;
+  color: #333;
+}
+
+.addRecipientPage .excelUpload input {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .addRecipientPage .colTwo .thumbnail .btn {
+    margin-top: -20%;
+    margin-left: 22%;
+  }
+}
+
+.addRecipientPage .colTwo .thumbnail .btn p, .addRecipientPage .paymentColTwo .thumbnail .btn p {
+  width: auto;
+  font-weight: 500;
+  color: #333;
+}
+
+.addRecipientPage .colTwo .thumbnail .btn input,  .addRecipientPage .paymentColTwo .thumbnail .btn input{
+  display: none;
+}
+
+.addRecipientPage form .colTwo {
+  max-width: 58%;
+  border-radius: 24px;
+  position: relative;
+}
+
+.addRecipientPage form .paymentColTwo {
+  background-color: #ffffff;
+  width:100%;
+  max-width: 58%;
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+}
+
+.addRecipientPage .buttons {
+  display: flex;
+  gap: 14px;
+}
+
+.addRecipientPage .buttons button {
+  width: calc(50% - 5px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+
+@media only screen and (max-width: 1200px) {
+  .addRecipientPage form .colTwo {
+    max-width: 100%;
+    margin: 24px;
+  }
+  .addRecipientPage form .paymentColTwo {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
+  .addRecipientPage input,
+  .addRecipientPage textarea {
+    width: 100%;
+  }
+
+  .addRecipientPage button {
+    width: 100% !important;
+    margin-right: 0%;
+  }
+
+  .addRecipientPage .content .sortAmount {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .addRecipientPage .content .sortAmount .input {
+    width: 100%;
+  }
+
+  .addRecipientPage .content .thumbnail {
+    width: 100%;
+  }
+
+  .addRecipientPage .content .thumbnail .btn {
+    margin-left: 150px;
+  }
+
+  .addRecipientPage .content .amounts {
+    margin-right: 0px;
+  }
+
+  .addRecipientPage .content .error {
+    width: 100%;
+  }
+}

@@ -1,0 +1,121 @@
+.content{
+    padding: 20px;
+    border: 1px solid #7B88AB60;
+    width: 40%;
+    border-radius: 20px;
+}
+.content .detail{
+    margin: 16px 0;
+}
+.content .detail h5{
+    margin-top: 4px;
+}
+.content .detail img{
+    width: 100%;
+    aspect-ratio: 4 / 2;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-top: 8px;
+}
+.table{
+    width: 57%;
+    margin-left: 20px;
+}
+
+.table .tabs{
+    display: flex;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #93959D60;
+}
+.table .tabs .tab{
+    padding: 6px 20px;
+    border-bottom: 3px solid #fff;
+    color: #93959D;
+    font-weight: 500;
+    cursor: pointer;
+}
+.table .tabs .activeTab{
+    padding: 6px 20px;
+    border-bottom: 3px solid var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.table .search {
+    display: flex;
+    flex-wrap: wrap;
+}
+.table .search .input{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 550px;
+    height: 40px;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  border: 1px solid var(--stroke);
+  font-family: var(--font-family);
+  margin-right: 16px;
+}
+.table .search .input input{
+    border: #ffffff00;
+    height: 38px;
+    outline: none;
+}
+.table table{
+    width: 100%;
+}
+.table table th{
+    padding: 20px 16px;
+}
+.shareModal .rws-icon {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    border: 0;
+    background: #1a78f6;
+    padding: 0 !important;
+    border-radius: 0.5rem;
+    font-size: 0;
+}
+.rws-icon{
+    width: 50px;
+}
+.shareModal .rws-container{
+    max-width: 40rem;
+}
+@media only screen and (max-width: 768px) {
+     /* #table{
+        width: 100%;
+        max-width: 360px;
+        overflow-x: scroll;
+        margin-bottom: 70px;
+    }
+     table{
+        width: 100%;
+        max-width: 360px;
+        overflow-x: scroll;
+    }
+     .search .input{
+        margin: 0;
+        margin-bottom: 12px;
+    }
+     .filter{
+        height: 40px;
+    } */
+    .content{
+        width: 100%;
+    }
+    .table{
+        width: 100%;
+        margin: 0;
+        margin-top: 20px;
+        margin-bottom: 70px;
+        padding: 0;
+    }
+    .table #table{
+        max-width: 100%;
+        overflow-x: scroll;
+    }
+}

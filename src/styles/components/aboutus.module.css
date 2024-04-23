@@ -1,0 +1,272 @@
+.aboutUs {
+  width: 100%;
+  margin: 0;
+  padding: 0%;
+  /* height: 100vh; */
+  overflow-y: scroll;
+  background: #f6f8fa;
+}
+
+.aboutUs .container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  /* height: 80vh; */
+  display: flex;
+  align-items: center;
+  margin: auto;
+}
+
+.aboutUs .container .row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0%;
+  margin: 0%;
+}
+
+.aboutUs .container .row .colOne {
+  max-width: 48%;
+  z-index: 100;
+}
+
+.aboutUs .colOne .buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.aboutUs .colOne .btn {
+  height: 50px;
+  color: var(--primary-color);
+  background-color: #fff;
+  padding: 0 5px;
+  width: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  font-family: var(--font-family);
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 400;
+  border: 1px solid #7b88ab99;
+  margin-right: 16px;
+  cursor: pointer;
+}
+
+.aboutUs .colOne .btn .icon {
+  background-color: var(--primary-color);
+  color: #fff;
+  width: 42px;
+  height: 42px;
+  border-radius: 50px;
+  padding: 12px;
+  margin-left: 20px;
+}
+
+.aboutUs .colOne .btnTwo {
+  height: 50px;
+  color: var(--background);
+  background-color: var(--primary-color);
+  padding: 0 5px;
+  width: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  font-family: var(--font-family);
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.aboutUs .colOne .btnTwo .icon {
+  background-color: var(--background);
+  color: var(--primary-color);
+  width: 42px;
+  height: 42px;
+  border-radius: 50px;
+  padding: 12px;
+  margin-left: 28px;
+}
+
+.aboutUs .container h1 {
+  color: var(--primary-color);
+  line-height: 68px;
+}
+
+.aboutUs .container h1 span {
+  color: #555;
+}
+
+.aboutUs .container h5 {
+  margin: 30px 0px;
+  font-weight: 400;
+  max-width: 600px;
+}
+
+.aboutUs .container .row .colTwo {
+  width: 52%;
+  z-index: 10;
+  margin: 0%;
+  padding: 0%;
+  min-height: 650px;
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .aboutUs .container .row .colTwo {
+    min-height: 100px;
+  }
+}
+
+.aboutUs .container .row .colTwo img {
+  /* height: 100%; */
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* metrics */
+.mission {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  background: var(--primary-color);
+  padding: 60px 20px;
+  color: var(--background);
+  z-index: 100;
+  margin-top: -18px;
+}
+
+.mission .container {
+  height: auto;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.mission .container .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0;
+  padding: 0%;
+  align-items: center;
+}
+
+.mission .container .row .col {
+  margin: 0;
+  padding: 0%;
+  text-align: left;
+}
+
+.mission .container .row .image img {
+  width: 100%;
+  height: auto;
+}
+
+.mission .container .row .flex {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 18px;
+}
+
+.mission .container .row .flex h5 {
+  margin-left: 16px;
+}
+
+.mission .container .row .col {
+  margin: 0;
+  padding: 0%;
+  width: 48%;
+}
+
+.mission .container .row h2 {
+  margin-bottom: 32px;
+}
+
+.mission .container .row p {
+  width: auto;
+  color: #ddd;
+  font-weight: 300;
+  margin: 20px 0;
+}
+
+/*  subscribe  */
+.subscribe {
+  text-align: center;
+  width: 100%;
+  margin: 0%;
+  padding: 0%;
+}
+
+.subscribe .container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.subscribe .container .content {
+  max-width: 600px;
+  padding: 32px;
+  background-color: var(--background);
+  margin: 50px 0;
+  border-radius: 32px;
+  box-shadow: 0px 10px 50px -12px #1919251a;
+}
+
+.subscribe .container .content h2 {
+  margin-top: 10px;
+  color: var(--primary-color);
+}
+
+.subscribe .container .content h6 {
+  margin: 20px;
+}
+
+.subscribe .container .content button {
+  margin: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .aboutUs .container {
+    margin: 20px;
+    width: calc(100% - 40px);
+  }
+
+  .aboutUs .container h1 {
+    font-size: 40px;
+    line-height: 48px;
+  }
+
+  .aboutUs .container h5 {
+    font-size: 14px;
+  }
+
+  .aboutUs .container .row .colOne {
+    max-width: 100%;
+  }
+
+  .aboutUs .container .row .colTwo {
+    width: 100%;
+    margin: 0;
+  }
+
+  .aboutUs .container .row .colTwo img {
+    width: 100%;
+    margin: 24px 0;
+  }
+
+  .aboutUs .colOne .btnTwo {
+    margin-top: 20px;
+  }
+}
