@@ -12,9 +12,11 @@ import { Modal, Radio, Divider, Input, Progress, Button } from "antd";
 import TransactionHistory from "./transactionHistory";
 import getAccountBanks from "../components/nubanChecker";
 import axios from "axios";
+import { getToken } from "../api/auth/auth";
 
 function PaymentAndWithdrawalBody() {
   const router = useRouter();
+  const token = getToken();
 
   const [operation, setOperation] = useState("deposit");
   const [depositAmount, setDepositAmount] = useState('');
@@ -57,7 +59,7 @@ function PaymentAndWithdrawalBody() {
   const handleDeposit = async () => {
     setIsLoading(true);
     const res = await fundWallet({ depositAmount });
-    const newWindow = window.open(res, "_blank", "noopener,noreferrer");
+    const newWindow = window.open(res.response, "_blank", "noopener,noreferrer");
     if (newWindow) newWindow.opener = null;
     setIsLoading(false);
   };

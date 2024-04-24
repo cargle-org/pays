@@ -59,7 +59,7 @@ function TransactionHistory() {
             <th>Transaction Ref</th>
             <th>Transaction time</th>
             <th>Type</th>
-            <th>Action</th>
+            {/* <th>Action</th> */}
           </tr>
         </thead>
         <tbody>
