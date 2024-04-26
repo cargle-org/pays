@@ -10,6 +10,7 @@ import Profile from "../../../assets/profile.svg";
 import { useSidebarContext } from "@/pages/context/sidebarContext";
 import Logout from "../../../assets/logout.svg"
 import { getProfile } from "@/pages/api/profile/getProfile";
+import Link from 'next/link'
 
 function Sidebar() {
   const router = useRouter();
@@ -41,7 +42,7 @@ function Sidebar() {
         </div>
         <h6>Main Menu</h6>
         <div className={styles.sideLinks}>
-          <li onClick={() => {setActiveTab(1); router.push("/dashboard")}} className={activeTab === 1 ? styles.activeLink :styles.link}>
+          {/* <li onClick={() => {setActiveTab(1); router.push("/dashboard")}} className={activeTab === 1 ? styles.activeLink :styles.link}>
             <Dashboardicon className={styles.icon} />
             <span>Dashboard</span>
           </li>
@@ -54,7 +55,22 @@ function Sidebar() {
           </li>
           <li onClick={() => {setActiveTab(4); router.push("/payment")}} className={activeTab === 4? styles.activeLink :styles.link}>
             <Payment className={styles.icon} /> <span>Payment & withdrawal</span>
-          </li>
+          </li> */}
+
+          <Link href='/dashboard' onClick={() => {setActiveTab(1); router.push("/dashboard")}} className={activeTab === 1 ? styles.activeLink :styles.link}>
+            <Dashboardicon className={styles.icon} />
+            <span>Dashboard</span>
+          </Link>
+          <Link href='/vouchers' onClick={() => {setActiveTab(2); router.push("/vouchers")}} className={activeTab === 2 ? styles.activeLink :styles.link}>
+            <Voucher className={styles.icon} /> <span>Vouchers</span>
+          </Link>
+          <Link href='/profile' onClick={() => {setActiveTab(3); router.push("/profile")}} className={activeTab === 3? styles.activeLink :styles.link}>
+            <Profile className={styles.icon} />
+            <span>Profile</span>
+          </Link>
+          <Link href='/payment' onClick={() => {setActiveTab(4); router.push("/payment")}} className={activeTab === 4? styles.activeLink :styles.link}>
+            <Payment className={styles.icon} /> <span>Payment & withdrawal</span>
+          </Link>
         </div>
         <div className={styles.bottom}>
             <div className={styles.profile}>
