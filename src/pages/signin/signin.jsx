@@ -23,7 +23,7 @@ function SignIn() {
       setErrorMsg("your email field cannot be empty");
     } else {
       handleLogIn({
-        email,
+        email: email.toLowerCase(),
         password,
       });
     }
