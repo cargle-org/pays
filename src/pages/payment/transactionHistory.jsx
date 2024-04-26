@@ -31,6 +31,16 @@ function TransactionHistory() {
       }
     })();
   }, []);
+
+  useEffect(() => {
+    // Automatically trigger verification after successful payment
+    sortedData.forEach((transaction) => {
+      if (transaction.status === "initiated") {
+        handleVerifyPayment(transaction.paymentReference);
+      }
+    });
+  }, [sortedData]);
+
   const handleVerifyPayment = async (paymentReference) => {
     const res = await verifyPayment({paymentReference})
     if (res) {
