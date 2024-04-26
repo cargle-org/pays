@@ -20,7 +20,7 @@ function CreateVoucherBody() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [voucherKey, setVoucherKey] = useState("");
-  // const [expiryDate, setExpiryDate] = useState('');
+  const [expiryDate, setExpiryDate] = useState('');
   const [errMSG, setErrMSG] = useState("");
   const [voucherThumbnail, setVoucherThumbnail] = useState("");
   const [cmgThumbnail, setcmgThumbnail] = useState(
@@ -97,7 +97,7 @@ function CreateVoucherBody() {
       title,
       description,
       voucherKey,
-      // expiry_date: expiryDate,
+      expiry_date: expiryDate,
       totalNumberOfVouchers: noOfVouchers,
       amountPerVoucher,
       recipients: updatedRecipients
@@ -114,7 +114,7 @@ function CreateVoucherBody() {
         setTitle('');
         setDescription('');
         setVoucherKey('');
-        // setExpiryDate('');
+        setExpiryDate('');
         setNoOfVouchers(0);
         setAmountPerVoucher(0);
         const message = res.message;
@@ -133,7 +133,7 @@ function CreateVoucherBody() {
       setTitle('');
       setDescription('');
       setVoucherKey('');
-      // setExpiryDate('');
+      setExpiryDate('');
       setNoOfVouchers(0);
       setAmountPerVoucher(0);
       setErrMSG(error.message);
@@ -209,13 +209,13 @@ function CreateVoucherBody() {
                   type="text"
                   maxLength={5}
                 />
-                {/* <label>Expiry date</label>
+                <label>Expiry date</label>
                 <input
                   value={expiryDate}
                   placeholder="Enter expiry date for voucher key"
                   onChange={(e) => setExpiryDate(e.target.value)}
                   type="date"
-                /> */}
+                />
                 <div className={styles.sortAmount}>
                   <div className={styles.input}>
                     <label>Number of vouchers</label>
