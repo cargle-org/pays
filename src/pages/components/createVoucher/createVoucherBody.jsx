@@ -37,6 +37,22 @@ function CreateVoucherBody() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
 
+  // State variable for error message
+  const [amountError, setAmountError] = useState("");
+
+  // Handler for amount per voucher change
+  const handleAmountPerVoucherChange = (e) => {
+    const amount = e.target.value;
+    setAmountPerVoucher(amount);
+
+    // Check if amount per voucher is less than the minimum
+    if (amount < 100) {
+      setAmountError("min 100.");
+    } else {
+      setAmountError("");
+    }
+  };
+
   const notify = ({ message }) => toast(message);
 
   const handleNextStep = () => {
@@ -198,9 +214,12 @@ function CreateVoucherBody() {
                     <label>Amount per voucher</label>
                     <input
                       value={amountPerVoucher}
-                      onChange={(e) => setAmountPerVoucher(e.target.value)}
+                      // onChange={(e) => setAmountPerVoucher(e.target.value)}
+                      onChange={handleAmountPerVoucherChange}
                       type="number"
+                      min="100"
                     />
+                    {amountError && <div className={styles.error}>{amountError}</div>}
                   </div>
                 </div>
                 <div className={styles.amounts}>
