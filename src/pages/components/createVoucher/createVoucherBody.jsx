@@ -40,6 +40,9 @@ function CreateVoucherBody() {
   // State variable for error message
   const [amountError, setAmountError] = useState("");
 
+  // State variable for email error message
+  const [emailError, setEmailError] = useState("");
+
   // Handler for amount per voucher change
   const handleAmountPerVoucherChange = (e) => {
     const amount = e.target.value;
@@ -142,7 +145,15 @@ function CreateVoucherBody() {
   const handleAddRecipient = async (e) => {
     e.preventDefault();
 
-    const newRecipient = { name, email, phone_number: phoneNumber };
+    // Validate email field
+    if (!email.trim()) {
+      setEmailError("Email is required.");
+      return;
+    } else {
+      setEmailError(""); // Clear email error if email is provided
+    }
+
+    const newRecipient = { name, email: email.trim(), phone_number: phoneNumber };
     setRecipients(prevRecipients => [...prevRecipients, newRecipient]);
 
     setName('');
@@ -309,6 +320,7 @@ function CreateVoucherBody() {
                       onChange={(e) => setEmail(e.target.value)}
                       type="email"
                     />
+                    {emailError && <div className={styles.error}>{emailError}</div>}
 
                     <button 
                       onClick={handleAddRecipient}
