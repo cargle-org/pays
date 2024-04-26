@@ -161,6 +161,10 @@ function CreateVoucherBody() {
     setPhoneNumber('');
   }
 
+  const handleRemoveRecipient = (index) => {
+    setRecipients(prevRecipients => prevRecipients.filter((_, i) => i !== index));
+  }
+
   if (isLoading) {
     return <Loading />;
   }
@@ -336,12 +340,14 @@ function CreateVoucherBody() {
                             <th>Name</th>
                             <th>Phone Number</th>
                             <th>Email Address</th>
+                            <th>Action</th>
                           </tr>
                           {recipients.map((recipient, index) => <tr key={index}>
                             <td>{index + 1}</td>
                             <td>{recipient.name}</td>
                             <td>{recipient.phone_number}</td>
                             <td>{recipient.email}</td>
+                            <button onClick={() => handleRemoveRecipient(index)}>Remove</button>
                           </tr>)}
                         </thead>
                       </table>
