@@ -32,14 +32,14 @@ function TransactionHistory() {
     })();
   }, []);
 
-  useEffect(() => {
-    // Automatically trigger verification after successful payment
-    sortedData.forEach((transaction) => {
-      if (transaction.status === "initiated") {
-        handleVerifyPayment(transaction.paymentReference);
-      }
-    });
-  }, [sortedData]);
+  // useEffect(() => {
+  //   // Automatically trigger verification after successful payment
+  //   sortedData.forEach((transaction) => {
+  //     if (transaction.status === "initiated") {
+  //       handleVerifyPayment(transaction.paymentReference);
+  //     }
+  //   });
+  // }, [sortedData]);
 
   const handleVerifyPayment = async (paymentReference) => {
     const res = await verifyPayment({paymentReference})
@@ -69,7 +69,7 @@ function TransactionHistory() {
             <th>Transaction Ref</th>
             <th>Transaction time</th>
             <th>Type</th>
-            {/* <th>Action</th> */}
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -83,7 +83,7 @@ function TransactionHistory() {
               <td>{transaction?.transactionReference}</td>
               <td>{handleSlice(transaction?.createdAt)}</td>
               <td>{transaction?.type}</td>
-              {/* <td>{transaction.status === "initiated" ? <button onClick={() => handleVerifyPayment(transaction.paymentReference)}>Verify</button> : ""}</td> */}
+              <td>{transaction.status === "initiated" ? <button onClick={() => handleVerifyPayment(transaction.paymentReference)}>Verify</button> : ""}</td>
             </tr>
           ))}
         </tbody>
