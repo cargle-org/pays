@@ -97,7 +97,8 @@ function CreateVoucherBody() {
       title,
       description,
       voucherKey,
-      expiry_date: expiryDate,
+      // Use a ternary operator to conditionally include expiry_date based on its value
+      ...(expiryDate !== '' && { expiry_date: expiryDate }),
       totalNumberOfVouchers: noOfVouchers,
       amountPerVoucher,
       recipients: updatedRecipients
@@ -109,29 +110,14 @@ function CreateVoucherBody() {
       }
     })
     .then(res => {
-      // if (res && res?.success) {
-      //   setIsLoading(false);
-      //   setTitle('');
-      //   setDescription('');
-      //   setVoucherKey('');
-      //   setExpiryDate('');
-      //   setNoOfVouchers(0);
-      //   setAmountPerVoucher(0);
-      //   const message = res.message;
-      //   notify({ message });
-      //   router.push('/createvouchers');
-      // } else {
-      //   setErrMSG(res.message);
-      //   const message = res.message;
-      //   notify({ message });
-      // }
       setIsLoading(false);
       if (res && res.data && res.data.success) {
         const message = res.data.message;
         notify({ message });
         // Check if the current route is '/createvouchers' before redirecting
         if (router.pathname !== '/createvouchers') {
-          router.push('/createvouchers');
+          // router.push('/createvouchers');
+          router.push(`/voucher/${res.data._id}`);
         } else {
           // Reset form fields if already on the createvouchers page
           setTitle('');
@@ -155,8 +141,8 @@ function CreateVoucherBody() {
       setExpiryDate('');
       setNoOfVouchers(0);
       setAmountPerVoucher(0);
-      setErrMSG(error.message);
-      const message = error.message;
+      setErrMSG(error.response.data.error);
+      const message = error.response.data.error;
       notify({ message });
     })
   }
