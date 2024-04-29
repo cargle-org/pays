@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { BASE_URL } from "../../api/URI/URI_MAP";
 import { getToken } from "../../api/auth/auth";
+import * as XLSX from 'xlsx'; // Import xlsx library for Excel file parsing
 
 function CreateVoucherBody() {
   const router = useRouter();
@@ -84,6 +85,30 @@ function CreateVoucherBody() {
   const total = noOfVouchers * amountPerVoucher + noOfVouchers * 10;
   const totalAmount = new Intl.NumberFormat().format(total);
 
+  // Function to handle bulk recipient upload
+  const handleBulkRecipientUpload = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      const data = new Uint8Array(e.target.result);
+      const workbook = XLSX.read(data, { type: 'array' });
+      const sheetName = workbook.SheetNames[0]; // Assuming the data is in the first sheet
+      const sheet = workbook.Sheets[sheetName];
+      const parsedData = XLSX.utils.sheet_to_json(sheet);
+
+      // Extract required columns and update recipients state
+      const updatedRecipients = parsedData.map((row) => ({
+        name: row.name,
+        phoneNumber: row.phoneNumber,
+        email: row.email
+      }));
+      setRecipients(updatedRecipients);
+    };
+
+    reader.readAsArrayBuffer(file);
+  };
+
   const handleCreateVoucher = async (e) => {
     e.preventDefault();
 
@@ -116,8 +141,7 @@ function CreateVoucherBody() {
         notify({ message });
         // Check if the current route is '/createvouchers' before redirecting
         if (router.pathname !== '/createvouchers') {
-          // router.push('/createvouchers');
-          router.push(`/voucher/${res.data._id}`);
+          router.push('/createvouchers');
         } else {
           // Reset form fields if already on the createvouchers page
           setTitle('');
@@ -378,14 +402,9 @@ function CreateVoucherBody() {
                       <label className={styles.btn}>
                         <p>Upload Excel Document</p>
                         <span>Click here to select a document</span>
-                        <input onChange={handleFileInputChange} type="file" />
+                        <input onChange={handleBulkRecipientUpload} type="file" />
                       </label>
                     </div>
-                      
-                    <button 
-                    >
-                      &rarr; Add
-                    </button>
 
                     <div id={styles.table}>
                       <table>
@@ -395,7 +414,15 @@ function CreateVoucherBody() {
                             <th>Name</th>
                             <th>Phone Number</th>
                             <th>Email Address</th>
+                            <th>Action</th>
                           </tr>
+                          {recipients.map((recipient, index) => <tr key={index}>
+                            <td>{index + 1}</td>
+                            <td>{recipient.name}</td>
+                            <td>{recipient.phone_number}</td>
+                            <td>{recipient.email}</td>
+                            <button onClick={() => handleRemoveRecipient(index)}>Remove</button>
+                          </tr>)}
                         </thead>
                       </table>
                     </div>
