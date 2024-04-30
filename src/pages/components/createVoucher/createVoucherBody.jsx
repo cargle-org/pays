@@ -366,15 +366,15 @@ function CreateVoucherBody() {
                         <thead>
                           <tr>
                             <th>S/N</th>
-                            <th>Name</th>
-                            <th>Phone Number</th>
+                            {/* <th>Name</th>
+                            <th>Phone Number</th> */}
                             <th>Email Address</th>
                             <th>Action</th>
                           </tr>
                           {recipients.map((recipient, index) => <tr key={index}>
                             <td>{index + 1}</td>
-                            <td>{recipient.name}</td>
-                            <td>{recipient.phone_number}</td>
+                            {/* <td>{recipient.name}</td>
+                            <td>{recipient.phone_number}</td> */}
                             <td>{recipient.email}</td>
                             <button onClick={() => handleRemoveRecipient(index)}>Remove</button>
                           </tr>)}
@@ -411,15 +411,15 @@ function CreateVoucherBody() {
                         <thead>
                           <tr>
                             <th>S/N</th>
-                            <th>Name</th>
-                            <th>Phone Number</th>
+                            {/* <th>Name</th>
+                            <th>Phone Number</th> */}
                             <th>Email Address</th>
                             <th>Action</th>
                           </tr>
                           {recipients.map((recipient, index) => <tr key={index}>
                             <td>{index + 1}</td>
-                            <td>{recipient.name}</td>
-                            <td>{recipient.phone_number}</td>
+                            {/* <td>{recipient.name}</td>
+                            <td>{recipient.phone_number}</td> */}
                             <td>{recipient.email}</td>
                             <button onClick={() => handleRemoveRecipient(index)}>Remove</button>
                           </tr>)}
