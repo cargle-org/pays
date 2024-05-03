@@ -41,8 +41,8 @@ function TransactionHistory() {
   //   });
   // }, [sortedData]);
 
-  const handleVerifyPayment = async (paymentReference) => {
-    const res = await verifyPayment({paymentReference})
+  const handleVerifyPayment = async (tx_ref, transaction_id) => {
+    const res = await verifyPayment({ tx_ref, transaction_id });
     if (res) {
         const message = res;
         notify({ message });
@@ -50,7 +50,7 @@ function TransactionHistory() {
         router.reload();
       }, 2000)
     } else {
-        const message = "Your payment verification failed";
+      const message = "Your payment verification failed";
       notify({ message });
     }
   }
@@ -83,7 +83,7 @@ function TransactionHistory() {
               <td>{transaction?.transactionReference}</td>
               <td>{handleSlice(transaction?.createdAt)}</td>
               <td>{transaction?.type}</td>
-              <td>{transaction.status === "initiated" ? <button onClick={() => handleVerifyPayment(transaction.paymentReference)}>Verify</button> : ""}</td>
+              <td>{transaction.status === "initiated" ? <button onClick={() => handleVerifyPayment(transaction.paymentReference, transaction._id)}>Verify</button> : ""}</td>
             </tr>
           ))}
         </tbody>

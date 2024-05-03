@@ -12,6 +12,7 @@ import axios from "axios";
 import { BASE_URL } from "../../api/URI/URI_MAP";
 import { getToken } from "../../api/auth/auth";
 import * as XLSX from 'xlsx'; // Import xlsx library for Excel file parsing
+import { FaTrash } from 'react-icons/fa';
 
 function CreateVoucherBody() {
   const router = useRouter();
@@ -376,7 +377,7 @@ function CreateVoucherBody() {
                             {/* <td>{recipient.name}</td>
                             <td>{recipient.phone_number}</td> */}
                             <td>{recipient.email}</td>
-                            <button onClick={() => handleRemoveRecipient(index)}>Remove</button>
+                            <button onClick={() => handleRemoveRecipient(index)}><FaTrash /></button>
                           </tr>)}
                         </thead>
                       </table>
@@ -421,7 +422,7 @@ function CreateVoucherBody() {
                             {/* <td>{recipient.name}</td>
                             <td>{recipient.phone_number}</td> */}
                             <td>{recipient.email}</td>
-                            <button onClick={() => handleRemoveRecipient(index)}>Remove</button>
+                            <button onClick={() => handleRemoveRecipient(index)}><FaTrash /></button>
                           </tr>)}
                         </thead>
                       </table>
