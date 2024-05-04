@@ -139,10 +139,11 @@ function CreateVoucherBody() {
       setIsLoading(false);
       if (res && res.data && res.data.success) {
         const message = res.data.message;
+        const voucherId = res.data.voucher._id;
         notify({ message });
         // Check if the current route is '/createvouchers' before redirecting
         if (router.pathname !== '/createvouchers') {
-          router.push('/createvouchers');
+          router.push(`/voucher/${voucherId}`);
         } else {
           // Reset form fields if already on the createvouchers page
           setTitle('');
