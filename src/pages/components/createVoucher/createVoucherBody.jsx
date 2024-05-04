@@ -139,19 +139,18 @@ function CreateVoucherBody() {
       setIsLoading(false);
       if (res && res.data && res.data.success) {
         const message = res.data.message;
+        const voucherId = res.data.voucher._id;
         notify({ message });
-        // Check if the current route is '/createvouchers' before redirecting
-        if (router.pathname !== '/createvouchers') {
-          router.push('/createvouchers');
-        } else {
-          // Reset form fields if already on the createvouchers page
-          setTitle('');
-          setDescription('');
-          setVoucherKey('');
-          setExpiryDate('');
-          setNoOfVouchers(0);
-          setAmountPerVoucher(0);
-        }
+        router.push({
+          pathname: "/voucher/[individualVoucherPage]",
+          query: { individualVoucherPage: voucherId },
+        })
+        setTitle('');
+        setDescription('');
+        setVoucherKey('');
+        setExpiryDate('');
+        setNoOfVouchers(0);
+        setAmountPerVoucher(0);
       } else {
         const errorMessage = res.data ? res.data.message : 'An error occurred';
         setErrMSG(errorMessage);
@@ -166,8 +165,8 @@ function CreateVoucherBody() {
       setExpiryDate('');
       setNoOfVouchers(0);
       setAmountPerVoucher(0);
-      setErrMSG(error.response.data.error);
-      const message = error.response.data.error;
+      setErrMSG(error.response?.data.error);
+      const message = error.response?.data.error;
       notify({ message });
     })
   }

@@ -50,7 +50,7 @@ function TransactionHistory() {
         router.reload();
       }, 2000)
     } else {
-      const message = "Your payment verification failed";
+      const message = "No transaction was found for this id";
       notify({ message });
     }
   }
