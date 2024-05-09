@@ -2,14 +2,11 @@ import React, { useEffect, useMemo, useState } from "react";
 import styles from "../../styles/components/voucherpage.module.css";
 import { getTransactions } from "../api/payment/getTransactions";
 import { handleSlice } from "../components/timeFormat";
-import { verifyPayment } from "../api/payment/verifyPayment";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useRouter } from "next/router";
 
 function TransactionHistory() {
   const [data, setData] = useState([]);
-  const router = useRouter();
 
   const sortedData = useMemo(() => {
     let newData = [...data];
@@ -18,8 +15,6 @@ function TransactionHistory() {
        - new Date(a?.createdAt),
     )
   }, [data])
-
-  const notify = ({ message }) => toast(message);
 
   useEffect(() => {
     (async () => {
@@ -32,28 +27,6 @@ function TransactionHistory() {
     })();
   }, []);
 
-  // useEffect(() => {
-  //   // Automatically trigger verification after successful payment
-  //   sortedData.forEach((transaction) => {
-  //     if (transaction.status === "initiated") {
-  //       handleVerifyPayment(transaction.paymentReference);
-  //     }
-  //   });
-  // }, [sortedData]);
-
-  const handleVerifyPayment = async (tx_ref, transaction_id) => {
-    const res = await verifyPayment({ tx_ref, transaction_id });
-    if (res) {
-        const message = res;
-        notify({ message });
-      setTimeout(() => {
-        router.reload();
-      }, 2000)
-    } else {
-      const message = "No transaction was found for this id";
-      notify({ message });
-    }
-  }
   return (
     <div className={styles.voucher}>
         <ToastContainer />
@@ -83,7 +56,7 @@ function TransactionHistory() {
               <td>{transaction?.transactionReference}</td>
               <td>{handleSlice(transaction?.createdAt)}</td>
               <td>{transaction?.type}</td>
-              <td>{transaction.status === "initiated" ? <button onClick={() => handleVerifyPayment(transaction.paymentReference, transaction._id)}>Verify</button> : ""}</td>
+              {/* <td>{transaction.status === "initiated" ? <button onClick={() => handleVerifyPayment(transaction.tx_ref, transaction._id)}>Verify</button> : ""}</td> */}
             </tr>
           ))}
         </tbody>
