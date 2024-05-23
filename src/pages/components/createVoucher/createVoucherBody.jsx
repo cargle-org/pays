@@ -45,6 +45,9 @@ function CreateVoucherBody() {
   // State variable for email error message
   const [emailError, setEmailError] = useState("");
 
+  // State to store the parsed data from the uploaded file
+  const [parsedData, setParsedData] = useState([]);
+
   // Handler for amount per voucher change
   const handleAmountPerVoucherChange = (e) => {
     const amount = e.target.value;
@@ -87,7 +90,7 @@ function CreateVoucherBody() {
   const totalAmount = new Intl.NumberFormat().format(total);
 
   // Function to handle bulk recipient upload
-  const handleBulkRecipientUpload = (event) => {
+  const handleBulkRecipientUpload = async (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
 
@@ -104,10 +107,80 @@ function CreateVoucherBody() {
         phoneNumber: row.phoneNumber,
         email: row.email
       }));
-      setRecipients(updatedRecipients);
+
+      setParsedData(updatedRecipients);
     };
 
     reader.readAsArrayBuffer(file);
+  };
+
+  // Function to handle the submission of bulk recipients
+  const handleBulkRecipientsSubmit = async () => {
+    setIsLoading(true);
+
+    // Create a new FormData object
+    const formData = new FormData();
+
+    // Append each recipient to the FormData object
+    parsedData.forEach((row, index) => {
+      formData.append(`recipients[${index}][name]`, row.name);
+      formData.append(`recipients[${index}][phoneNumber]`, row.phoneNumber);
+      formData.append(`recipients[${index}][email]`, row.email);
+    });
+
+    // Add other necessary data to the formData object
+    formData.append('title', title);
+    formData.append('description', description);
+    formData.append('voucherKey', voucherKey);
+    formData.append('expiryDate', expiryDate);
+    formData.append('totalNumberOfVouchers', noOfVouchers);
+    formData.append('amountPerVoucher', amountPerVoucher);
+
+    // Append recipients as a JSON string
+    formData.append('recipients', JSON.stringify(parsedData));
+
+    // Send the FormData using Axios
+    axios.post(`${BASE_URL}utils/voucher/create`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        'x-access-token': `${token}`,
+      }
+    })
+    .then(res => {
+      setIsLoading(false);
+      if (res && res.data && res.data.success) {
+        const message = res.data.message;
+        const voucherId = res.data.voucher._id;
+        notify({ message });
+        router.push({
+          pathname: "/voucher/[individualVoucherPage]",
+          query: { individualVoucherPage: voucherId },
+        });
+        setTitle('');
+        setDescription('');
+        setVoucherKey('');
+        setExpiryDate('');
+        setNoOfVouchers(0);
+        setAmountPerVoucher(0);
+        // setParsedData([]);
+      } else {
+        const errorMessage = res.data ? res.data.message : 'An error occurred';
+        setErrMSG(errorMessage);
+        notify({ message: errorMessage });
+      }
+    })
+    .catch(error => {
+      setIsLoading(false);  
+      setTitle('');
+      setDescription('');
+      setVoucherKey('');
+      setExpiryDate('');
+      setNoOfVouchers(0);
+      setAmountPerVoucher(0);
+      setErrMSG(error.response?.data.error);
+      const message = error.response?.data.error;
+      notify({ message });
+    });
   };
 
   const handleCreateVoucher = async (e) => {
@@ -383,7 +456,7 @@ function CreateVoucherBody() {
                     </div>
 
                     <button 
-                      onClick={handleCreateVoucher} 
+                      onClick={operation === 'manually' ? handleCreateVoucher : handleBulkRecipientsSubmit} 
                       disabled={totalAmount === '0' || voucherKey === '' || amountPerVoucher === 0 || title === '' ? true : false}
                     >
                       Create Voucher
@@ -416,7 +489,7 @@ function CreateVoucherBody() {
                             <th>Email Address</th>
                             <th>Action</th>
                           </tr>
-                          {recipients.map((recipient, index) => <tr key={index}>
+                          {parsedData.map((recipient, index) => <tr key={index}>
                             <td>{index + 1}</td>
                             {/* <td>{recipient.name}</td>
                             <td>{recipient.phone_number}</td> */}
