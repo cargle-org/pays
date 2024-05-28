@@ -1,0 +1,26 @@
+Pays todos 
+
+
+- [x] Create a new acc 
+was successful,email verification mail came in but was not able to verify [ might be no prefix from backend ] check 
+
+- [x] Do a forgot pwd
+mail came in very late and not able to reset password via mail
+
+- [x] Fund
+Page doesnt reload on time
+
+- [x] Create vouchers
+works well except not redirecting
+
+- [] Withdraw voucher
+works well for airtime,but for cash didn’t work for fintech companies like Opay and palmpay but for other banks
+
+- [] Create a payment
+ink able to create a payment link but not able to Pay into it
+
+- [] Withdraw from dashboard
+doesn’t work yet
+
+- [] Recipients mail
+Mail not received after adding recipients
