@@ -1,128 +1,129 @@
-.voucher{
-  font-family: var(--font-family);
-  background: var(--background);
-  padding: 20px;
+.voucher {
+	font-family: var(--font-family);
+	background: var(--background);
+	padding: 20px;
 }
-.voucher .title{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
+.voucher .title {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 16px;
 }
 .voucher .title .action {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px;
-    margin: 1rem 0;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px;
+	margin: 1rem 0;
 }
 .voucher .title .action button {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-radius: 8px;
-    padding: 0 20px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	border-radius: 8px;
+	padding: 7px 20px;
 }
 .voucher .title .action .linkButton {
-    gap: 2px !important;
-    padding: 0 20px 0 5px;
+	gap: 2px !important;
+	padding: 0 20px 0 5px;
 }
-.voucher .tabs{
-    display: flex;
-    margin-bottom: 12px;
-    border-bottom: 1px solid #93959D60;
+.voucher .tabs {
+	display: flex;
+	margin-bottom: 12px;
+	border-bottom: 1px solid #93959d60;
 }
-.voucher .tabs .tab{
-    padding: 6px 20px;
-    border-bottom: 3px solid #fff;
-    color: #93959D;
-    font-weight: 500;
+.voucher .tabs .tab {
+	padding: 6px 20px;
+	border-bottom: 3px solid #fff;
+	color: #93959d;
+	font-weight: 500;
 }
-.voucher .tabs .activeTab{
-    padding: 6px 20px;
-    border-bottom: 3px solid var(--primary-color);
-    color: var(--primary-color);
-    font-weight: 500;
+.voucher .tabs .activeTab {
+	padding: 6px 20px;
+	border-bottom: 3px solid var(--primary-color);
+	color: var(--primary-color);
+	font-weight: 500;
 }
 
 .voucher .search {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 10px;
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 10px;
 }
-.voucher .search .input{
-    display: flex;
-    align-items: center;
-    width: 100%;
-    max-width: 550px;
-    height: 40px;
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 14px;
-  border: 1px solid var(--stroke);
-  font-family: var(--font-family);
+.voucher .search .input {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	max-width: 550px;
+	height: 40px;
+	padding: 12px;
+	border-radius: 8px;
+	font-size: 14px;
+	border: 1px solid var(--stroke);
+	font-family: var(--font-family);
 }
 
-.voucher .search .input input{
-    border: #ffffff00;
-    height: 38px;
-    outline: none;
+.voucher .search .input input {
+	border: #ffffff00;
+	height: 38px;
+	outline: none;
 }
-.voucher .filter{
-    margin-right: 16px;
-    padding: 0px 20px;
-    color: var(--primary-color) !important;
-    background-color: #fff !important;
-    border: 1px solid #7B88AB99;
-    align-items: center;
-    display: flex;
-    border-radius: 8px;
-    cursor: pointer;
-}   
+.voucher .filter {
+	margin-right: 16px;
+	padding: 0px 10px;
+	color: var(--primary-color) !important;
+	background-color: #fff !important;
+	border: 1px solid #7b88ab99;
+	align-items: center;
+	display: flex;
+	border-radius: 8px;
+	column-gap: 10px;
+	cursor: pointer;
+}
 
 .voucher #table {
-    overflow-x: scroll;
-    width: 100%;
+	overflow-x: scroll;
+	width: 100%;
 }
-.voucher table img{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border-radius: 3px solid #55555599;
+.voucher table img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border-radius: 3px solid #55555599;
 }
 
 .error {
-    background-color: #ff000030;
-    color: #ff0000;
-    padding: 16px 12px;
-    text-align: center;
-    margin-bottom: 16px;
-    border-radius: 8px;
-    margin-right: 20px;
-  }
+	background-color: #ff000030;
+	color: #ff0000;
+	padding: 16px 12px;
+	text-align: center;
+	margin-bottom: 16px;
+	border-radius: 8px;
+	margin-right: 20px;
+}
 @media only screen and (max-width: 768px) {
-    .voucher #table{
-        width: 100%;
-        overflow-x: scroll;
-        margin-bottom: 70px;
-    }
-    .voucher table{
-        width: 100%;
-        overflow-x: scroll;
-    }
-    .voucher .search .input{
-        margin: 0;
-        margin-bottom: 12px;
-    }
-    .voucher .filter{
-        height: 40px;
-    }
+	.voucher #table {
+		width: 100%;
+		overflow-x: scroll;
+		margin-bottom: 70px;
+	}
+	.voucher table {
+		width: 100%;
+		overflow-x: scroll;
+	}
+	.voucher .search .input {
+		margin: 0;
+		margin-bottom: 12px;
+	}
+	.voucher .filter {
+		height: 40px;
+	}
 }
 
 @media only screen and (max-width: 600px) {
-    .voucher .title{
-        flex-direction: column;
-        align-items: start;
-    }
+	.voucher .title {
+		flex-direction: column;
+		align-items: start;
+	}
 }
