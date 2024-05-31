@@ -249,7 +249,7 @@ function PaymentAndWithdrawalBody() {
 								<input
 									type="number"
 									value={withdrawAmount}
-									onChange={(e) => setWithdrawAmount(e.target.value)}
+									onChange={(e) => setWithdrawAmount(+e.target.value)}
 									placeholder="Enter the amount you want to withdraw"
 									max={10}
 								/>
