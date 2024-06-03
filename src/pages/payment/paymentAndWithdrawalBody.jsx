@@ -35,6 +35,7 @@ function PaymentAndWithdrawalBody() {
 	const [accountValidated, setAccountValidated] = useState(false);
 	const [showProgressBar, setShowProgressBar] = useState(false);
 	const [fetchPercentage, setFetchPercentage] = useState(70);
+	const [isWithdrawing, setIsWithdrawing] = useState(false);
 
 	const handleOperation = (e) => {
 		setOperation(e.target.value);
@@ -68,14 +69,21 @@ function PaymentAndWithdrawalBody() {
 		setIsLoading(false);
 	};
 	const handleWithdraw = async () => {
+		setIsWithdrawing(true);
 		setErrMsg("");
-		const res = await withdraw({ withdrawAmount, bankCode, accountNumber });
-		if (res) {
-			setWithdrawSuccess(true);
-		} else {
-			setWithdrawSuccess(false);
-			setErrMsg("Withdrawal failed, please try again");
-		}
+		withdraw({ withdrawAmount, bankCode, accountNumber })
+			.then((res) => {
+				setWithdrawSuccess(true);
+				setIsWithdrawing(false);
+
+				// setWithdrawSuccess(false);
+				// setErrMsg("something went wrong");
+			})
+			.catch((err) => {
+				setWithdrawSuccess(false);
+				setIsWithdrawing(false);
+				setErrMsg(err.response.data.error);
+			});
 	};
 
 	if (isLoading) {
@@ -249,7 +257,7 @@ function PaymentAndWithdrawalBody() {
 								<input
 									type="number"
 									value={withdrawAmount}
-									onChange={(e) => setWithdrawAmount(+e.target.value)}
+									onChange={(e) => setWithdrawAmount(e.target.value)}
 									placeholder="Enter the amount you want to withdraw"
 									max={10}
 								/>
@@ -279,7 +287,9 @@ function PaymentAndWithdrawalBody() {
 									disabled={disableWithdrawalBTN()}
 									className={styles.withdrawBtn}
 								>
-									Withdraw (₦{myWithdrawal})
+									{isWithdrawing
+										? "Withdrawal in progress"
+										: `Withdraw(₦${myWithdrawal})`}
 								</button>
 							</div>
 						) : (
