@@ -73,7 +73,7 @@ function Sidebar() {
 						className={activeTab === 1 ? styles.activeLink : styles.link}
 					>
 						<Dashboardicon className={styles.icon} />
-						<span>Dashboard</span>
+						<span className={styles.LinkItem}>Dashboard</span>
 					</Link>
 					<Link
 						href="/vouchers"
@@ -94,7 +94,7 @@ function Sidebar() {
 						className={activeTab === 3 ? styles.activeLink : styles.link}
 					>
 						<Profile className={styles.icon} />
-						<span>Profile</span>
+						<span className={styles.LinkItem}>Profile</span>
 					</Link>
 					<Link
 						href="/payment"
@@ -105,7 +105,7 @@ function Sidebar() {
 						className={activeTab === 4 ? styles.activeLink : styles.link}
 					>
 						<Payment className={styles.icon} />{" "}
-						<span>Payment & withdrawal</span>
+						<span className={styles.LinkItem}>Payment & withdrawal</span>
 					</Link>
 				</div>
 				<div className={styles.bottom}>
