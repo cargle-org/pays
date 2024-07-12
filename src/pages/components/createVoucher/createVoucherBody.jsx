@@ -33,7 +33,6 @@ function CreateVoucherBody() {
   // Recipient form details
   const [operation, setOperation] = useState("manually");
   const [recipients, setRecipients] = useState([]);
-  console.log("🚀 ~ CreateVoucherBody ~ recipients:", recipients);
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
@@ -221,7 +220,6 @@ function CreateVoucherBody() {
       .then((res) => {
         setIsLoading(false);
         if (res && res?.data && res?.data.success) {
-          console.log("🚀 ~ .then ~ res:", res);
           const message = res?.data.data.message;
           const voucherId = res?.data.data.voucher._id;
           notify({ message });
@@ -236,7 +234,6 @@ function CreateVoucherBody() {
           setNoOfVouchers(0);
           setAmountPerVoucher(0);
         } else {
-          console.log("🚀 ~ .then ~ res:", res);
           const errorMessage = res?.data
             ? res?.data.message
             : "An error occurred";
@@ -245,7 +242,6 @@ function CreateVoucherBody() {
         }
       })
       .catch((error) => {
-        console.log("🚀 ~ handleCreateVoucher ~ error:", error);
         setIsLoading(false);
         setTitle("");
         setDescription("");
