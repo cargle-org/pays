@@ -7,12 +7,12 @@
   margin: 16px 0;
   color: var(--primary-color);
 }
-.createVoucherPage small{
-  background-color: #DDDDDD;
-  color: #93959D;
+.createVoucherPage small {
+  background-color: #dddddd;
+  color: #93959d;
   font-weight: 400;
   font-size: 8px;
-  padding: .2rem 1rem;
+  padding: 0.2rem 1rem;
   border-radius: 5px;
 }
 
@@ -28,7 +28,7 @@
   background: transparent;
   color: #ff0000;
   text-align: left;
-} 
+}
 
 @media only screen and (max-width: 1200px) {
   .createVoucherPage .colOne {
@@ -44,11 +44,11 @@
   cursor: pointer;
 }
 
-.createVoucherPage .colOne .paymentTitle h3{
- font-size: 24px;
- font-weight: 500;
- text-align: center;
- margin: 1rem auto;
+.createVoucherPage .colOne .paymentTitle h3 {
+  font-size: 24px;
+  font-weight: 500;
+  text-align: center;
+  margin: 1rem auto;
 }
 
 .createVoucherPage .container form {
@@ -60,7 +60,7 @@
   margin: auto;
 }
 
-.createVoucherPage .container form label{
+.createVoucherPage .container form label {
   font-weight: 400;
   color: #333333;
 }
@@ -79,7 +79,7 @@
 .createVoucherPage .content .amountBandwidth {
   font-size: 12px;
   font-weight: 400;
-  color: #7B88AB;
+  color: #7b88ab;
   margin-top: -13px;
 }
 .createVoucherPage .content .expiryLabel {
@@ -134,10 +134,9 @@
 
 .createVoucherPage .content select {
   width: 100%;
-  padding:0 .5rem;
+  padding: 0 0.5rem;
   margin: 8px 0 16px;
 }
-
 
 .createVoucherPage .content button {
   width: 100%;
@@ -203,7 +202,7 @@
 .createVoucherPage .paymentColTwo .thumbnail {
   width: 100%;
   height: auto;
-  padding:1rem;
+  padding: 1rem;
 }
 
 .createVoucherPage .paymentColTwo .thumbnail img {
@@ -212,7 +211,7 @@
 }
 
 .createVoucherPage .paymentColTwo .thumbnail .btn {
-  width:100%;
+  width: 100%;
 }
 
 .createVoucherPage .paymentColTwo .thumbnail .btn .chooseImg {
@@ -223,9 +222,9 @@
   width: fit-content;
   cursor: pointer;
   border: 1px solid #7b88ab60;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 5px;
-  margin: .5rem auto;
+  margin: 0.5rem auto;
 }
 
 @media only screen and (max-width: 768px) {
@@ -235,13 +234,15 @@
   }
 }
 
-.createVoucherPage .colTwo .thumbnail .btn p, .createVoucherPage .paymentColTwo .thumbnail .btn p {
+.createVoucherPage .colTwo .thumbnail .btn p,
+.createVoucherPage .paymentColTwo .thumbnail .btn p {
   width: auto;
   font-weight: 500;
   color: #333;
 }
 
-.createVoucherPage .colTwo .thumbnail .btn input,  .createVoucherPage .paymentColTwo .thumbnail .btn input{
+.createVoucherPage .colTwo .thumbnail .btn input,
+.createVoucherPage .paymentColTwo .thumbnail .btn input {
   display: none;
 }
 
@@ -253,7 +254,7 @@
 
 .createVoucherPage form .paymentColTwo {
   background-color: #ffffff;
-  width:100%;
+  width: 100%;
   max-width: 58%;
   min-height: 200px;
   display: flex;
@@ -275,7 +276,6 @@
   font-size: 14px;
 }
 
-
 @media only screen and (max-width: 1200px) {
   .createVoucherPage form .colTwo {
     max-width: 100%;
@@ -287,7 +287,6 @@
 }
 
 @media only screen and (max-width: 768px) {
-
   .createVoucherPage input,
   .createVoucherPage textarea {
     width: 100%;
@@ -328,12 +327,12 @@
   margin: 16px 0;
   color: var(--primary-color);
 }
-.addRecipientPage small{
-  background-color: #DDDDDD;
-  color: #93959D;
+.addRecipientPage small {
+  background-color: #dddddd;
+  color: #93959d;
   font-weight: 400;
   font-size: 8px;
-  padding: .2rem 1rem;
+  padding: 0.2rem 1rem;
   border-radius: 5px;
 }
 
@@ -359,11 +358,11 @@
   cursor: pointer;
 }
 
-.addRecipientPage .colOne .paymentTitle h3{
- font-size: 24px;
- font-weight: 500;
- text-align: center;
- margin: 1rem auto;
+.addRecipientPage .colOne .paymentTitle h3 {
+  font-size: 24px;
+  font-weight: 500;
+  text-align: center;
+  margin: 1rem auto;
 }
 
 .addRecipientPage .container form {
@@ -375,7 +374,7 @@
   margin: auto;
 }
 
-.addRecipientPage .container form label{
+.addRecipientPage .container form label {
   font-weight: 400;
   color: #333333;
 }
@@ -394,7 +393,7 @@
 .addRecipientPage .content .amountBandwidth {
   font-size: 12px;
   font-weight: 400;
-  color: #7B88AB;
+  color: #7b88ab;
   margin-top: -13px;
 }
 .addRecipientPage .content .expiryLabel {
@@ -449,10 +448,9 @@
 
 .addRecipientPage .content select {
   width: 100%;
-  padding:0 .5rem;
+  padding: 0 0.5rem;
   margin: 8px 0 16px;
 }
-
 
 .addRecipientPage .content button {
   width: 100%;
@@ -518,7 +516,7 @@
 .addRecipientPage .paymentColTwo .thumbnail {
   width: 100%;
   height: auto;
-  padding:1rem;
+  padding: 1rem;
 }
 
 .addRecipientPage .paymentColTwo .thumbnail img {
@@ -527,7 +525,7 @@
 }
 
 .addRecipientPage .paymentColTwo .thumbnail .btn {
-  width:100%;
+  width: 100%;
 }
 
 .addRecipientPage .paymentColTwo .thumbnail .btn .chooseImg {
@@ -538,9 +536,9 @@
   width: fit-content;
   cursor: pointer;
   border: 1px solid #7b88ab60;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 5px;
-  margin: .5rem auto;
+  margin: 0.5rem auto;
 }
 
 .addRecipientPage .type {
@@ -594,13 +592,15 @@
   }
 }
 
-.addRecipientPage .colTwo .thumbnail .btn p, .addRecipientPage .paymentColTwo .thumbnail .btn p {
+.addRecipientPage .colTwo .thumbnail .btn p,
+.addRecipientPage .paymentColTwo .thumbnail .btn p {
   width: auto;
   font-weight: 500;
   color: #333;
 }
 
-.addRecipientPage .colTwo .thumbnail .btn input,  .addRecipientPage .paymentColTwo .thumbnail .btn input{
+.addRecipientPage .colTwo .thumbnail .btn input,
+.addRecipientPage .paymentColTwo .thumbnail .btn input {
   display: none;
 }
 
@@ -612,7 +612,7 @@
 
 .addRecipientPage form .paymentColTwo {
   background-color: #ffffff;
-  width:100%;
+  width: 100%;
   max-width: 58%;
   min-height: 200px;
   display: flex;
@@ -634,6 +634,14 @@
   font-size: 14px;
 }
 
+.optionalTag {
+  background-color: lightgray;
+  padding: 4px 8px;
+  border-radius: 5px;
+  color: #333; /* Slightly off black */
+  margin-left: 8px; /* Optional: Add some space between label and optional tag */
+  font-size: 10px;
+}
 
 @media only screen and (max-width: 1200px) {
   .addRecipientPage form .colTwo {
@@ -646,7 +654,6 @@
 }
 
 @media only screen and (max-width: 768px) {
-
   .addRecipientPage input,
   .addRecipientPage textarea {
     width: 100%;

@@ -44,7 +44,7 @@ function SignIn() {
             <div className={styles.content} style={{ marginTop: "135px" }}>
               <form onSubmit={loginAccount}>
                 <h2>Log In</h2>
-                <h6>Welcome back to cash my gift</h6>
+                <h6>Welcome back to Pays</h6>
                 {!loginErrorMsg ? (
                   <div> </div>
                 ) : (

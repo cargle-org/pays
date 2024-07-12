@@ -47,6 +47,9 @@ function CreateVoucherBody() {
   // State to store the parsed data from the uploaded file
   const [parsedData, setParsedData] = useState([]);
 
+  // State variable for voucher key error message
+  const [voucherKeyError, setVoucherKeyError] = useState("");
+
   // Handler for amount per voucher change
   const handleAmountPerVoucherChange = (e) => {
     const amount = e.target.value;
@@ -322,6 +325,19 @@ function CreateVoucherBody() {
     );
   };
 
+  // Voucher key input change handler
+  const handleVoucherKeyChange = (e) => {
+    const key = e.target.value;
+    setVoucherKey(key);
+
+    // Validate the voucher key length
+    if (key.length !== 5) {
+      setVoucherKeyError("Voucher key must be exactly 5 characters.");
+    } else {
+      setVoucherKeyError("");
+    }
+  };
+
   if (isLoading) {
     return <Loading />;
   }
@@ -361,18 +377,26 @@ function CreateVoucherBody() {
                 <label>Voucher Key</label>
                 <input
                   value={voucherKey}
-                  placeholder="Enter five unique letter for your voucher key"
-                  onChange={(e) => setVoucherKey(e.target.value)}
+                  placeholder="Enter five unique letters for your voucher key"
+                  onChange={handleVoucherKeyChange}
                   type="text"
                   maxLength={5}
                 />
-                <label>Expiry date</label>
+                {voucherKeyError && (
+                  <div className={styles.error}>{voucherKeyError}</div>
+                )}
+
+                <label>
+                  Expiry date
+                  <span className={styles.optionalTag}>optional</span>
+                </label>
                 <input
                   value={expiryDate}
                   placeholder="Enter expiry date for voucher key"
                   onChange={(e) => setExpiryDate(e.target.value)}
                   type="date"
                 />
+
                 <div className={styles.sortAmount}>
                   <div className={styles.input}>
                     <label>Number of vouchers</label>
@@ -401,7 +425,7 @@ function CreateVoucherBody() {
                     <h6>Sub total</h6> <h5>₦{subTotalAmount}</h5>
                   </div>
                   <div className={styles.one}>
-                    <h6>CMG Fee</h6> <h5>₦{cmgFee}</h5>
+                    <h6>Fee</h6> <h5>₦{cmgFee}</h5>
                   </div>
                   <div className={styles.two}>
                     <h6>Total Amount</h6> <h4>₦{totalAmount}</h4>
@@ -415,7 +439,6 @@ function CreateVoucherBody() {
                       voucherKey === "" ||
                       amountPerVoucher === 0 ||
                       noOfVouchers === 0 ||
-                      expiryDate === "" ||
                       title === ""
                         ? true
                         : false
