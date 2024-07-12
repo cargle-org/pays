@@ -39,9 +39,9 @@ function SignIn() {
         <div className={styles.row}>
           <div className={styles.colTwo}>
             <div className={styles.logo} onClick={() => router.push("/")}>
-            <Logo />
+              <Logo />
             </div>
-            <div className={styles.content} style={{marginTop: '135px'}}>
+            <div className={styles.content} style={{ marginTop: "135px" }}>
               <form onSubmit={loginAccount}>
                 <h2>Log In</h2>
                 <h6>Welcome back to cash my gift</h6>
@@ -53,7 +53,7 @@ function SignIn() {
                 <label>Email</label>
                 <br />
                 <input
-                  style={{marginTop: '0.75rem'}}
+                  style={{ marginTop: "0.75rem" }}
                   autoComplete="on"
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
@@ -100,7 +100,7 @@ function SignIn() {
 
           <div className={styles.colOne}>
             <img
-              src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681288615/chike/pexels-ketut-subiyanto-4559951_y7tzis.jpg"
+              src="https://res?.cloudinary.com/dmixz7eur/image/upload/v1681288615/chike/pexels-ketut-subiyanto-4559951_y7tzis.jpg"
               alt=""
             />
           </div>

@@ -11,11 +11,14 @@ function Subscribe() {
             From newsletters and blogs to special offers, be a part of the
             conversation. Receive the latest updates in your inbox.
           </h6>
-          <form >
+          <form>
             <input type="text" placeholder="Enter  Email address" />
             <button>Subscribe</button>
           </form>
-            <img src="https://res.cloudinary.com/dmixz7eur/image/upload/v1683798079/chike/Group_8_v3ntku.png" alt="" />
+          <img
+            src="https://res?.cloudinary.com/dmixz7eur/image/upload/v1683798079/chike/Group_8_v3ntku.png"
+            alt=""
+          />
         </div>
       </div>
     </div>

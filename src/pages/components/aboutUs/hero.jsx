@@ -28,8 +28,9 @@ function Hero() {
               </h1>
               <h5>
                 Unlock the total value of your gift vouchers and redeem them in
-                cash with <span>usepays.co</span>  - the safe, reliable, and user-friendly
-                platform for creating and cashing out your gift vouchers.
+                cash with <span>usepays.co</span> - the safe, reliable, and
+                user-friendly platform for creating and cashing out your gift
+                vouchers.
               </h5>
               <div className={styles.buttons}>
                 <div className={styles.btn} onClick={handleUser}>
@@ -51,7 +52,7 @@ function Hero() {
             </div>
             <div className={styles.colTwo}>
               <img
-                src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681156945/Group_1000000882_ecczgz.png"
+                src="https://res?.cloudinary.com/dmixz7eur/image/upload/v1681156945/Group_1000000882_ecczgz.png"
                 alt=""
               />
             </div>

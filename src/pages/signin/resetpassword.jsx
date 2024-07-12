@@ -45,7 +45,7 @@ function ResetPassword() {
         <div className={styles.row}>
           <div className={styles.colTwo}>
             <div className={styles.logo} onClick={() => router.push("/")}>
-            <Logo />
+              <Logo />
             </div>
             <div className={styles.content}>
               <form onSubmit={handleResetPassword}>
@@ -110,7 +110,7 @@ function ResetPassword() {
           </div>
           <div className={styles.colOne}>
             <img
-              src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681288615/chike/pexels-ketut-subiyanto-4559951_y7tzis.jpg"
+              src="https://res?.cloudinary.com/dmixz7eur/image/upload/v1681288615/chike/pexels-ketut-subiyanto-4559951_y7tzis.jpg"
               alt=""
             />
           </div>

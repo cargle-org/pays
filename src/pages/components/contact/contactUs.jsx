@@ -25,16 +25,16 @@ function ContactUs() {
       setErrorMsg("Please enter your message");
     } else {
       const res = await contactUs({
-        email, name, message
+        email,
+        name,
+        message,
       });
       if (res?.success) {
         setErrorMsg("");
-        setEmail("")
-        setName("")
-        setMessage("")
-        setResponseMessage(
-          "Your message has been submitted successfully"
-        );
+        setEmail("");
+        setName("");
+        setMessage("");
+        setResponseMessage("Your message has been submitted successfully");
       } else {
         setResponseMessage("");
         setErrorMsg(res?.message.toString());
@@ -49,7 +49,7 @@ function ContactUs() {
           <div className={styles.colTwo}>
             {/* <div className={styles.logo} onClick={() => router.push("/")}>
               <img
-                src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681115530/Group_1000000881_edg81o.png"
+                src="https://res?.cloudinary.com/dmixz7eur/image/upload/v1681115530/Group_1000000881_edg81o.png"
                 alt=""
               />
             </div> */}
@@ -57,10 +57,7 @@ function ContactUs() {
               <form onSubmit={handleContactUs}>
                 <h2>Contact Us</h2>
                 {responseMessage ? (
-                  <p className={styles.message}>
-                    
-                    {responseMessage}
-                  </p>
+                  <p className={styles.message}>{responseMessage}</p>
                 ) : (
                   <div> </div>
                 )}
@@ -70,13 +67,17 @@ function ContactUs() {
                   <div> </div>
                 )}
                 <br />
-                
-                  <div>
+
+                <div>
                   <label>Full name</label>
                   <br />
                   <input
                     autoComplete="on"
-                    onChange={(e) => {setName(e.target.value); setResponseMessage(""); setErrorMsg("")}}
+                    onChange={(e) => {
+                      setName(e.target.value);
+                      setResponseMessage("");
+                      setErrorMsg("");
+                    }}
                     value={name}
                     required
                     aria-describedby="uiddnote"
@@ -87,7 +88,11 @@ function ContactUs() {
                   <br />
                   <input
                     autoComplete="on"
-                    onChange={(e) => {setEmail(e.target.value); setResponseMessage(""); setErrorMsg("")}}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      setResponseMessage("");
+                      setErrorMsg("");
+                    }}
                     value={email}
                     required
                     aria-describedby="uiddnote"
@@ -96,25 +101,29 @@ function ContactUs() {
                   />
                   <label>Enter your message</label>
                   <br />
-                  <textarea style={{width: "100%",}}
+                  <textarea
+                    style={{ width: "100%" }}
                     autoComplete="on"
-                    onChange={(e) => {setMessage(e.target.value); setResponseMessage(""); setErrorMsg("")}}
+                    onChange={(e) => {
+                      setMessage(e.target.value);
+                      setResponseMessage("");
+                      setErrorMsg("");
+                    }}
                     value={message}
                     required
                     aria-describedby="uiddnote"
                     type="text"
                     placeholder="Enter your Message"
                   />
-                    <button type="submit">Send Message</button>
-                  </div>
-                
-              </form>              
+                  <button type="submit">Send Message</button>
+                </div>
+              </form>
             </div>
           </div>
 
           <div className={styles.colOne}>
             <img
-              src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681288615/chike/pexels-ketut-subiyanto-4559951_y7tzis.jpg"
+              src="https://res?.cloudinary.com/dmixz7eur/image/upload/v1681288615/chike/pexels-ketut-subiyanto-4559951_y7tzis.jpg"
               alt=""
             />
           </div>

@@ -8,7 +8,7 @@ function SuccessMessage() {
     <div className={styles.successMessage}>
       <div className={styles.message}>
         <img
-          src="https://res.cloudinary.com/dmixz7eur/image/upload/v1677864171/chike/91068-message-sent-successfully-plane_1_dtltch.gif"
+          src="https://res?.cloudinary.com/dmixz7eur/image/upload/v1677864171/chike/91068-message-sent-successfully-plane_1_dtltch.gif"
           alt=""
         />
         <h6>Your Deposit was successful</h6>

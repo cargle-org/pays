@@ -1,87 +1,89 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import styles from "../../../styles/components/createvoucherpage.module.css";
 import Back from "../../../assets/back.svg";
-import Loading from '../loading';
-import { useRouter } from 'next/router';
-import { createLink } from '@/pages/api/paymentLink/createLink';
-import useAmountFormatter from '@/hooks/useAmountFormatter';
-import { LinkContext } from '@/pages/context/linkContext';
-import {linkURL} from '../../../utils/constants'
-import { getUserDetails } from '@/pages/api/auth/auth';
+import Loading from "../loading";
+import { useRouter } from "next/router";
+import { createLink } from "@/pages/api/paymentLink/createLink";
+import useAmountFormatter from "@/hooks/useAmountFormatter";
+import { LinkContext } from "@/pages/context/linkContext";
+import { linkURL } from "../../../utils/constants";
+import { getUserDetails } from "@/pages/api/auth/auth";
 
 const CreatePaymentLinkBody = () => {
   const router = useRouter();
-  const {formatAmount} = useAmountFormatter();
+  const { formatAmount } = useAmountFormatter();
   const userData = getUserDetails();
-  const username = userData?.companyName ? userData?.companyName?.replace(/\s/g, '') : userData?.name?.replace(/\s/g, '');
+  const username = userData?.companyName
+    ? userData?.companyName?.replace(/\s/g, "")
+    : userData?.name?.replace(/\s/g, "");
   const [title, setTitle] = useState("");
-  const [formatTitle, setFormatTitle] = useState("")
+  const [formatTitle, setFormatTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("")
+  const [category, setCategory] = useState("");
   const [amount, setAmount] = useState(0);
   const [displayAmount, setDisplayAmount] = useState("");
   const [errMSG, setErrMSG] = useState("");
   const [expiry, setExpiry] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const {categories} = useContext(LinkContext);
+  const { categories } = useContext(LinkContext);
 
+  // const handleFileInputChange = (event) => {
+  //   if (event.target.files && event.target.files.length > 0) {
+  //     setVoucherThumbnail(event.target.files[0]);
+  //     setcmgThumbnail(URL.createObjectURL(event.target.files[0]));
+  //   }
+  // };
 
-// const handleFileInputChange = (event) => {
-//   if (event.target.files && event.target.files.length > 0) {
-//     setVoucherThumbnail(event.target.files[0]);
-//     setcmgThumbnail(URL.createObjectURL(event.target.files[0]));
-//   }
-// };
+  const handleTitle = (e) => {
+    const value = e.target.value;
+    setTitle(value);
+    const formattedTitle = value.replace(/\s/g, "");
+    setFormatTitle(formattedTitle);
+  };
 
+  const handleAmountChange = (event) => {
+    const newValue = event.target.value;
+    const formattedAmount = formatAmount(newValue);
+    setAmount(formattedAmount);
+    setDisplayAmount(new Intl.NumberFormat().format(formattedAmount));
+  };
 
-const handleTitle = (e) => {
-  const value = e.target.value;
-  setTitle(value);
-  const formattedTitle = value.replace(/\s/g, '');
-  setFormatTitle(formattedTitle);
-};
+  const clearFields = () => {
+    setTitle("");
+    setAmount(0);
+    setDisplayAmount("");
+    setCategory("");
+    setDescription("");
+    setExpiry("");
+  };
 
-const handleAmountChange = (event) => {
-  const newValue = event.target.value;
-   const formattedAmount = formatAmount(newValue);
-      setAmount(formattedAmount);
-      setDisplayAmount(new Intl.NumberFormat().format(formattedAmount));
-};
-
-const clearFields = () => {
-  setTitle('');
-  setAmount(0);
-  setDisplayAmount('');
-  setCategory('');
-  setDescription('');
-  setExpiry('');
-};
-
-const handleLinkCreation = async(e) => {
-  e.preventDefault();
-  setIsLoading(true);
-  const data = {
-    title,
-    amount: Number(amount),
-    category,
-    description,
-    linkExpiry: expiry || "2050-09-24T00:00",
-    link: `${linkURL}pay/${username}/${formatTitle}`
-  }
-  const res = await createLink(data);
-  if ( res && res?.success){
-    router.push(`/pay-link/${res.link._id}`);
-    clearFields();
-  } else {
-    clearFields();
-    setErrMSG("Unable to generate your link. Please check that you are using a unique title and try again");
-    setTimeout(() => {
-        setErrMSG('')
-    }, 7000)
-    setIsLoading(false);
-  }
-}
+  const handleLinkCreation = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const data = {
+      title,
+      amount: Number(amount),
+      category,
+      description,
+      linkExpiry: expiry || "2050-09-24T00:00",
+      link: `${linkURL}pay/${username}/${formatTitle}`,
+    };
+    const res = await createLink(data);
+    if (res && res?.success) {
+      clearFields();
+      router.push(`/pay-link/${res?.link?._id}`);
+    } else {
+      clearFields();
+      setErrMSG(
+        "Unable to generate your link. Please check that you are using a unique title and try again"
+      );
+      setTimeout(() => {
+        setErrMSG("");
+      }, 7000);
+      setIsLoading(false);
+    }
+  };
 
   if (isLoading) {
     return <Loading />;
@@ -90,7 +92,7 @@ const handleLinkCreation = async(e) => {
   return (
     <div className={styles.createVoucherPage}>
       <div className={styles.container}>
-      <form onSubmit={(e) => handleLinkCreation(e)}>
+        <form onSubmit={(e) => handleLinkCreation(e)}>
           <div className={styles.colOne}>
             <div className={styles.back} onClick={() => router.back()}>
               <Back /> Back
@@ -113,11 +115,19 @@ const handleLinkCreation = async(e) => {
                 required
               />
               <label>Category</label>
-              <select name="" id=""  required onChange={(e) => setCategory(e.target.value.toLowerCase())}>
-              <option value="">~select a category~</option>
-                {categories.length && categories.map((category, index) => (
-                   <option value={category} key={index}>{category}</option>
-                ))}
+              <select
+                name=""
+                id=""
+                required
+                onChange={(e) => setCategory(e.target.value.toLowerCase())}
+              >
+                <option value="">~select a category~</option>
+                {categories.length &&
+                  categories.map((category, index) => (
+                    <option value={category} key={index}>
+                      {category}
+                    </option>
+                  ))}
               </select>
 
               <label>Description</label>
@@ -131,37 +141,41 @@ const handleLinkCreation = async(e) => {
               <label>Amount</label>
               <input
                 value={displayAmount}
-                name="amount" 
+                name="amount"
                 placeholder="Set Amount"
                 onChange={(event) => handleAmountChange(event)}
                 type="text"
                 maxLength={7}
                 required
               />
-              <p className={styles.amountBandwidth}>Maximum transaction <span>200,000</span></p>
- 
-              <label className={styles.expiryLabel}> Link Expiry <small>Optional</small></label>
+              <p className={styles.amountBandwidth}>
+                Maximum transaction <span>200,000</span>
+              </p>
+
+              <label className={styles.expiryLabel}>
+                {" "}
+                Link Expiry <small>Optional</small>
+              </label>
               <input
                 value={expiry}
                 onChange={(e) => setExpiry(e.target.value)}
                 type="datetime-local"
                 className={styles.expiryInput}
               />
-              <button type='submit' className={styles.paymentButton}
-              >
+              <button type="submit" className={styles.paymentButton}>
                 Create Link
               </button>
             </div>
           </div>
           <div className={styles.paymentColTwo}>
-           <div className={styles.thumbnail}>
-            <img src="/coins.jpg" alt="money"/>
+            <div className={styles.thumbnail}>
+              <img src="/coins.jpg" alt="money" />
             </div>
           </div>
         </form>
       </div>
-      </div>
-  )
-}
+    </div>
+  );
+};
 
-export default CreatePaymentLinkBody
+export default CreatePaymentLinkBody;

@@ -13,8 +13,8 @@ export const createVoucher = async ({ formData }) => {
         //   Authorization: `Bearer ${token}`,
       },
     });
-    return response.data.data;
+    return response.data?.data;
   } catch (error) {
-    return error.response.data
+    return error.response?.data;
   }
 };

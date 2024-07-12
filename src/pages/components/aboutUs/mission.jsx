@@ -9,11 +9,10 @@ function Mission() {
         <div className={styles.row}>
           <div className={styles.col}>
             <div className={styles.image}>
-
-            <img
-              src="https://res.cloudinary.com/dmixz7eur/image/upload/v1681164829/Frame_1000000880_qnlmur.png"
-              alt=""
-            />
+              <img
+                src="https://res?.cloudinary.com/dmixz7eur/image/upload/v1681164829/Frame_1000000880_qnlmur.png"
+                alt=""
+              />
             </div>
           </div>
           <div className={styles.col}>

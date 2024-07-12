@@ -42,16 +42,16 @@ function ProfileBody() {
     (async () => {
       setIsLoading(true);
       const res = await getProfile();
-      const fullName = res.firstName + ' ' + res.lastName;
-      setName(res.name);
-      if (res.companyName && !isCompany) {
-        setCompanyName(res.companyName)
+      const fullName = res?.firstName + " " + res?.lastName;
+      setName(res?.name);
+      if (res?.companyName && !isCompany) {
+        setCompanyName(res?.companyName);
       }
-      setEmail(res.email);
-      setPhoneNum(res.phone);
-      setCompanyName(res.companyName);
-      setCompanyLogo(res.companyLogo);
-      setIsCompany(res.isCompany);
+      setEmail(res?.email);
+      setPhoneNum(res?.phone);
+      setCompanyName(res?.companyName);
+      setCompanyLogo(res?.companyLogo);
+      setIsCompany(res?.isCompany);
       setIsLoading(false);
     })();
   }, []);
@@ -60,20 +60,20 @@ function ProfileBody() {
     e.preventDefault();
     const formData = new FormData();
 
-   if (!isCompany) {
-    formData.append("name", name);
-   } else {
-    formData.append("companyName", companyName);
-   }
+    if (!isCompany) {
+      formData.append("name", name);
+    } else {
+      formData.append("companyName", companyName);
+    }
     formData.append("phone", phoneNum);
     formData.append("email", email);
     if (companyLogo && isCompany) {
       formData.append("companyLogo", companyLogo);
-    } 
+    }
     const result = await editProfile({ formData });
     if (result) {
       const res = await getProfile();
-      localStorage.setItem('user', JSON.stringify(res));
+      localStorage.setItem("user", JSON.stringify(res));
       const message = "Changes saved successfully";
       notify(message);
       router.reload();
@@ -84,7 +84,7 @@ function ProfileBody() {
   };
 
   const handleChangePassword = async () => {
-    setErrMsg("")
+    setErrMsg("");
     if (oldPassword.length === 0) {
       setErrMsg("your old password field cannot be empty");
     } else if (newPassword.length === 0) {
@@ -146,13 +146,10 @@ function ProfileBody() {
               <h3>Profile</h3>
             </div>
             <div className={styles.avatar}>
-              {isCompany ? 
-              <img src={companyLogo} alt="" />
-            : 
-            <div />}
+              {isCompany ? <img src={companyLogo} alt="" /> : <div />}
             </div>
             <div className={styles.details}>
-              {(isCompany || companyName) ? (
+              {isCompany || companyName ? (
                 <div>
                   {/* <label>Company’s name</label>
                   <input
@@ -306,11 +303,8 @@ function ProfileBody() {
           </div>
         )}
 
-          {/* Get all payment links */}
-          {tab === 3 && (
-            <PaymentLinks />
-          )}
-        
+        {/* Get all payment links */}
+        {tab === 3 && <PaymentLinks />}
       </div>
     </div>
   );
