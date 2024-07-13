@@ -16,12 +16,14 @@ const PayLink = () => {
   const [openShare, setOpenShare] = useState(false);
   const [copied, setCopied] = useState(false);
   const { id } = router.query;
+  console.log("🚀 ~ PayLink ~ id:", id);
   const date = new Date(linkDetails?.linkExpiry);
 
   useEffect(() => {
     console.log(id);
-    if (id === "1" || id === undefined) {
-      setLinkDetails("https://pays.co/cashout");
+    // if (id === "1" || id === undefined) {
+    if (id) {
+      setLinkDetails(`Withdraw your voucher - '${id}' from usepays.co/cashout`);
       setOpenShare(true);
     } else {
       console.log("running else");
@@ -93,7 +95,8 @@ const PayLink = () => {
         <div className={styles.successBanner}>
           <div className={styles.banner}>
             <Image src="/done.png" alt="success" width={100} height={70} />
-            {id == "1" || id == undefined ? (
+            {/* {id == "1" || id == undefined ? ( */}
+            {id ? (
               <h3>Share voucher</h3>
             ) : (
               <div className={styles.bannerDesc}>
@@ -103,7 +106,8 @@ const PayLink = () => {
               </div>
             )}
             <div className={styles.link}>
-              {id == "1" || id == undefined ? linkDetails : linkDetails.link}
+              {/* {id == "1" || id == undefined ? linkDetails : linkDetails.link} */}
+              {id ? linkDetails : linkDetails.link}
             </div>
             <div className={styles.buttons}>
               <button className={styles.copybtn} onClick={handleCopy}>
