@@ -60,11 +60,12 @@ const PayLink = () => {
   };
 
   const handleWhatsAppShare = () => {
-    const shareText = `Hey there, this is the link to fund my personal usepays account for ${
-      linkDetails.title
-    }: ${
-      linkDetails.link + `/${id}`
-    }. Thank you for supporting me. This link is only valid until ${date.toLocaleDateString()}`;
+    // const shareText = `Hey there, this is the link to fund my personal usepays account for ${
+    //   linkDetails.title
+    // }: ${
+    //   linkDetails.link + `/${id}`
+    // }. Thank you for supporting me. This link is only valid until ${date.toLocaleDateString()}`;
+    const shareText = `Withdraw your voucher - '${id}' from usepays.co/cashout`;
     const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(
       shareText
     )}`;
@@ -73,14 +74,14 @@ const PayLink = () => {
 
   const handleEmailShare = () => {
     const emailSubject = "My Personalized Payment link";
-    const emailBody =
-      ReactDOMServer.renderToString(`Hey there! Here is the link to send funds to my personal usepays account for ${
-        linkDetails.title
-      }: ${
-        linkDetails.link + `/${id}`
-      }. This link is only valid until ${date.toLocaleDateString()} 
-        `);
-
+    // const emailBody =
+    //   ReactDOMServer.renderToString(`Hey there! Here is the link to send funds to my personal usepays account for ${
+    //     linkDetails.title
+    //   }: ${
+    //     linkDetails.link + `/${id}`
+    //   }. This link is only valid until ${date.toLocaleDateString()}
+    //     `);
+    const emailBody = `Withdraw your voucher - '${id}' from usepays.co/cashout`;
     window.location.href = `mailto:?subject=${encodeURIComponent(
       emailSubject
     )}&body=${encodeURIComponent(emailBody)}`;

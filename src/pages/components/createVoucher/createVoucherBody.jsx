@@ -22,7 +22,7 @@ function CreateVoucherBody() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [voucherKey, setVoucherKey] = useState("");
-  const [expiryDate, setExpiryDate] = useState("");
+  // const [expiryDate, setExpiryDate] = useState("");
   const [errMSG, setErrMSG] = useState("");
   const [voucherThumbnail, setVoucherThumbnail] = useState("");
   const [cmgThumbnail, setcmgThumbnail] = useState("/createVoucher.svg");
@@ -32,7 +32,9 @@ function CreateVoucherBody() {
 
   // Recipient form details
   const [operation, setOperation] = useState("manually");
+  console.log("🚀 ~ CreateVoucherBody ~ operation:", operation);
   const [recipients, setRecipients] = useState([]);
+  console.log("🚀 ~ CreateVoucherBody ~ recipients:", recipients);
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
@@ -45,6 +47,7 @@ function CreateVoucherBody() {
 
   // State to store the parsed data from the uploaded file
   const [parsedData, setParsedData] = useState([]);
+  console.log("🚀 ~ CreateVoucherBody ~ parsedData:", parsedData);
 
   // State variable for voucher key error message
   const [voucherKeyError, setVoucherKeyError] = useState("");
@@ -104,9 +107,9 @@ function CreateVoucherBody() {
 
       // Extract required columns and update recipients state
       const updatedRecipients = parsedData.map((row) => ({
-        name: row.name,
-        phoneNumber: row.phoneNumber,
-        email: row.email,
+        name: row.recipient_name,
+        phoneNumber: row.recipient_phone,
+        email: row.recipient_email,
       }));
 
       setParsedData(updatedRecipients);
@@ -116,7 +119,88 @@ function CreateVoucherBody() {
   };
 
   // Function to handle the submission of bulk recipients
-  const handleBulkRecipientsSubmit = async () => {
+  // const handleBulkRecipientsSubmit = async (e) => {
+  //   e.preventDefault();
+  //   console.log("BATCH SUBMIT");
+
+  //   setIsLoading(true);
+
+  //   // Create a new FormData object
+  //   const formData = new FormData();
+
+  //   // Append each recipient to the FormData object
+  //   parsedData.forEach((row, index) => {
+  //     console.log("🚀 ~ parsedData.forEach ~ row:", row);
+  //     formData.append(`recipients[${index}][name]`, row.name);
+  //     formData.append(`recipients[${index}][phoneNumber]`, row.phoneNumber);
+  //     formData.append(`recipients[${index}][email]`, row.email);
+  //     // formData.append(`recipients[${index}][name]`, row.recipient_name);
+  //     // formData.append(`recipients[${index}][phoneNumber]`, row.recipient_phone);
+  //     // formData.append(`recipients[${index}][email]`, row.recipient_email);
+  //   });
+
+  //   // Add other necessary data to the formData object
+  //   formData.append("title", title);
+  //   formData.append("description", description);
+  //   formData.append("voucherKey", voucherKey);
+  //   formData.append("expiryDate", expiryDate);
+  //   formData.append("totalNumberOfVouchers", noOfVouchers);
+  //   formData.append("amountPerVoucher", amountPerVoucher);
+
+  //   // Append recipients as a JSON string
+  //   formData.append("recipients", JSON.stringify(parsedData));
+
+  //   console.log("🚀 ~ handleBulkRecipientsSubmit ~ formData:", formData);
+
+  //   // Send the FormData using Axios
+  //   axios
+  //     .post(`${BASE_URL}utils/voucher/create`, formData, {
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //         "x-access-token": `${token}`,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       setIsLoading(false);
+  //       if (res && res?.data && res?.data.success) {
+  //         const message = res?.data?.data?.message;
+  //         const voucherId = res?.data?.data?.voucher?._id;
+  //         notify({ message });
+  //         router.push({
+  //           pathname: "/voucher/[individualVoucherPage]",
+  //           query: { individualVoucherPage: voucherId },
+  //         });
+  //         setTitle("");
+  //         setDescription("");
+  //         setVoucherKey("");
+  //         setExpiryDate("");
+  //         setNoOfVouchers(0);
+  //         setAmountPerVoucher(0);
+  //         // setParsedData([]);
+  //       } else {
+  //         const errorMessage = res?.data
+  //           ? res?.data.message
+  //           : "An error occurred";
+  //         setErrMSG(errorMessage);
+  //         notify({ message: errorMessage });
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       setIsLoading(false);
+  //       setTitle("");
+  //       setDescription("");
+  //       setVoucherKey("");
+  //       setExpiryDate("");
+  //       setNoOfVouchers(0);
+  //       setAmountPerVoucher(0);
+  //       setErrMSG(error.response?.data.error);
+  //       const message = error.response?.data.error;
+  //       notify({ message });
+  //     });
+  // };
+  // Function to handle the submission of bulk recipients
+  const handleBulkRecipientsSubmit = async (e) => {
+    e.preventDefault();
     setIsLoading(true);
 
     // Create a new FormData object
@@ -133,14 +217,13 @@ function CreateVoucherBody() {
     formData.append("title", title);
     formData.append("description", description);
     formData.append("voucherKey", voucherKey);
-    formData.append("expiryDate", expiryDate);
+    // formData.append("expiryDate", expiryDate);
     formData.append("totalNumberOfVouchers", noOfVouchers);
     formData.append("amountPerVoucher", amountPerVoucher);
 
     // Append recipients as a JSON string
     formData.append("recipients", JSON.stringify(parsedData));
 
-    // Send the FormData using Axios
     axios
       .post(`${BASE_URL}utils/voucher/create`, formData, {
         headers: {
@@ -161,10 +244,10 @@ function CreateVoucherBody() {
           setTitle("");
           setDescription("");
           setVoucherKey("");
-          setExpiryDate("");
+          // setExpiryDate("");
           setNoOfVouchers(0);
           setAmountPerVoucher(0);
-          // setParsedData([]);
+          setParsedData([]);
         } else {
           const errorMessage = res?.data
             ? res?.data.message
@@ -174,11 +257,12 @@ function CreateVoucherBody() {
         }
       })
       .catch((error) => {
+        console.log("🚀 ~ handleBulkRecipientsSubmit ~ error:", error);
         setIsLoading(false);
         setTitle("");
         setDescription("");
         setVoucherKey("");
-        setExpiryDate("");
+        // setExpiryDate("");
         setNoOfVouchers(0);
         setAmountPerVoucher(0);
         setErrMSG(error.response?.data.error);
@@ -187,14 +271,78 @@ function CreateVoucherBody() {
       });
   };
 
+  // const handleCreateVoucher = async (e) => {
+  //   e.preventDefault();
+
+  //   setIsLoading(true);
+
+  //   // const newRecipient = { name, email, phone_number: phoneNumber };
+  //   // setRecipients((r) => [...r, newRecipient]);
+  //   // const updatedRecipients = [...recipients, newRecipient];
+
+  //   axios
+  //     .post(
+  //       `${BASE_URL}utils/voucher/create`,
+  //       {
+  //         title,
+  //         description,
+  //         voucherKey,
+  //         // Use a ternary operator to conditionally include expiry_date based on its value
+  //         ...(expiryDate !== "" && { expiry_date: expiryDate }),
+  //         totalNumberOfVouchers: noOfVouchers,
+  //         amountPerVoucher,
+  //         // recipients: updatedRecipients,
+  //         recipients,
+  //       },
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           "x-access-token": `${token}`,
+  //         },
+  //       }
+  //     )
+  //     .then((res) => {
+  //       setIsLoading(false);
+  //       if (res && res?.data && res?.data.success) {
+  //         const message = res?.data.data.message;
+  //         const voucherId = res?.data.data.voucher._id;
+  //         notify({ message });
+  //         router.push({
+  //           pathname: "/voucher/[individualVoucherPage]",
+  //           query: { individualVoucherPage: voucherId },
+  //         });
+  //         setTitle("");
+  //         setDescription("");
+  //         setVoucherKey("");
+  //         setExpiryDate("");
+  //         setNoOfVouchers(0);
+  //         setAmountPerVoucher(0);
+  //       } else {
+  //         const errorMessage = res?.data
+  //           ? res?.data.message
+  //           : "An error occurred";
+  //         setErrMSG(errorMessage);
+  //         notify({ message: errorMessage });
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       setIsLoading(false);
+  //       setTitle("");
+  //       setDescription("");
+  //       setVoucherKey("");
+  //       setExpiryDate("");
+  //       setNoOfVouchers(0);
+  //       setAmountPerVoucher(0);
+  //       setErrMSG(error.response?.data.error);
+  //       const message = error.response?.data.error;
+  //       notify({ message });
+  //     });
+  // };
+
   const handleCreateVoucher = async (e) => {
     e.preventDefault();
 
     setIsLoading(true);
-
-    // const newRecipient = { name, email, phone_number: phoneNumber };
-    // setRecipients((r) => [...r, newRecipient]);
-    // const updatedRecipients = [...recipients, newRecipient];
 
     axios
       .post(
@@ -203,12 +351,11 @@ function CreateVoucherBody() {
           title,
           description,
           voucherKey,
-          // Use a ternary operator to conditionally include expiry_date based on its value
-          ...(expiryDate !== "" && { expiry_date: expiryDate }),
+          // expiryDate,
+          // ...(expiryDate !== "" && { expiry_date: expiryDate }),
           totalNumberOfVouchers: noOfVouchers,
           amountPerVoucher,
-          // recipients: updatedRecipients,
-          recipients,
+          recipients: operation === "manually" ? recipients : parsedData,
         },
         {
           headers: {
@@ -233,6 +380,8 @@ function CreateVoucherBody() {
           setExpiryDate("");
           setNoOfVouchers(0);
           setAmountPerVoucher(0);
+          setRecipients([]);
+          setParsedData([]);
         } else {
           const errorMessage = res?.data
             ? res?.data.message
@@ -382,7 +531,7 @@ function CreateVoucherBody() {
                   <div className={styles.error}>{voucherKeyError}</div>
                 )}
 
-                <label>
+                {/* <label>
                   Expiry date
                   <span className={styles.optionalTag}>optional</span>
                 </label>
@@ -391,7 +540,7 @@ function CreateVoucherBody() {
                   placeholder="Enter expiry date for voucher key"
                   onChange={(e) => setExpiryDate(e.target.value)}
                   type="date"
-                />
+                /> */}
 
                 <div className={styles.sortAmount}>
                   <div className={styles.input}>
@@ -482,7 +631,7 @@ function CreateVoucherBody() {
                     <span>Batch Upload</span>
                   </div>
                 </div>
-                {operation == "manually" ? (
+                {operation === "manually" ? (
                   <div className={styles.content}>
                     {errMSG ? (
                       <div className={styles.error}>{errMSG}</div>
@@ -553,7 +702,7 @@ function CreateVoucherBody() {
                       onClick={
                         operation === "manually"
                           ? handleCreateVoucher
-                          : handleBulkRecipientsSubmit
+                          : () => handleBulkRecipientsSubmit()
                       }
                       disabled={
                         totalAmount === "0" ||
@@ -588,6 +737,17 @@ function CreateVoucherBody() {
                       </label>
                     </div>
 
+                    <div className={styles.buttonContainer}>
+                      <button
+                        className={`${styles.createVoucherButton} ${
+                          operation === "bulk" && styles.activeButton
+                        }`}
+                        onClick={handleBulkRecipientsSubmit}
+                      >
+                        Upload Recipients
+                      </button>
+                    </div>
+
                     <div id={styles.table}>
                       <table>
                         <thead>
@@ -617,12 +777,14 @@ function CreateVoucherBody() {
                       </table>
                     </div>
 
-                    <button
-                      onClick={() => router.push("/createvouchers")}
-                      type="button"
-                    >
-                      Create Voucher
-                    </button>
+                    {operation === "manually" && (
+                      <button
+                        onClick={() => router.push("/createvouchers")}
+                        type="button"
+                      >
+                        Create Voucher
+                      </button>
+                    )}
                   </div>
                 )}
               </div>
